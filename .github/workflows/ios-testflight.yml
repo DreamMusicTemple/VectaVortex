@@ -11,6 +11,9 @@ name: Vektur Vortex signed build and TestFlight upload
 # Optional repository VARIABLE: APPLE_TEAM_ID (defaults to the Team ID in your Apple Distribution certificate).
 on:
   workflow_dispatch:
+  push:                       # fires ONLY when the trigger file changes (also registers the workflow, which a dispatch-only file on a non-default branch is not)
+    branches: [recovery/reconstruct-directory-structure]
+    paths: [.github/testflight-trigger.txt]
 
 permissions:
   contents: read
