@@ -113,7 +113,7 @@ jobs:
             <key>teamID</key><string>${TEAM_ID}</string>
             <key>signingStyle</key><string>automatic</string>
             <key>uploadSymbols</key><true/>
-            <key>manageAppVersionAndBuildNumber</key><false/>
+            <key>manageAppVersionAndBuildNumber</key><true/>
           </dict></plist>
           PLIST
 
