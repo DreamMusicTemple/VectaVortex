@@ -1,0 +1,40 @@
+name: Vektur Vortex recovery manifest inspection
+on:
+  push:
+    branches:
+      - recovery/reconstruct-directory-structure
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect-manifest:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: recovery/reconstruct-directory-structure
+      - name: Inspect recovery manifest archive
+        run: |
+          python3 - <<'PY'
+          import zipfile, csv, io, os
+          archive = "VECTUR_VORTEX_MANIFEST.zip"
+          if not os.path.isfile(archive):
+              raise SystemExit("Manifest ZIP is not present at repository root")
+          with zipfile.ZipFile(archive) as z:
+              names = z.namelist()
+              print("ARCHIVE MEMBERS:")
+              for n in names[:100]:
+                  info=z.getinfo(n)
+                  print(f"{info.file_size}\t{n}")
+              if len(names)>100: print(f"... {len(names)-100} additional members")
+              for n in names:
+                  if n.lower().endswith(".csv"):
+                      data=z.read(n).decode("utf-8-sig")
+                      print("\nCSV FILE:", n)
+                      print("HEADER AND FIRST 25 ROWS:")
+                      for line in data.splitlines()[:26]: print(line)
+                  elif n.lower().endswith((".json",".txt")) and ("manifest" in n.lower() or "map" in n.lower()):
+                      data=z.read(n).decode("utf-8-sig", errors="replace")
+                      print("\nTEXT/JSON FILE:",n)
+                      print(data[:5000])
+          PY
