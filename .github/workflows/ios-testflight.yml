@@ -24,7 +24,7 @@ concurrency:
 
 jobs:
   testflight:
-    runs-on: macos-15
+    runs-on: xcode-27      # GitHub runner image with macOS 27, Xcode 27 and the iOS 27 SDK (GA since 2026-10-15)
     timeout-minutes: 75
     env:
       TEAM_ID: ${{ secrets.APPLE_TEAM_ID || vars.APPLE_TEAM_ID || 'H4358J7N36' }}
@@ -33,11 +33,17 @@ jobs:
         with:
           ref: recovery/reconstruct-directory-structure
 
-      - name: Select newest Xcode (Apple requires a current SDK for uploads)
+      - name: Select Xcode 27 and require the iOS 27 or later SDK
         run: |
-          X=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | sort -V | tail -1 || true)
-          if [ -n "$X" ]; then sudo xcode-select -s "$X/Contents/Developer"; else echo "::warning::No Xcode 26 on this runner image; upload may be rejected for an old SDK."; fi
+          set -euo pipefail
+          X=$(ls -d /Applications/Xcode_27*.app 2>/dev/null | grep -vi 'beta\|candidate' | sort -V | tail -1 || true)
+          [ -n "$X" ] || X=$(ls -d /Applications/Xcode_27*.app 2>/dev/null | sort -V | tail -1 || true)
+          [ -n "$X" ] || { echo "::error::No Xcode 27 found on this runner image"; ls -d /Applications/Xcode*; exit 1; }
+          sudo xcode-select -s "$X/Contents/Developer"
           xcodebuild -version
+          SDK=$(xcrun --sdk iphoneos --show-sdk-version)
+          echo "iOS SDK: $SDK"
+          [ "${SDK%%.*}" -ge 27 ] || { echo "::error::iOS SDK $SDK is older than 27"; exit 1; }
 
       - name: Check secrets are present (names only, values never printed)
         env:
