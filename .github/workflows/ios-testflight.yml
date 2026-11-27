@@ -63,7 +63,7 @@ jobs:
           python3 - <<'PY'
           import os, re, time, json, base64, urllib.request, urllib.error
           import jwt
-          kid = re.sub(r"\s", "", os.environ["ASC_KEY_ID"]); iss = re.sub(r"\s", "", os.environ["ASC_ISSUER_ID"])
+          kid = re.sub(r"\s", "", os.environ["ASC_KEY_ID"]); kid = re.sub(r"^AuthKey_|\.p8$", "", kid); iss = re.sub(r"\s", "", os.environ["ASC_ISSUER_ID"])
           pem = os.environ["ASC_KEY_P8"]
           if "BEGIN PRIVATE KEY" not in pem:
               pem = base64.b64decode(pem).decode()
@@ -94,6 +94,7 @@ jobs:
           set -euo pipefail
           umask 077
           ASC_KEY_ID="$(printf '%s' "$ASC_KEY_ID" | tr -d '[:space:]')"
+          ASC_KEY_ID="${ASC_KEY_ID#AuthKey_}"; ASC_KEY_ID="${ASC_KEY_ID%.p8}"      # tolerate a Key ID saved as the file name
           ASC_ISSUER_ID="$(printf '%s' "$ASC_ISSUER_ID" | tr -d '[:space:]')"
           KEYFILE="$RUNNER_TEMP/AuthKey_${ASC_KEY_ID}.p8"
           case "$ASC_KEY_P8" in
