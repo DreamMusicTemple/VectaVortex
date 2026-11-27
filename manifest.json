@@ -1,0 +1,437 @@
+[
+ {
+  "name": "analogMorph",
+  "frames": 5,
+  "size": 1024
+ },
+ {
+  "name": "digitalMorph",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "oddHarmonics",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "evenHarmonics",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "formantAEIOU",
+  "frames": 5,
+  "size": 1024
+ },
+ {
+  "name": "bellMetallic",
+  "frames": 6,
+  "size": 1024
+ },
+ {
+  "name": "glassy",
+  "frames": 7,
+  "size": 1024
+ },
+ {
+  "name": "vocalOoh",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "squareMorph",
+  "frames": 5,
+  "size": 1024
+ },
+ {
+  "name": "sawBright",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "pwmLike",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "organDrawbars",
+  "frames": 5,
+  "size": 1024
+ },
+ {
+  "name": "noisySpectral",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "subBass",
+  "frames": 4,
+  "size": 1024
+ },
+ {
+  "name": "stringsEnsemble",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "fmLikeBell",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "wavefolded",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "whiteNoise",
+  "frames": 6,
+  "size": 1024
+ },
+ {
+  "name": "pinkNoise",
+  "frames": 6,
+  "size": 1024
+ },
+ {
+  "name": "growlBass",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "bitcrushed8bit",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "screechLead",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "additiveStaircase",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "talkingFormant",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "ensembleShimmer",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "resoSweep",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "metallicClang",
+  "frames": 6,
+  "size": 1024
+ },
+ {
+  "name": "subGrowl",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "digitalAlias",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "pluckDecay",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "vowelDiphthong",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "glitchStutter",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "warmPWM",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "crystalShimmer",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "vortexSpiral",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "prismRefraction",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "nebulaDrift",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "quantumFlutter",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "origamiFold",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "dnbReese",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "dnbNeuroFold",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "dnbTechStep",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "dnbTalkingGrowl",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "rhodesTine",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "rhodesBark",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "droneWarmPad",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "droneSubChoir",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "droneAirDrift",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "percClickThump",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "percWoodBurst",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "glassHarmonica",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "glassShatter",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "supersaw",
+  "frames": 12,
+  "size": 1024
+ },
+ {
+  "name": "vocalIRMale",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "vocalIRFemale",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "vocalIRChoir",
+  "frames": 16,
+  "size": 1024
+ },
+ {
+  "name": "ambientGlassPad",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "ambientCloudDrift",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "ambientSineStack",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "ambientBreath",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "ambientCrystalline",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "ambientVelvetDrone",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "ambientHalo",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "ambientMistVeil",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "bassGrowlFangs",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "bassAcidSquelch",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "bassDistortedSaw",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "bassWobbleCrunch",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "bassMetalGrind",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "bassSubCrush",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "bassFeedbackRoar",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "bassIndustrialStomp",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "chipNesVoices",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "chipSidCombined",
+  "frames": 10,
+  "size": 1024
+ },
+ {
+  "name": "dnbDarkChoir",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "dnbHollowChoir",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "dnbCathedralChoir",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "dnbDemonChoir",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "droneSoftTide",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "droneSoftBloom",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "epTine",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "epReed",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "bassWarmPunch",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "bassHeavyThump",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "bassFunkResonant",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "bassFunkSlap",
+  "frames": 8,
+  "size": 1024
+ },
+ {
+  "name": "leadHoover",
+  "frames": 8,
+  "size": 1024
+ }
+]
