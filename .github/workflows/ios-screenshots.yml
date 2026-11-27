@@ -43,7 +43,7 @@ jobs:
           echo "--- boot";      run_to 120 xcrun simctl boot "$UDID" || echo "boot rc=$?"
           echo "--- bootstatus"; run_to 240 xcrun simctl bootstatus "$UDID" || echo "bootstatus rc=$?"
           APP=$(find "$RUNNER_TEMP/DD/Build/Products" -name "VectaVortex.app" -maxdepth 3 | head -1); echo "APP=$APP"
-          du -sh "$APP"; echo "--- install start $(date +%T)"; run_to 900 xcrun simctl install "$UDID" "$APP" || echo "install rc=$?"; echo "--- install end $(date +%T)"
+          du -sh "$APP"; echo "--- install start $(date +%T)"; for a in 1 2 3; do run_to 240 xcrun simctl install "$UDID" "$APP" && break; echo "install attempt $a failed rc=$?"; run_to 60 xcrun simctl shutdown "$UDID" || true; run_to 120 xcrun simctl boot "$UDID" || true; run_to 240 xcrun simctl bootstatus "$UDID" || true; done; echo "--- install end $(date +%T)"
           BID=$(/usr/libexec/PlistBuddy -c "Print CFBundleIdentifier" "$APP/Info.plist"); echo "BID=$BID"
           mkdir -p shots
           # tab numbers as in PluginRootView: 1 Sound, 2 Mod, 4 FX, 3 Seq, 0 Play, 8 Mixer, 5 Presets, 6 Settings
@@ -59,7 +59,7 @@ jobs:
         if: always()
         run: |
           set -euo pipefail
-          cd shots && git init -q && git checkout -q -b ci-screenshots
+          mkdir -p shots && cd shots && git init -q && git checkout -q -b ci-screenshots
           git config user.name "ci-screenshots"; git config user.email "ci@users.noreply.github.com"
           git add . && git commit -q -m "native simulator screenshots from run ${{ github.run_id }}"
           git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" ci-screenshots
