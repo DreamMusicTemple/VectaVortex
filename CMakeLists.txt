@@ -1,207 +1,85 @@
-cmake_minimum_required(VERSION 3.16)
-project(VectaCore CXX)
+# Vektur Vortex - JUCE plugin (AUv3 / Standalone / VST3 / AU) around the verified C++ engine in ../Core.
+# Configure:  cmake -S Juce -B build-juce -G Xcode -DCMAKE_SYSTEM_NAME=iOS   (iOS AUv3 + standalone)
+#             cmake -S Juce -B build-juce -G Xcode                            (macOS AU / AUv3 / VST3 / Standalone)
+# JUCE is fetched automatically (8.0.6) unless -DJUCE_DIR=/path/to/JUCE is given. See ../docs/JUCE.md.
+cmake_minimum_required(VERSION 3.22)
+project(VectaVortexJuce VERSION 1.0.0 LANGUAGES C CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Release)
+
+if(JUCE_DIR)
+  add_subdirectory(${JUCE_DIR} juce EXCLUDE_FROM_ALL)
+else()
+  include(FetchContent)
+  FetchContent_Declare(juce GIT_REPOSITORY https://github.com/juce-framework/JUCE.git GIT_TAG 8.0.6 GIT_SHALLOW TRUE)
+  FetchContent_MakeAvailable(juce)
 endif()
-# keep floating point behaviour close to the JavaScript reference
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ffp-contract=off -Wall -Wextra")
 
-add_library(vvcore INTERFACE)
-target_include_directories(vvcore INTERFACE include)
-
-add_executable(vv_golden_tests tests/golden_tests.cpp)
-target_link_libraries(vv_golden_tests vvcore)
-add_executable(vv_golden2_tests tests/golden2_tests.cpp)
-target_link_libraries(vv_golden2_tests vvcore)
-add_executable(vv_stress_tests tests/stress_tests.cpp)
-target_link_libraries(vv_stress_tests vvcore)
-
-enable_testing()
-add_test(NAME golden COMMAND vv_golden_tests ${CMAKE_SOURCE_DIR}/tests/golden)
-add_test(NAME golden2 COMMAND vv_golden2_tests ${CMAKE_SOURCE_DIR}/tests/golden2)
-add_test(NAME stress COMMAND vv_stress_tests)
-
+# ---- the DSP engine (plain C++, identical to the one the web-reference tests verify)
 add_library(vvengine STATIC ../Bridge/vv_engine.cpp)
-target_include_directories(vvengine PUBLIC ../Bridge)
-target_link_libraries(vvengine PUBLIC vvcore)
-add_executable(vv_engine_tests tests/engine_tests.cpp)
-target_link_libraries(vv_engine_tests vvengine)
-add_test(NAME engine COMMAND vv_engine_tests)
-add_executable(vv_lua_layer_tests tests/lua_layer_tests.cpp)
-target_link_libraries(vv_lua_layer_tests vvengine)
-add_test(NAME lua_layer COMMAND vv_lua_layer_tests)
-add_executable(vv_echo_tests tests/echo_tests.cpp)
-target_link_libraries(vv_echo_tests vvengine)
-add_test(NAME echo COMMAND vv_echo_tests)
-add_executable(vv_granular_x_tests tests/granular_x_tests.cpp)
-target_link_libraries(vv_granular_x_tests vvengine)
-add_test(NAME granular_x COMMAND vv_granular_x_tests)
-add_executable(vv_flute_tests tests/flute_tests.cpp)
-target_link_libraries(vv_flute_tests vvengine)
-add_test(NAME flute COMMAND vv_flute_tests)
-add_executable(vv_r22_tests tests/r22_tests.cpp)
-target_link_libraries(vv_r22_tests vvcore)
-add_test(NAME r22 COMMAND vv_r22_tests)
-add_executable(vv_r25_tests tests/r25_tests.cpp)
-target_link_libraries(vv_r25_tests vvcore)
-add_test(NAME r25 COMMAND vv_r25_tests)
-add_executable(vv_scope_tap_tests tests/scope_tap_tests.cpp)
-target_link_libraries(vv_scope_tap_tests vvengine)
-add_test(NAME scope_tap COMMAND vv_scope_tap_tests)
+target_include_directories(vvengine PUBLIC ../Bridge ../Core/include)
+target_compile_features(vvengine PUBLIC cxx_std_17)
+target_compile_options(vvengine PRIVATE -ffp-contract=off -O3)
 
-add_executable(vv_roll_automation_tests tests/roll_automation_tests.cpp)
-target_link_libraries(vv_roll_automation_tests vvcore)
-add_test(NAME roll_automation COMMAND vv_roll_automation_tests)
+set(VV_ASSETS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../Assets)
 
-add_executable(vv_performance_tests tests/performance_tests.cpp)
-target_link_libraries(vv_performance_tests vvcore)
-add_test(NAME performance COMMAND vv_performance_tests)
+set(VV_SOURCES
+  Source/Store.cpp Source/Widgets.cpp Source/Screens.cpp Source/EqGraph.cpp Source/ArpSteps.cpp
+  Source/AuthoringTools.cpp Source/DawRecorderUi.cpp Source/SampleEditor.cpp Source/ScreensMod.cpp Source/ScreensMixer.cpp Source/ScreensAuto.cpp Source/ScreensRoll.cpp Source/ScreensSeq.cpp Source/ScreensFx.cpp Source/XYPads.cpp Source/VoidView.cpp Source/WarpView.cpp Source/GrainBridgeView.cpp
+  Source/PluginProcessor.cpp Source/PluginEditor.cpp)
 
-add_executable(vv_preset_bank_tests tests/preset_bank_tests.cpp)
-target_link_libraries(vv_preset_bank_tests vvengine)
-target_compile_definitions(vv_preset_bank_tests PRIVATE VV_ASSETS="${CMAKE_CURRENT_SOURCE_DIR}/../Assets")
-add_test(NAME preset_bank COMMAND vv_preset_bank_tests)
+if(APPLE)
+  set(VV_FORMATS AUv3 Standalone VST3)
+  if(NOT CMAKE_SYSTEM_NAME STREQUAL "iOS")
+    list(APPEND VV_FORMATS AU)
+  endif()
+else()
+  set(VV_FORMATS Standalone VST3)
+endif()
 
-add_executable(vv_ref_compare tests/ref_compare.cpp)
-target_link_libraries(vv_ref_compare vvcore)
-add_executable(vv_master_out_tests tests/master_out_tests.cpp)
-target_include_directories(vv_master_out_tests PRIVATE ${CMAKE_SOURCE_DIR}/include)
-add_test(NAME master_out COMMAND vv_master_out_tests)
-add_executable(vv_compressor_test tests/compressor_test.cpp)
-target_link_libraries(vv_compressor_test vvcore)
-add_test(NAME compressor COMMAND vv_compressor_test ${CMAKE_SOURCE_DIR}/tests/ref)
-add_test(NAME web_reference COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/tests/run_ref_suite.sh $<TARGET_FILE:vv_ref_compare>)
+juce_add_plugin(VectaVortex
+  COMPANY_NAME "Dream Music Temple"
+  BUNDLE_ID com.dreammusictemple.vectavortex
+  PLUGIN_MANUFACTURER_CODE DMTm
+  PLUGIN_CODE Vvtx
+  IS_SYNTH TRUE
+  NEEDS_MIDI_INPUT TRUE
+  NEEDS_MIDI_OUTPUT FALSE
+  EDITOR_WANTS_KEYBOARD_FOCUS TRUE
+  FORMATS ${VV_FORMATS}
+  PRODUCT_NAME "Vektur Vortex"
+  AU_MAIN_TYPE kAudioUnitType_MusicDevice
+  FILE_SHARING_ENABLED TRUE
+  DOCUMENT_BROWSER_ENABLED TRUE
+  IPHONE_SCREEN_ORIENTATIONS UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight
+  IPAD_SCREEN_ORIENTATIONS UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight
+  HARDENED_RUNTIME_ENABLED TRUE)
 
-add_executable(vv_rt_alloc_tests tests/rt_alloc_tests.cpp)
-target_link_libraries(vv_rt_alloc_tests vvengine)
-target_compile_definitions(vv_rt_alloc_tests PRIVATE VV_ASSETS="${CMAKE_CURRENT_SOURCE_DIR}/../Assets")
-add_test(NAME rt_alloc COMMAND vv_rt_alloc_tests)
+target_sources(VectaVortex PRIVATE ${VV_SOURCES})
+target_compile_definitions(VectaVortex PUBLIC
+  JUCE_WEB_BROWSER=0 JUCE_USE_CURL=0 JUCE_VST3_CAN_REPLACE_VST2=0 JUCE_DISPLAY_SPLASH_SCREEN=0
+  JUCE_USE_XRANDR=0 JUCE_USE_XINERAMA=0 JUCE_USE_XCURSOR=0 JUCE_ALSA=0 JUCE_JACK=0
+  VV_ASSETS_DIR="${VV_ASSETS_DIR}")
+target_link_libraries(VectaVortex PRIVATE vvengine
+  juce::juce_audio_utils juce::juce_audio_processors juce::juce_dsp juce::juce_gui_extra
+  PUBLIC juce::juce_recommended_config_flags juce::juce_recommended_lto_flags)
 
-add_executable(vv_hybrid_vocoder_tests tests/hybrid_vocoder_tests.cpp)
-target_link_libraries(vv_hybrid_vocoder_tests vvcore)
-add_test(NAME hybrid_vocoder COMMAND vv_hybrid_vocoder_tests)
+# Assets travel inside the bundle (Resources/Assets/...). Plugin code finds them next to its binary (see PluginProcessor.cpp).
+if(APPLE)
+  file(GLOB_RECURSE VV_ASSET_FILES CONFIGURE_DEPENDS ${VV_ASSETS_DIR}/*)
+  foreach(f ${VV_ASSET_FILES})
+    file(RELATIVE_PATH rel ${VV_ASSETS_DIR} ${f})
+    get_filename_component(d ${rel} DIRECTORY)
+    set_source_files_properties(${f} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources/Assets/${d}")
+    target_sources(VectaVortex PRIVATE ${f})
+  endforeach()
+endif()
 
-add_executable(vv_presetgen_parity_tests tests/presetgen_parity_tests.cpp)
-target_link_libraries(vv_presetgen_parity_tests vvcore)
-add_test(NAME presetgen_parity COMMAND vv_presetgen_parity_tests WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-add_executable(vv_presetgen_tests tests/presetgen_tests.cpp)
-target_link_libraries(vv_presetgen_tests vvengine)
-target_compile_definitions(vv_presetgen_tests PRIVATE VV_ASSETS="${CMAKE_CURRENT_SOURCE_DIR}/../Assets")
-add_test(NAME presetgen COMMAND vv_presetgen_tests WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-add_executable(vv_arp_adv_tests tests/arp_adv_tests.cpp)
-target_link_libraries(vv_arp_adv_tests vvengine)
-add_test(NAME arp_adv COMMAND vv_arp_adv_tests WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-
-add_executable(vv_arp_harmony_tests tests/arp_harmony_tests.cpp)
-target_link_libraries(vv_arp_harmony_tests vvengine)
-add_test(NAME arp_harmony COMMAND vv_arp_harmony_tests WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-add_executable(vv_rotary_amp_tests tests/rotary_amp_tests.cpp)
-target_link_libraries(vv_rotary_amp_tests vvengine)
-add_test(NAME rotary_amp COMMAND vv_rotary_amp_tests WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-
-add_executable(vv_chordmaker_tests tests/chordmaker_tests.cpp)
-target_link_libraries(vv_chordmaker_tests vvengine)
-add_test(NAME chordmaker COMMAND vv_chordmaker_tests WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-
-add_executable(vv_authoring_tests tests/authoring_tests.cpp)
-target_link_libraries(vv_authoring_tests vvengine)
-target_include_directories(vv_authoring_tests PRIVATE include)
-add_test(NAME authoring COMMAND vv_authoring_tests)
-add_executable(vv_interstellar_tests tests/interstellar_tests.cpp)
-target_include_directories(vv_interstellar_tests PRIVATE include)
-add_test(NAME interstellar COMMAND vv_interstellar_tests)
-add_executable(vv_interstellar_engine_tests tests/interstellar_engine_tests.cpp)
-target_link_libraries(vv_interstellar_engine_tests vvengine)
-target_include_directories(vv_interstellar_engine_tests PRIVATE include)
-add_test(NAME interstellar_engine COMMAND vv_interstellar_engine_tests WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-add_executable(vv_interstellar_golden_tests tests/interstellar_golden_tests.cpp)
-target_include_directories(vv_interstellar_golden_tests PRIVATE include)
-add_test(NAME interstellar_golden COMMAND vv_interstellar_golden_tests ${CMAKE_SOURCE_DIR}/tests/golden_is)
-
-add_executable(vv_dx7_golden_tests tests/dx7_golden_tests.cpp)
-target_include_directories(vv_dx7_golden_tests PRIVATE include)
-add_test(NAME dx7_golden COMMAND vv_dx7_golden_tests ${CMAKE_SOURCE_DIR}/tests/golden_dx7)
-add_executable(vv_dx7_engine_tests tests/dx7_engine_tests.cpp)
-target_link_libraries(vv_dx7_engine_tests vvengine)
-add_test(NAME dx7_engine COMMAND vv_dx7_engine_tests)
-add_executable(vv_sid_golden_tests tests/sid_golden_tests.cpp)
-target_include_directories(vv_sid_golden_tests PRIVATE include)
-add_test(NAME sid_golden COMMAND vv_sid_golden_tests ${CMAKE_SOURCE_DIR}/tests/golden_sid)
-add_executable(vv_sid_engine_tests tests/sid_engine_tests.cpp)
-target_link_libraries(vv_sid_engine_tests vvengine)
-add_test(NAME sid_engine COMMAND vv_sid_engine_tests)
-add_executable(vv_lfo_golden_tests tests/lfo_golden_tests.cpp)
-target_include_directories(vv_lfo_golden_tests PRIVATE include)
-add_test(NAME lfo_golden COMMAND vv_lfo_golden_tests ${CMAKE_SOURCE_DIR}/tests/golden_lfo.txt)
-add_executable(vv_void_golden_tests tests/void_golden_tests.cpp)
-target_include_directories(vv_void_golden_tests PRIVATE include)
-add_test(NAME void_golden COMMAND vv_void_golden_tests ${CMAKE_SOURCE_DIR}/tests/golden_void.txt)
-add_executable(vv_xfx_env_tests tests/xfx_env_tests.cpp)
-target_link_libraries(vv_xfx_env_tests vvcore)
-add_test(NAME xfx_env COMMAND vv_xfx_env_tests)
-add_executable(vv_power_tests tests/power_tests.cpp)
-target_link_libraries(vv_power_tests vvcore)
-add_test(NAME power COMMAND vv_power_tests)
-
-add_executable(vv_sid_instrument_tests tests/sid_instrument_tests.cpp)
-target_include_directories(vv_sid_instrument_tests PRIVATE include)
-add_test(NAME sid_instrument COMMAND vv_sid_instrument_tests)
-add_executable(vv_viz_tests tests/viz_tests.cpp)
-target_link_libraries(vv_viz_tests vvcore)
-add_test(NAME viz COMMAND vv_viz_tests ${CMAKE_SOURCE_DIR}/viz/factory)
-add_library(vvviz STATIC ../Bridge/vv_viz.cpp)
-target_include_directories(vvviz PUBLIC ../Bridge)
-target_link_libraries(vvviz PUBLIC vvcore)
-add_executable(vv_viz_host_tests tests/viz_host_tests.cpp)
-target_link_libraries(vv_viz_host_tests vvviz)
-add_test(NAME viz_host COMMAND vv_viz_host_tests ${CMAKE_SOURCE_DIR}/viz/factory)
-
-# Clip launcher: core (player / model / JSON) and end-to-end through the C ABI
-add_executable(vv_clips_tests tests/clips_tests.cpp)
-target_include_directories(vv_clips_tests PRIVATE include)
-add_test(NAME clips COMMAND vv_clips_tests)
-add_executable(vv_clips_engine_tests tests/clips_engine_tests.cpp)
-target_link_libraries(vv_clips_engine_tests vvengine)
-add_test(NAME clips_engine COMMAND vv_clips_engine_tests)
-
-# Sampler Round Robin (per-slot take rotation) through the C ABI
-add_executable(vv_rr_tests tests/rr_tests.cpp)
-target_link_libraries(vv_rr_tests vvengine)
-add_test(NAME rr COMMAND vv_rr_tests)
-
-# IR convolution reverb + EQ rack slot
-add_executable(vv_ir_tests tests/ir_tests.cpp)
-target_include_directories(vv_ir_tests PRIVATE include tests)
-find_package(Threads REQUIRED)
-target_link_libraries(vv_ir_tests Threads::Threads)
-add_test(NAME ir COMMAND vv_ir_tests)
-
-# EQ + IR reverb slots through the C ABI (host parameters, library, audition, missing IR, restore)
-add_executable(vv_ir_engine_tests tests/ir_engine_tests.cpp)
-target_link_libraries(vv_ir_engine_tests vvengine Threads::Threads)
-add_test(NAME ir_engine COMMAND vv_ir_engine_tests)
-
-# XFX as the 7th layer (zone, FX send, solo / mute / hold)
-add_executable(vv_xfx_layer_tests tests/xfx_layer_tests.cpp)
-target_link_libraries(vv_xfx_layer_tests vvengine Threads::Threads)
-add_test(NAME xfx_layer COMMAND vv_xfx_layer_tests)
-add_executable(vv_xfx_seq_tests tests/xfx_seq_tests.cpp)
-target_link_libraries(vv_xfx_seq_tests vvengine Threads::Threads)
-add_test(NAME xfx_seq COMMAND vv_xfx_seq_tests)
-
-add_executable(vv_mpe_poly_tests tests/mpe_poly_tests.cpp)
-target_link_libraries(vv_mpe_poly_tests vvengine Threads::Threads)
-add_test(NAME mpe_poly COMMAND vv_mpe_poly_tests)
-add_executable(vv_pitch_env_tests tests/pitch_env_tests.cpp)
-target_link_libraries(vv_pitch_env_tests vvengine Threads::Threads)
-add_test(NAME pitch_env COMMAND vv_pitch_env_tests)
-add_executable(vv_wav_robust_tests tests/wav_robust_tests.cpp)
-target_link_libraries(vv_wav_robust_tests vvengine Threads::Threads)
-add_test(NAME wav_robust COMMAND vv_wav_robust_tests WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-add_executable(vv_live_edit_tests tests/live_edit_tests.cpp)
-target_include_directories(vv_live_edit_tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../Bridge)
-target_compile_definitions(vv_live_edit_tests PRIVATE VV_ASSETS="${CMAKE_CURRENT_SOURCE_DIR}/../Assets")
-target_link_libraries(vv_live_edit_tests vvengine Threads::Threads)
-add_test(NAME live_edit COMMAND vv_live_edit_tests WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+# ---- headless UI test (Linux/macOS): builds every screen offscreen and writes PNG snapshots
+if(NOT CMAKE_SYSTEM_NAME STREQUAL "iOS")
+  juce_add_console_app(vv_ui_snapshot PRODUCT_NAME vv_ui_snapshot)
+  target_sources(vv_ui_snapshot PRIVATE Tests/ui_snapshot.cpp ${VV_SOURCES})
+  target_compile_definitions(vv_ui_snapshot PRIVATE JUCE_WEB_BROWSER=0 JUCE_USE_CURL=0 JUCE_USE_XRANDR=0 JUCE_USE_XINERAMA=0 JUCE_USE_XCURSOR=0 JUCE_ALSA=0 JUCE_JACK=0
+    JUCE_MODAL_LOOPS_PERMITTED=1 JUCE_STANDALONE_APPLICATION=1 VV_ASSETS_DIR="${VV_ASSETS_DIR}" VV_TESTING=1)
+  target_link_libraries(vv_ui_snapshot PRIVATE vvengine juce::juce_audio_utils juce::juce_audio_processors juce::juce_dsp juce::juce_gui_extra juce::juce_recommended_config_flags)
+endif()
