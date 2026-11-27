@@ -80,6 +80,62 @@ jobs:
           if not os.path.isdir("Core/include") or not os.path.isdir("Bridge") or not os.path.isdir("Assets"):
               raise SystemExit("Required original project directories are still missing after verified restore")
           PY
+      - name: Split multi-property SwiftUI wrappers for Swift compiler compatibility
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          patches = {
+            "Apple/Shared/AuthoringTools.swift": [
+              ("    @State private var stMode = 0, stQuality = 1; @State private var stValue = 1.0", "    @State private var stMode = 0\n    @State private var stQuality = 1\n    @State private var stValue = 1.0"),
+              ("    @State private var spEngine = 0, spScale = 0, spWindow = 0", "    @State private var spEngine = 0\n    @State private var spScale = 0\n    @State private var spWindow = 0"),
+              ("    @State private var arm = true, loadIntoSlot = true", "    @State private var arm = true\n    @State private var loadIntoSlot = true"),
+              ("    @State private var status = \"\", elapsed = 0.0, level: Float = 0", "    @State private var status = \"\"\n    @State private var elapsed = 0.0\n    @State private var level: Float = 0"),
+              ("    @State private var image: CGImage?, imageName = \"\"", "    @State private var image: CGImage?\n    @State private var imageName = \"\""),
+              ("    @State private var rgb = false, invert = false, loop = true", "    @State private var rgb = false\n    @State private var invert = false\n    @State private var loop = true"),
+              ("    @State private var duration = 6.0, tilt = 0.4, gamma = 1.2", "    @State private var duration = 6.0\n    @State private var tilt = 0.4\n    @State private var gamma = 1.2"),
+              ("    @State private var note = 36, harmonics = 96", "    @State private var note = 36\n    @State private var harmonics = 96"),
+            ],
+            "Apple/Shared/ClipLauncherView.swift": [
+              ("    @Published var bank = 0, selected = 0, quant = 5, mode = 0", "    @Published var bank = 0\n    @Published var selected = 0\n    @Published var quant = 5\n    @Published var mode = 0"),
+              ("    @Published var playing: UInt64 = 0, queuedStart: UInt64 = 0, queuedStop: UInt64 = 0", "    @Published var playing: UInt64 = 0\n    @Published var queuedStart: UInt64 = 0\n    @Published var queuedStop: UInt64 = 0"),
+            ],
+            "Apple/Shared/Controls.swift": [
+              ("    @State private var dragT: Double = 0, lastTy: CGFloat = 0, lastTx: CGFloat = 0", "    @State private var dragT: Double = 0\n    @State private var lastTy: CGFloat = 0\n    @State private var lastTx: CGFloat = 0"),
+            ],
+            "Apple/Shared/CurveEditorView.swift": [
+              ("    @State private var snap = false, fine = false", "    @State private var snap = false\n    @State private var fine = false"),
+              ("    @State private var zoom: Double = 1, x0: Double = 0", "    @State private var zoom: Double = 1\n    @State private var x0: Double = 0"),
+            ],
+            "Apple/Shared/DawRecorderView.swift": [
+              ("    @State private var recording = false, busy = false, showSettings = false", "    @State private var recording = false\n    @State private var busy = false\n    @State private var showSettings = false"),
+            ],
+            "Apple/Shared/IRReverbView.swift": [
+              ("    @State private var importing = false, replacing = false, confirmRemove = false, showAdvanced = false", "    @State private var importing = false\n    @State private var replacing = false\n    @State private var confirmRemove = false\n    @State private var showAdvanced = false"),
+            ],
+            "Apple/Shared/ModView.swift": [
+              ("    @State private var x = 0.5, y = 0.5", "    @State private var x = 0.5\n    @State private var y = 0.5"),
+              ("    @State private var layer = \"WT\", xDest = \"cutoff\", yDest = \"reso\"", "    @State private var layer = \"WT\"\n    @State private var xDest = \"cutoff\"\n    @State private var yDest = \"reso\""),
+            ],
+            "Apple/Shared/PitchEnvelopeView.swift": [
+              ("    @State private var lastPhase: Double = 0, lastSeen: TimeInterval = 0, shown: Double = 0", "    @State private var lastPhase: Double = 0\n    @State private var lastSeen: TimeInterval = 0\n    @State private var shown: Double = 0"),
+            ],
+            "Apple/Shared/SampleWaveformEditor.swift": [
+              ("    @State private var vs = 0.0, ve = 1.0", "    @State private var vs = 0.0\n    @State private var ve = 1.0"),
+            ],
+            "Apple/Shared/SoundView.swift": [
+              ("    @State private var showTools = false, showRecord = false, showImageAudio = false", "    @State private var showTools = false\n    @State private var showRecord = false\n    @State private var showImageAudio = false"),
+            ],
+          }
+          for name, replacements in patches.items():
+              p = Path(name)
+              text = p.read_text()
+              for old, new in replacements:
+                  if old not in text:
+                      raise SystemExit(f"Expected declaration not found: {name}: {old}")
+                  text = text.replace(old, new, 1)
+              p.write_text(text)
+              print("Patched", name, len(replacements), "declarations")
+          PY
       - name: Commit restored project paths to recovery branch
         run: |
           git config user.name "github-actions[bot]"
