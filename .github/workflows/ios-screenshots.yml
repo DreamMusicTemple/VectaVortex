@@ -33,7 +33,7 @@ jobs:
             -destination 'generic/platform=iOS Simulator' -derivedDataPath "$RUNNER_TEMP/DD" \
             CODE_SIGNING_ALLOWED=NO build 2>&1 | tail -n 15
       - name: Boot an iPad simulator and take screenshots
-        timeout-minutes: 20
+        timeout-minutes: 35
         run: |
           set -uo pipefail
           run_to() { local t=$1; shift; perl -e 'alarm shift; exec @ARGV' "$t" "$@"; }   # macOS has no `timeout`
@@ -43,7 +43,7 @@ jobs:
           echo "--- boot";      run_to 120 xcrun simctl boot "$UDID" || echo "boot rc=$?"
           echo "--- bootstatus"; run_to 240 xcrun simctl bootstatus "$UDID" || echo "bootstatus rc=$?"
           APP=$(find "$RUNNER_TEMP/DD/Build/Products" -name "VectaVortex.app" -maxdepth 3 | head -1); echo "APP=$APP"
-          echo "--- install";   run_to 120 xcrun simctl install "$UDID" "$APP" || echo "install rc=$?"
+          du -sh "$APP"; echo "--- install start $(date +%T)"; run_to 900 xcrun simctl install "$UDID" "$APP" || echo "install rc=$?"; echo "--- install end $(date +%T)"
           BID=$(/usr/libexec/PlistBuddy -c "Print CFBundleIdentifier" "$APP/Info.plist"); echo "BID=$BID"
           mkdir -p shots
           # tab numbers as in PluginRootView: 1 Sound, 2 Mod, 4 FX, 3 Seq, 0 Play, 8 Mixer, 5 Presets, 6 Settings
