@@ -149,7 +149,7 @@ final class ClipStore: ObservableObject {
     }
     func fromRoll(_ s: Int) {
         let layer = max(0, min(5, slots[s].present ? (LayerID.keys.firstIndex(of: slots[s].layer) ?? layerHint) : layerHint))   // piano-roll bridge: XFX clips use the XFX pattern (Sequencer > Pattern > XFX)
-        let go = { [weak self] in if self?.op("fromRoll", ["slot": s, "layer": layer]) == true { self?.say("Clip captured from the piano roll.") } else { self?.say("That layer has no piano-roll notes to capture.") } }
+        let go: () -> Void = { [weak self] in if self?.op("fromRoll", ["slot": s, "layer": layer]) == true { self?.say("Clip captured from the piano roll.") } else { self?.say("That layer has no piano-roll notes to capture.") } }
         if slots[s].present && slots[s].noteCount > 0 { confirm = PendingConfirm(text: "Replace the notes of \"\(slots[s].name)\" with the \(LayerID.keys[layer]) piano roll?", actions: [("Replace", true, go)]) } else { go() }
     }
     func toRoll(_ s: Int) {
@@ -175,7 +175,7 @@ final class ClipStore: ObservableObject {
     func copy(_ s: Int) { if let t = opText("export", ["slot": s]) { clipboard = t; say("Copied \"\(slots[s].name)\".") } }
     func paste(_ s: Int) {
         guard let t = clipboard else { say("Clipboard is empty."); return }
-        let go = { [weak self] in self?.op("paste", ["slot": s, "json": t]) }
+        let go: () -> Void = { [weak self] in _ = self?.op("paste", ["slot": s, "json": t]) }
         if slots[s].present { confirm = PendingConfirm(text: "Replace \"\(slots[s].name)\" with the copied clip?", actions: [("Replace", true, go)]) } else { _ = go() }
     }
 
@@ -209,7 +209,7 @@ final class ClipStore: ObservableObject {
     func importFile(_ url: URL, into s: Int) {
         let scoped = url.startAccessingSecurityScopedResource(); defer { if scoped { url.stopAccessingSecurityScopedResource() } }
         guard let d = try? Data(contentsOf: url), d.count < 20_000_000, let t = String(data: d, encoding: .utf8) else { say("Could not read that file."); return }
-        let go = { [weak self] in if self?.op("paste", ["slot": s, "json": t]) == true { self?.say("Loaded the clip.") } else { self?.say("That is not a valid clip file.") } }
+        let go: () -> Void = { [weak self] in if self?.op("paste", ["slot": s, "json": t]) == true { self?.say("Loaded the clip.") } else { self?.say("That is not a valid clip file.") } }
         if slots[s].present { confirm = PendingConfirm(text: "Replace \"\(slots[s].name)\" with the clip from \(url.deletingPathExtension().lastPathComponent)?", actions: [("Replace", true, go)]) } else { go() }
     }
     func deleteLibrary(_ url: URL) { try? FileManager.default.removeItem(at: url); reloadLibrary() }
