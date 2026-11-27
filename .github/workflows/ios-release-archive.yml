@@ -1,0 +1,61 @@
+name: Vektur Vortex iOS Release archive (unsigned validation)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  archive:
+    runs-on: macos-15
+    timeout-minutes: 60
+    steps:
+      - name: Check out recovery branch
+        uses: actions/checkout@v4
+        with:
+          ref: recovery/reconstruct-directory-structure
+
+      - name: Report Xcode version
+        run: xcodebuild -version
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        working-directory: Apple
+        run: xcodegen generate
+
+      - name: Archive iOS Release configuration (code signing disabled)
+        shell: bash
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -project Apple/VectaVortex.xcodeproj \
+            -scheme VectaVortex \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/VekturVortex.xcarchive" \
+            -derivedDataPath "$RUNNER_TEMP/VekturVortexDerivedData" \
+            CURRENT_PROJECT_VERSION="$GITHUB_RUN_NUMBER" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            archive 2>&1 | tee "$RUNNER_TEMP/xcodebuild-release-archive.log"
+
+      - name: Upload Release archive
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Vektur-Vortex-unsigned-iOS-Release-archive
+          path: ${{ runner.temp }}/VekturVortex.xcarchive
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Upload Xcode build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Vektur-Vortex-Release-archive-build-log
+          path: ${{ runner.temp }}/xcodebuild-release-archive.log
+          if-no-files-found: warn
+          retention-days: 14
