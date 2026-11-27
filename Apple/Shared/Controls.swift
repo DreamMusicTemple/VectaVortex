@@ -156,7 +156,15 @@ struct VFaderControl: View {
 }
 
 /// Envelope repeat choices (Off / 1...8 extra Attack+Decay cycles / Continuous until note-off), stored as env.rep (0, 1...8, -1).
-let envRepeatChoices: [(String, Double)] = [("Off", 0)] + (1...8).map { ("\($0) repeat" + ($0 == 1 ? "" : "s"), Double($0)) } + [("Continuous", -1)]
+let envRepeatChoices: [(String, Double)] = {
+    var choices: [(String, Double)] = [("Off", 0)]
+    for count in 1...8 {
+        let suffix = count == 1 ? "" : "s"
+        choices.append(("\(count) repeat\(suffix)", Double(count)))
+    }
+    choices.append(("Continuous", -1))
+    return choices
+}()
 
 /// Amp envelope for a path prefix that holds a/d/s/r/rep: four vertical faders plus the Repeat menu.
 struct EnvEditor: View {
