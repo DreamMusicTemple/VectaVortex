@@ -1,9 +1,3 @@
-defaults_eco_48000
-defaults_normal_48000
-lush_deepfield_48000
-aurora_choir_48000
-glass_cathedral_44100
-orbit_loop_sync_48000
-capture_dust_48000
-freeze_noise_48000
-free_pitch_noise_48000
+tri_saw_pulse 48000 30000 220 1 0.5 0 0 0.01 0.1 0.7 0.2 330 2 0.5 0 0 0.02 0.15 0.5 0.3 110 4 0.25 0 0 0.005 0.2 0.8 0.1
+combined_ring_sync 48000 36000 220 3 0.5 1 0 0.01 0.1 0.7 0.2 261.63 6 0.4 1 1 0.01 0.1 0.7 0.2 311.13 5 0.6 0 1 0.01 0.1 0.7 0.2
+noise 48000 24000 440 8 0.5 0 0 0.001 0.05 0.3 0.05 220 9 0.5 0 0 0.01 0.1 0.7 0.5 100 8 0.5 0 0 0.5 0.5 1 1
