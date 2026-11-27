@@ -23,11 +23,11 @@ jobs:
       - name: Restore only SHA-1-verified original paths
         run: |
           python3 - <<'PY'
-          import csv, hashlib, io, os, shutil, subprocess, zipfile
+          import csv, hashlib, io, os, shutil, zipfile
           manifest_zip = "/tmp/VECTUR_VORTEX_MANIFEST.zip"
           recovery_zip = "/tmp/VekturVortex_GitHub_Recovery_Files.zip"
           def blob_sha(data):
-              return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\\0" + data).hexdigest()
+              return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
           def file_sha(path):
               with open(path, "rb") as f: return blob_sha(f.read())
           with zipfile.ZipFile(manifest_zip) as mz:
@@ -99,12 +99,7 @@ jobs:
       - name: Build iOS Simulator
         run: |
           set -o pipefail
-          xcodebuild -project Apple/VectaVortex.xcodeproj \\
-            -scheme VectaVortex \\
-            -sdk iphonesimulator \\
-            -destination 'generic/platform=iOS Simulator' \\
-            CODE_SIGNING_ALLOWED=NO \\
-            build 2>&1 | tee /tmp/vektur-vortex-xcodebuild.log
+          xcodebuild -project Apple/VectaVortex.xcodeproj -scheme VectaVortex -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build 2>&1 | tee /tmp/vektur-vortex-xcodebuild.log
       - name: Upload Xcode build log
         if: always()
         uses: actions/upload-artifact@v4
