@@ -1,0 +1,53 @@
+name: Create Apple Distribution P12
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - recovery/reconstruct-directory-structure
+    paths:
+      - distribution.cer
+      - .github/workflows/create-distribution-p12.yml
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  create-p12:
+    runs-on: macos-14
+    steps:
+      - name: Download CSR/private-key artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: Vektur-Vortex-Apple-Distribution-CSR-and-encrypted-key
+          run-id: 45994080217
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: DreamMusicTemple/VectaVortex
+
+      - name: Verify certificate and key, export password-protected P12
+        env:
+          CSR_KEY_PASSWORD: ${{ secrets.CSR_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          test -s distribution.cer
+          test -s VekturVortex_AppleDistribution_private_key.pem
+          openssl x509 -inform DER -in distribution.cer -out distribution.pem
+          openssl pkey -in VekturVortex_AppleDistribution_private_key.pem -passin env:CSR_KEY_PASSWORD -out private-key-unencrypted.pem
+          openssl x509 -in distribution.pem -noout -subject -issuer -dates
+          openssl pkey -in private-key-unencrypted.pem -noout
+          CERT_PUB="$(openssl x509 -in distribution.pem -pubkey -noout | openssl pkey -pubin -outform DER | shasum -a 256)"
+          KEY_PUB="$(openssl pkey -in private-key-unencrypted.pem -pubout -outform DER | shasum -a 256)"
+          if [ "$CERT_PUB" != "$KEY_PUB" ]; then
+            echo "Certificate and private key do not match."
+            exit 1
+          fi
+          openssl pkcs12 -export -out VekturVortex_Distribution.p12 -inkey private-key-unencrypted.pem -in distribution.pem -passout env:CSR_KEY_PASSWORD
+          openssl pkcs12 -in VekturVortex_Distribution.p12 -passin env:CSR_KEY_PASSWORD -noout
+          rm -f private-key-unencrypted.pem
+      - name: Upload P12 artifact (password protected)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Vektur-Vortex-Distribution-P12
+          path: VekturVortex_Distribution.p12
+          retention-days: 2
