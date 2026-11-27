@@ -66,7 +66,7 @@ struct VekturVoidView: View {
             Button { dismiss() } label: { Image(systemName: "xmark.circle.fill").font(.title).foregroundStyle(Color(red: 0.29, green: 0.5, blue: 0.58)) }
                 .padding(14).accessibilityLabel("Close Vektur Void")
         }
-        .focusable().focused($focused).onAppear { focused = true }
+        .modifier(VoidFocus(focused: $focused))
         .modifier(VoidKeys(model: model))
         .statusBarHidden(true)
     }
@@ -81,6 +81,18 @@ struct VekturVoidView: View {
         if near(gs, stickC, 70) || (!near(gs, btnP, 40) && !near(gs, btnB, 40) && gs.x < Self.W * 0.45) {
             model.stick = CGPoint(x: max(-1, min(1, (gp.x - stickC.x) / 40)), y: max(-1, min(1, (gp.y - stickC.y) / 40)))
         } else if near(gs, btnP, 40) { model.plasmaTouch = true } else if near(gs, btnB, 40) { model.bombTouch = true }
+    }
+}
+
+/// `.focusable()` is iOS 17+; touch controls remain available on iOS 16.
+struct VoidFocus: ViewModifier {
+    var focused: FocusState<Bool>.Binding
+    func body(content: Content) -> some View {
+        if #available(iOS 17.0, *) {
+            content.focusable().focused(focused).onAppear { focused.wrappedValue = true }
+        } else {
+            content
+        }
     }
 }
 

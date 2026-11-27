@@ -2,6 +2,9 @@
 // the rest are instrument-wide settings kept in UserDefaults and re-applied at launch.
 import SwiftUI
 
+/// The standalone host may control screen sleep; an AUv3 extension leaves this to its host DAW.
+enum HostApp { static var setIdleTimerDisabled: (Bool) -> Void = { _ in } }
+
 struct SettingsView: View {
     @ObservedObject var s: PresetStore
     @AppStorage("vv.mpe") private var mpe = false
@@ -97,6 +100,6 @@ struct SettingsView: View {
     private func apply() {
         if let e = s.audioUnit.enginePointer { vv_engine_set_master_limiter(e, limOn ? 1 : 0, limThr, limCeil, limRel, limKnee, limSoft) }
         if let e = s.audioUnit.enginePointer { vv_engine_set_mpe(e, mpe ? 1 : 0); vv_engine_set_midi_channel(e, Int32(midiChannel)) }
-        UIApplication.shared.isIdleTimerDisabled = noSleep
+        HostApp.setIdleTimerDisabled(noSleep)
     }
 }

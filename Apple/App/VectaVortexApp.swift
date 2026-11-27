@@ -7,6 +7,7 @@ import UIKit
 @main
 struct VectaVortexApp: App {
     @StateObject private var host = AudioHost()
+    init() { HostApp.setIdleTimerDisabled = { UIApplication.shared.isIdleTimerDisabled = $0 } }
     var body: some Scene {
         WindowGroup {
             Group {
