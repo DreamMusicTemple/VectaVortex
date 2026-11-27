@@ -28,7 +28,9 @@ struct SliderRow: View {
         })
     }
     @State private var startNorm: Double?
-    @State private var dragT: Double = 0, lastTy: CGFloat = 0, lastTx: CGFloat = 0
+    @State private var dragT: Double = 0
+    @State private var lastTy: CGFloat = 0
+    @State private var lastTx: CGFloat = 0
     @State private var startValue: Double?
     @State private var clipRecorded = false
     var body: some View {

@@ -159,7 +159,9 @@ struct FMEditor: View {
 struct SamplerEditor: View {
     @ObservedObject var s: PresetStore
     @State private var slot = 0
-    @State private var showTools = false, showRecord = false, showImageAudio = false
+    @State private var showTools = false
+    @State private var showRecord = false
+    @State private var showImageAudio = false
     var body: some View {
         Section("Sampler") {
             SlotAdvanceRow(s: s)

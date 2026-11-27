@@ -195,9 +195,13 @@ struct SampleToolsSheet: View {
     @State private var orig: AudioHandle?
     @State private var status = ""
     @State private var importing = false
-    @State private var stMode = 0, stQuality = 1; @State private var stValue = 1.0
+    @State private var stMode = 0
+    @State private var stQuality = 1
+    @State private var stValue = 1.0
     @State private var bands = [Double](repeating: 1, count: 8)
-    @State private var spEngine = 0, spScale = 0, spWindow = 0
+    @State private var spEngine = 0
+    @State private var spScale = 0
+    @State private var spWindow = 0
     @State private var markers: [(orig: Double, now: Double)] = []
     private var origName: String { let o = s.string(path + ".origName", ""); return o.isEmpty ? s.string(path + ".name", "") : o }
     var body: some View {
@@ -312,11 +316,14 @@ struct RecordSheet: View {
     let slot: Int
     @Environment(\.dismiss) private var dismiss
     private var path: String { "layers.SMP.oscs.\(slot)" }
-    @State private var arm = true, loadIntoSlot = true
+    @State private var arm = true
+    @State private var loadIntoSlot = true
     @State private var recording = false
     @State private var result: AudioHandle?
     @State private var name = "Recording"
-    @State private var status = "", elapsed = 0.0, level: Float = 0
+    @State private var status = ""
+    @State private var elapsed = 0.0
+    @State private var level: Float = 0
     private let ticker = Timer.publish(every: 1.0 / 15.0, on: .main, in: .common).autoconnect()
     var body: some View {
         NavigationStack {
@@ -364,10 +371,16 @@ struct ImageAudioSheet: View {
     @Environment(\.dismiss) private var dismiss
     private var path: String { "layers.SMP.oscs.\(slot)" }
     @State private var importing = false
-    @State private var image: CGImage?, imageName = ""
-    @State private var rgb = false, invert = false, loop = true
-    @State private var duration = 6.0, tilt = 0.4, gamma = 1.2
-    @State private var note = 36, harmonics = 96
+    @State private var image: CGImage?
+    @State private var imageName = ""
+    @State private var rgb = false
+    @State private var invert = false
+    @State private var loop = true
+    @State private var duration = 6.0
+    @State private var tilt = 0.4
+    @State private var gamma = 1.2
+    @State private var note = 36
+    @State private var harmonics = 96
     @State private var status = ""
     private func noteName(_ m: Int) -> String { ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"][m % 12] + String(m / 12 - 1) }
     var body: some View {

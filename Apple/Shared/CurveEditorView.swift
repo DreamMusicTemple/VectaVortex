@@ -56,10 +56,12 @@ struct CurveCanvas: View {
     var snapY: ((Double) -> Double)? = nil            // snap used when SNAP is on (default 1/20 steps)
     var playhead: (() -> Double?)? = nil              // normalised x of a live playhead (drawn at display rate)
     @State private var sel = -1
-    @State private var snap = false, fine = false
+    @State private var snap = false
+    @State private var fine = false
     @State private var undo: [[CurvePt]] = []
     @State private var drag: Drag? = nil
-    @State private var zoom: Double = 1, x0: Double = 0
+    @State private var zoom: Double = 1
+    @State private var x0: Double = 0
     @State private var fineAnchor: (CGPoint, Double, Double)? = nil
     private enum Drag { case node(Int), seg(Int), handle(Int), empty }
     private let pad = EdgeInsets(top: 10, leading: 30, bottom: 18, trailing: 10)

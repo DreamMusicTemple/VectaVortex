@@ -31,7 +31,8 @@ struct SampleWaveformEditor: View {
     @State private var data: [Float] = []
     @State private var sr = 48000.0
     @State private var loaded = ""
-    @State private var vs = 0.0, ve = 1.0
+    @State private var vs = 0.0
+    @State private var ve = 1.0
     @State private var snapZC = false
     @State private var status = ""
     @State private var drag: Drag?

@@ -253,9 +253,12 @@ enum XYDest {
 struct XYPadCell: View {
     @ObservedObject var s: PresetStore
     let index: Int
-    @State private var x = 0.5, y = 0.5
+    @State private var x = 0.5
+    @State private var y = 0.5
     @State private var snapBack = true
-    @State private var layer = "WT", xDest = "cutoff", yDest = "reso"
+    @State private var layer = "WT"
+    @State private var xDest = "cutoff"
+    @State private var yDest = "reso"
     private func push() {
         XYDest.apply(s, dest: xDest, value: x, layer: layer); XYDest.apply(s, dest: yDest, value: y, layer: layer)
         guard let e = s.audioUnit.enginePointer else { return }

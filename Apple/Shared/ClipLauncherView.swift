@@ -25,8 +25,13 @@ final class ClipStore: ObservableObject {
     @Published var slots: [ClipInfo] = (0..<64).map { ClipInfo(id: $0) }
     @Published var bankNames: [String] = (1...8).map { "BANK \($0)" }
     @Published var bankColors: [String] = Array(repeating: "#4ad4d9", count: 8)
-    @Published var bank = 0, selected = 0, quant = 5, mode = 0
-    @Published var playing: UInt64 = 0, queuedStart: UInt64 = 0, queuedStop: UInt64 = 0
+    @Published var bank = 0
+    @Published var selected = 0
+    @Published var quant = 5
+    @Published var mode = 0
+    @Published var playing: UInt64 = 0
+    @Published var queuedStart: UInt64 = 0
+    @Published var queuedStop: UInt64 = 0
     @Published var recordingSlot = -1
     @Published var phases: [Float] = Array(repeating: -1, count: 64)
     @Published var message = ""

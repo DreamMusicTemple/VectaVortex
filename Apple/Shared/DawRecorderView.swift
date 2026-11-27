@@ -18,7 +18,9 @@ struct DawRecorderBlock: View {
     @AppStorage("vv.dawBits") private var bits = 16
     @AppStorage("vv.dawRate") private var rate = 48000
     @AppStorage("vv.dawClick") private var click = 0
-    @State private var recording = false, busy = false, showSettings = false
+    @State private var recording = false
+    @State private var busy = false
+    @State private var showSettings = false
     @State private var elapsed = 0.0
     @State private var note = ""
     private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()

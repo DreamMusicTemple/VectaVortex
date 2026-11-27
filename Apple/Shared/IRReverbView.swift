@@ -89,7 +89,10 @@ struct IRReverbPanel: View {
     @ObservedObject var s: PresetStore
     let base: String
     @ObservedObject private var store = IRStore.shared
-    @State private var importing = false, replacing = false, confirmRemove = false, showAdvanced = false
+    @State private var importing = false
+    @State private var replacing = false
+    @State private var confirmRemove = false
+    @State private var showAdvanced = false
     @State private var category = "Halls"
 
     private var irId: String { s.string("\(base).irId", "f:hall-concert") }

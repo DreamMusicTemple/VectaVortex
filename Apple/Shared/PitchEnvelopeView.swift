@@ -48,7 +48,9 @@ struct PitchEnvEditor: View {
 struct LfoPreview: View {
     @ObservedObject var s: PresetStore
     let index: Int                // 0...5
-    @State private var lastPhase: Double = 0, lastSeen: TimeInterval = 0, shown: Double = 0
+    @State private var lastPhase: Double = 0
+    @State private var lastSeen: TimeInterval = 0
+    @State private var shown: Double = 0
     var body: some View {
         TimelineView(.animation(minimumInterval: BatterySaving.shared.frameInterval())) { tl in
             Canvas { ctx, size in
