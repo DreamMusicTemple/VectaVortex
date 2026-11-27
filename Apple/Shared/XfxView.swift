@@ -43,61 +43,95 @@ struct XfxView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("XFX PRESETS (loads into Bank 1)") {
-                    Menu {
-                        ForEach(xfxPresets) { p in Button(p.name + presetBadge(p)) { loadXfxPreset(p) } }
-                    } label: { Label(xfxPresets.isEmpty ? "No XFX presets found" : "LOAD XFX PRESET (\(xfxPresets.count)) ▾", systemImage: "square.and.arrow.down") }
-                    .disabled(xfxPresets.isEmpty)
-                    Text("Replaces the sound with the chosen XFX MODE preset (programmed keys in Bank 1). Drum-sequence presets switch the drum sequencer to XFX output; lead presets bring 8 XFX clips in the Clip launcher.").font(.caption2).foregroundStyle(.secondary)
-                }
-                Section("XFX MODE") {
-                    Toggle("XFX MODE ON", isOn: Binding(get: { enabled }, set: { s.xfxAction("enable", ["on": $0]) }))
-                    Picker("Bank", selection: Binding(get: { activeBank }, set: { s.xfxAction("bank", ["index": $0]) })) {
-                        ForEach(0..<8, id: \.self) { i in Text(((x["banks"] as? [[String: Any]])?[safe: i]?["name"] as? String) ?? "Bank \(i + 1)").tag(i) }
-                    }
-                    HStack {
-                        Button("Rename") { newName = (bank["name"] as? String) ?? ""; renaming = true }
-                        Spacer(); Button("Clear bank", role: .destructive) { s.xfxAction("clearBank") }
-                        Spacer(); Button("Reset XFX", role: .destructive) { s.xfxAction("reset") }
-                    }.buttonStyle(.bordered)
-                }
-                Section("Key") {
-                    Stepper(value: $key, in: 0...127) { Text("Key \(key)  (\(name(key)))  " + (rec.isEmpty ? "plays the normal sound" : "programmed")).font(.callout) }
-                    HStack {
-                        Button("Audition") { s.auditionNote(key, on: true); DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { s.auditionNote(key, on: false) } }
-                        Spacer(); Button("Copy to next key") { if key < 127 { s.xfxAction("copyKey", ["from": key, "to": key + 1]); key += 1 } }
-                        Spacer(); Button("Clear key", role: .destructive) { s.xfxAction("clearKey", ["note": key]) }
-                    }.buttonStyle(.bordered)
-                    let prog = keysDict.keys.compactMap { Int($0) }.sorted().map(name).joined(separator: " ")
-                    Text(prog.isEmpty ? "No programmed keys in this bank." : "Programmed keys: " + prog).font(.caption).foregroundStyle(.secondary)
-                }
-                Section("Layers on this key") {
-                    ForEach(0..<5, id: \.self) { i in
-                        Picker(layerNames[i], selection: Binding(get: { layerState(layerKeys[i]) }, set: { v in
-                            s.xfxAction("layer", ["note": key, "layer": layerKeys[i], "state": v == 0 ? NSNull() : (v == 1)]) })) {
-                            Text("Inherit").tag(0); Text("On").tag(1); Text("Off").tag(2)
-                        }.pickerStyle(.segmented)
-                    }
-                }
-                Section("Parameter overrides on this key") {
-                    HStack {
-                        TextField("LAYER.param.path", text: $path).textInputAutocapitalization(.never).autocorrectionDisabled().font(.callout.monospaced())
-                        Menu("List") { ForEach(common, id: \.self) { p in Button(p) { path = p } } }
-                    }
-                    HStack {
-                        TextField("value", text: $valueText).keyboardType(.numbersAndPunctuation).frame(width: 90)
-                        Spacer(); Button("Set override") { if let v = Double(valueText) { s.xfxAction("setOverride", ["note": key, "path": path, "value": v]) } }.buttonStyle(.borderedProminent)
-                    }
-                    if overrides.isEmpty { Text("None - this key follows the normal layer settings.").font(.caption).foregroundStyle(.secondary) }
-                    ForEach(overrides, id: \.0) { o in
-                        HStack { Text(o.0).font(.caption.monospaced()); Spacer(); Text(o.1).font(.caption.monospacedDigit()).foregroundStyle(.secondary)
-                            Button(role: .destructive) { s.xfxAction("clearOverride", ["note": key, "path": o.0]) } label: { Image(systemName: "trash") }.buttonStyle(.borderless) }
-                    }
-                }
+                presetsSection
+                modeSection
+                keySection
+                layersSection
+                overridesSection
             }
             .navigationTitle("XFX MODE").onAppear { xfxPresets = PresetLibrary.scan().filter { $0.category == "XFX" } }
             .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } }
             .alert("Rename bank", isPresented: $renaming) { TextField("Name", text: $newName); Button("OK") { s.xfxAction("rename", ["name": newName]) }; Button("Cancel", role: .cancel) {} }
+        }
+    }
+
+    // Keep the Form's sections and their bindings separate to reduce SwiftUI type-checker complexity.
+    private func bankTitle(_ i: Int) -> String {
+        let banks = x["banks"] as? [[String: Any]]
+        return (banks?[safe: i]?["name"] as? String) ?? "Bank \(i + 1)"
+    }
+    private var keyTitle: String { "Key \(key)  (\(name(key)))  " + (rec.isEmpty ? "plays the normal sound" : "programmed") }
+    private var programmedKeysText: String { keysDict.keys.compactMap { Int($0) }.sorted().map(name).joined(separator: " ") }
+    private func layerBinding(_ i: Int) -> Binding<Int> {
+        Binding(get: { layerState(layerKeys[i]) }, set: { v in
+            let state: Any = v == 0 ? NSNull() : (v == 1)
+            s.xfxAction("layer", ["note": key, "layer": layerKeys[i], "state": state])
+        })
+    }
+
+    private var presetsSection: some View {
+        Section("XFX PRESETS (loads into Bank 1)") {
+            Menu {
+                ForEach(xfxPresets) { p in Button(p.name + presetBadge(p)) { loadXfxPreset(p) } }
+            } label: { Label(xfxPresets.isEmpty ? "No XFX presets found" : "LOAD XFX PRESET (\(xfxPresets.count)) ▾", systemImage: "square.and.arrow.down") }
+            .disabled(xfxPresets.isEmpty)
+            Text("Replaces the sound with the chosen XFX MODE preset (programmed keys in Bank 1). Drum-sequence presets switch the drum sequencer to XFX output; lead presets bring 8 XFX clips in the Clip launcher.").font(.caption2).foregroundStyle(.secondary)
+        }
+    }
+
+    private var modeSection: some View {
+        Section("XFX MODE") {
+            Toggle("XFX MODE ON", isOn: Binding(get: { enabled }, set: { s.xfxAction("enable", ["on": $0]) }))
+            Picker("Bank", selection: Binding(get: { activeBank }, set: { s.xfxAction("bank", ["index": $0]) })) {
+                ForEach(0..<8, id: \.self) { i in Text(bankTitle(i)).tag(i) }
+            }
+            HStack {
+                Button("Rename") { newName = (bank["name"] as? String) ?? ""; renaming = true }
+                Spacer(); Button("Clear bank", role: .destructive) { s.xfxAction("clearBank") }
+                Spacer(); Button("Reset XFX", role: .destructive) { s.xfxAction("reset") }
+            }.buttonStyle(.bordered)
+        }
+    }
+
+    private var keySection: some View {
+        Section("Key") {
+            Stepper(value: $key, in: 0...127) { Text(keyTitle).font(.callout) }
+            HStack {
+                Button("Audition") { s.auditionNote(key, on: true); DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { s.auditionNote(key, on: false) } }
+                Spacer(); Button("Copy to next key") { if key < 127 { s.xfxAction("copyKey", ["from": key, "to": key + 1]); key += 1 } }
+                Spacer(); Button("Clear key", role: .destructive) { s.xfxAction("clearKey", ["note": key]) }
+            }.buttonStyle(.bordered)
+            let prog = programmedKeysText
+            Text(prog.isEmpty ? "No programmed keys in this bank." : "Programmed keys: " + prog).font(.caption).foregroundStyle(.secondary)
+        }
+    }
+
+    private var layersSection: some View {
+        Section("Layers on this key") {
+            ForEach(0..<5, id: \.self) { i in
+                Picker(layerNames[i], selection: layerBinding(i)) {
+                    Text("Inherit").tag(0); Text("On").tag(1); Text("Off").tag(2)
+                }.pickerStyle(.segmented)
+            }
+        }
+    }
+
+    private var overridesSection: some View {
+        Section("Parameter overrides on this key") {
+            HStack {
+                TextField("LAYER.param.path", text: $path).textInputAutocapitalization(.never).autocorrectionDisabled().font(.callout.monospaced())
+                Menu("List") { ForEach(common, id: \.self) { p in Button(p) { path = p } }
+                }
+            }
+            HStack {
+                TextField("value", text: $valueText).keyboardType(.numbersAndPunctuation).frame(width: 90)
+                Spacer(); Button("Set override") { if let v = Double(valueText) { s.xfxAction("setOverride", ["note": key, "path": path, "value": v]) } }.buttonStyle(.borderedProminent)
+            }
+            if overrides.isEmpty { Text("None - this key follows the normal layer settings.").font(.caption).foregroundStyle(.secondary) }
+            ForEach(overrides, id: \.0) { o in
+                HStack { Text(o.0).font(.caption.monospaced()); Spacer(); Text(o.1).font(.caption.monospacedDigit()).foregroundStyle(.secondary)
+                    Button(role: .destructive) { s.xfxAction("clearOverride", ["note": key, "path": o.0]) } label: { Image(systemName: "trash") }.buttonStyle(.borderless) }
+            }
         }
     }
 }
