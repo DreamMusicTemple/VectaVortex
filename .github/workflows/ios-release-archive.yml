@@ -1,6 +1,9 @@
 name: Vektur Vortex iOS Release archive (unsigned validation)
 
 on:
+  push:
+    branches:
+      - recovery/reconstruct-directory-structure
   workflow_dispatch:
 
 permissions:
