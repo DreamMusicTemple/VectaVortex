@@ -43,7 +43,7 @@ final class AudioHost: ObservableObject {
             let desc = VectaAudioUnit.componentDescription
             if !registered { AUAudioUnit.registerSubclass(VectaAudioUnit.self, as: desc, name: "Dream Music Temple: Vektur Vortex", version: 1); registered = true }
             let avUnit: AVAudioUnit = try await withCheckedThrowingContinuation { cont in
-                AVAudioUnit.instantiate(with: desc, options: []) { unit, err in
+                AVAudioUnit.instantiate(with: desc, options: [.loadInProcess]) { unit, err in   // in-process: otherwise the system may return the out-of-process AUv3 extension (same component), which is not a VectaAudioUnit
                     if let unit { cont.resume(returning: unit) } else { cont.resume(throwing: err ?? NSError(domain: "VectaVortex", code: 1)) }
                 }
             }
