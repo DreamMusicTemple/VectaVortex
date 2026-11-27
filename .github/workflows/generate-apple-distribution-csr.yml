@@ -1,0 +1,54 @@
+name: Generate Apple Distribution CSR
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  generate-csr:
+    runs-on: macos-15
+    timeout-minutes: 10
+    steps:
+      - name: Generate encrypted private key and certificate signing request
+        shell: bash
+        env:
+          CSR_KEY_PASSWORD: ${{ secrets.CSR_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          umask 077
+
+          if [[ -z "${CSR_KEY_PASSWORD}" ]]; then
+            echo "CSR_KEY_PASSWORD secret is missing."
+            exit 1
+          fi
+
+          mkdir -p "$RUNNER_TEMP/apple-csr-output"
+          cd "$RUNNER_TEMP/apple-csr-output"
+
+          openssl genrsa -aes256 \
+            -passout env:CSR_KEY_PASSWORD \
+            -out VekturVortex_AppleDistribution_private_key.pem 2048
+
+          openssl req -new \
+            -key VekturVortex_AppleDistribution_private_key.pem \
+            -passin env:CSR_KEY_PASSWORD \
+            -out VekturVortex_AppleDistribution.certSigningRequest \
+            -subj "/CN=Vektur Vortex Apple Distribution/C=PH"
+
+          openssl req -in VekturVortex_AppleDistribution.certSigningRequest -noout -subject
+          openssl rsa -in VekturVortex_AppleDistribution_private_key.pem \
+            -passin env:CSR_KEY_PASSWORD -check -noout
+
+          unset CSR_KEY_PASSWORD
+
+      - name: Upload CSR and encrypted private key
+        uses: actions/upload-artifact@v4
+        with:
+          name: Vektur-Vortex-Apple-Distribution-CSR-and-encrypted-key
+          path: |
+            ${{ runner.temp }}/apple-csr-output/VekturVortex_AppleDistribution.certSigningRequest
+            ${{ runner.temp }}/apple-csr-output/VekturVortex_AppleDistribution_private_key.pem
+          if-no-files-found: error
+          retention-days: 3
