@@ -47,15 +47,16 @@ struct Section<Content: View>: View {
     @ViewBuilder var content: Content
     @Environment(\.layerAccent) private var layerAccent
     init(_ title: String, @ViewBuilder content: () -> Content) { self.title = title; self.content = content() }
+    init(@ViewBuilder content: () -> Content) { self.title = ""; self.content = content() }
     var body: some View {
         let accent = layerAccent ?? vvCyan
         VStack(alignment: .leading, spacing: 0) {
-            HStack(spacing: 6) {
+            if !title.isEmpty { HStack(spacing: 6) {
                 HStack(spacing: 2) { Rectangle().fill(accent).frame(width: 3, height: 12); Rectangle().fill(accent.opacity(0.5)).frame(width: 3, height: 12) }
                 Text(title.uppercased()).font(.system(size: 11, weight: .semibold, design: .monospaced)).foregroundStyle(Color.white.opacity(0.85)).lineLimit(1)
                 Spacer()
             }.padding(.horizontal, 12).padding(.vertical, 7)
-            Rectangle().fill(accent.opacity(0.35)).frame(height: 1)
+            Rectangle().fill(accent.opacity(0.35)).frame(height: 1) }
             FlowLayout(spacing: 10) { content }.padding(12)
         }
         .background(RoundedRectangle(cornerRadius: 10).fill(Color(red: 0.05, green: 0.07, blue: 0.09).opacity(0.78)))
