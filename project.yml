@@ -1,0 +1,126 @@
+# XcodeGen spec. On the Mac:  brew install xcodegen && cd Apple && xcodegen generate && open VectaVortex.xcodeproj
+# Then set your Team under Signing & Capabilities for both app targets (or put DEVELOPMENT_TEAM below).
+name: VectaVortex
+options:
+  bundleIdPrefix: com.dreammusictemple
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: ""            # <- your 10-character Team ID once the Developer Program account is active
+    CODE_SIGN_STYLE: Automatic
+    TARGETED_DEVICE_FAMILY: "1,2"   # iPhone + iPad
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+
+targets:
+  VVEngine:                          # C++ DSP core + C ABI, built as a static library
+    type: library.static
+    platform: iOS
+    sources:
+      - path: ../Bridge
+        includes: ["*.cpp", "*.h"]
+      - path: ../Core/include
+        buildPhase: none
+    settings:
+      base:
+        CLANG_CXX_LANGUAGE_STANDARD: "c++17"
+        CLANG_CXX_LIBRARY: libc++
+        HEADER_SEARCH_PATHS: ["$(SRCROOT)/../Core/include", "$(SRCROOT)/../Bridge"]
+        GCC_OPTIMIZATION_LEVEL: "3"
+        OTHER_CPLUSPLUSFLAGS: ["-ffp-contract=off"]   # keeps results identical to the golden tests
+
+  VectaVortex:                       # the app
+    type: application
+    platform: iOS
+    sources:
+      - App
+      - Shared
+      - path: Resources
+      - path: ../Assets/Wavetables
+        type: folder
+      - path: ../Core/viz/factory
+        type: folder
+      - path: ../Assets/Samples
+        type: folder
+      - path: ../Assets/Presets
+        type: folder
+      - path: ../Assets/Backgrounds
+        type: folder
+      - path: ../Assets/logo.png
+      - path: ../Assets/builtin_samples.json
+      - path: ../Assets/default_preset.json
+    dependencies:
+      - target: VVEngine
+      - target: VectaVortexAUv3
+        embed: true
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Vektur Vortex
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        UIBackgroundModes: [audio]
+        NSMicrophoneUsageDescription: "Vektur Vortex records from your microphone or audio interface when you sample into a slot."
+        ITSAppUsesNonExemptEncryption: false
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.dreammusictemple.vectavortex
+        SWIFT_OBJC_BRIDGING_HEADER: "$(SRCROOT)/Shared/VectaVortex-Bridging-Header.h"
+        HEADER_SEARCH_PATHS: ["$(SRCROOT)/../Bridge"]
+        OTHER_LDFLAGS: ["-lc++"]          # the static VVEngine library is C++
+        CODE_SIGN_ENTITLEMENTS: App/VectaVortex.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+
+  VectaVortexAUv3:                   # the Audio Unit extension (what DAWs load)
+    type: app-extension
+    platform: iOS
+    sources:
+      - Extension
+      - Shared
+      - path: ../Assets/Wavetables
+        type: folder
+      - path: ../Core/viz/factory
+        type: folder
+      - path: ../Assets/Samples
+        type: folder
+      - path: ../Assets/Presets
+        type: folder
+      - path: ../Assets/Backgrounds
+        type: folder
+      - path: ../Assets/logo.png
+      - path: ../Assets/builtin_samples.json
+      - path: ../Assets/default_preset.json
+    dependencies:
+      - target: VVEngine
+    info:
+      path: Extension/Info.plist
+      properties:
+        CFBundleDisplayName: Vektur Vortex
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.AudioUnit-UI
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).AudioUnitViewController
+          NSExtensionAttributes:
+            AudioComponents:
+              - name: "Dream Music Temple: Vektur Vortex"
+                description: "Vektur Vortex hybrid synthesiser"
+                manufacturer: "DMTm"       # 4 chars, must contain an uppercase letter; keep identical everywhere
+                type: aumu                 # music device (instrument)
+                subtype: "Vvtx"
+                version: 1
+                sandboxSafe: true
+                tags: [Synth]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.dreammusictemple.vectavortex.auv3
+        SWIFT_OBJC_BRIDGING_HEADER: "$(SRCROOT)/Shared/VectaVortex-Bridging-Header.h"
+        HEADER_SEARCH_PATHS: ["$(SRCROOT)/../Bridge"]
+        OTHER_LDFLAGS: ["-lc++"]
+        CODE_SIGN_ENTITLEMENTS: Extension/VectaVortexExt.entitlements
+        APPLICATION_EXTENSION_API_ONLY: YES

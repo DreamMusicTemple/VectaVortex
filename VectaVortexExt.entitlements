@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Shared container: imported impulse responses live in <group>/IRs so the app and the AUv3 extension both resolve a preset's IR references. -->
+    <key>com.apple.security.application-groups</key>
+    <array><string>group.com.vektur.vortex</string></array>
+</dict>
+</plist>
