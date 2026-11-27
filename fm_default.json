@@ -1,0 +1,1 @@
+{"name":"fm_default","sr":48000,"dur":2.5,"events":[{"t":0,"on":true,"layers":["FM"],"note":60,"vel":0.8},{"t":1.4,"off":true,"layers":["FM"],"note":60}],"patch":[["layers.FM.engineEnabled",[true,false]]]}

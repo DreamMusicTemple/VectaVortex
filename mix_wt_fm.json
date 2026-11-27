@@ -1,0 +1,1 @@
+{"name":"mix_wt_fm","sr":48000,"dur":2.5,"events":[{"t":0,"on":true,"layers":["WT","FM"],"note":60,"vel":0.8},{"t":1.3,"off":true,"layers":["WT","FM"],"note":60}],"patch":[["layers.FM.engineEnabled",[true,false]],["layers.FM.oscs.1.level",0.5]],"settings":{"wtFmMix":0.5}}
