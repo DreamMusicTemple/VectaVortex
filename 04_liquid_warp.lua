@@ -1,0 +1,31 @@
+visual{ name="Liquid Warp", category="Fluid", author="Vektur", shader="liquid_warp",
+  desc="Iterated domain-warped flow noise lit like a glossy liquid. Bass deepens the warp, highs sharpen the shine." }
+param("hue",{label="Hue",min=0,max=1,default=0,step=0.001,group="Colour"})
+param("saturation",{label="Saturation",min=0,max=2,default=1,group="Colour"})
+param("brightness",{label="Brightness",min=0.2,max=2,default=1,group="Colour"})
+param("contrast",{label="Contrast",min=0.5,max=2,default=1,group="Colour"})
+param("palette",{label="Palette shift",min=0,max=1,default=0.62,step=0.001,group="Colour"})
+param("warp",{label="Warp amount",min=0,max=2,default=1,group="Geometry and movement",band="bass",depth=0.5})
+param("scale",{label="Scale",min=0.5,max=5,default=2,group="Geometry and movement"})
+param("swirl",{label="Swirl",min=0,max=2,default=0.5,group="Geometry and movement",band="mid",depth=0.4})
+param("flow",{label="Flow speed",min=0,max=3,default=0.7,group="Animation"})
+param("viscosity",{label="Viscosity",min=0.2,max=3,default=1,group="Particles and textures"})
+param("shine",{label="Surface shine",min=0,max=2,default=0.9,group="Particles and textures",band="high",depth=0.6})
+param("detail",{label="Octaves",min=2,max=7,default=5,step=1,group="Particles and textures"})
+param("ridges",{label="Ridge contrast",min=0,max=1,default=0.3,group="Particles and textures"})
+param("bloom",{label="Bloom",min=0,max=2,default=0.4,group="Post-processing"})
+param("vignette",{label="Vignette",min=0,max=1,default=0.35,group="Post-processing"})
+param("grain",{label="Film grain",min=0,max=1,default=0.05,group="Post-processing"})
+param("chroma",{label="Chromatic aberration",min=0,max=2,default=0.2,group="Chromatic",band="highmid",depth=0.3})
+local function grade(p)
+  gfx.post("hue", p.hue) gfx.post("saturation", p.saturation) gfx.post("brightness", p.brightness) gfx.post("contrast", p.contrast)
+  gfx.post("bloom", p.bloom) gfx.post("vignette", p.vignette) gfx.post("grain", p.grain)
+  gfx.post("chroma", p.chroma)
+end
+local ph = 0
+function update(dt, a, p)
+  ph = ph + dt * p.flow * (1 + a.full * 1.2)
+  local oct = math.min(p.detail, 2 + host.quality * 1.5)
+  gfx.uniforms(0, ph, p.warp * (1 + a.bass * 0.6), p.scale, p.palette + a.centroid * 0.15, p.shine, oct, p.swirl, p.viscosity, p.ridges)
+  grade(p)
+end

@@ -1,0 +1,32 @@
+visual{ name="Acid Kaleido", category="Psychedelic", author="Vektur", shader="kaleidoscope",
+  desc="A twelve-segment kaleidoscope with heavy distortion and shimmering over-saturated colour. Spins harder on the bass." }
+param("hue",{label="Hue",min=0,max=1,default=0,step=0.001,group="Colour"})
+param("saturation",{label="Saturation",min=0,max=2,default=1.6,group="Colour"})
+param("brightness",{label="Brightness",min=0.2,max=2,default=1,group="Colour"})
+param("contrast",{label="Contrast",min=0.5,max=2,default=1,group="Colour"})
+param("palette",{label="Palette shift",min=0,max=1,default=0.9,step=0.001,group="Colour"})
+param("segments",{label="Mirror segments",min=2,max=24,default=12,step=1,group="Geometry and movement"})
+param("zoom",{label="Zoom",min=0.4,max=4,default=2.4,group="Geometry and movement",band="sub",depth=0.3})
+param("distort",{label="Distortion",min=0,max=2,default=1.4,group="Geometry and movement",band="mid",depth=0.5})
+param("complexity",{label="Pattern complexity",min=1,max=6,default=6,step=1,group="Particles and textures"})
+param("shimmer",{label="Shimmer",min=0,max=2,default=1.5,group="Particles and textures",band="treble",depth=0.6})
+param("spin",{label="Mirror rotation",min=-2,max=2,default=0.8,group="Animation",band="bass",depth=0.3})
+param("speed",{label="Pattern speed",min=0,max=3,default=1.2,group="Animation"})
+param("bloom",{label="Bloom",min=0,max=2,default=0.6,group="Post-processing"})
+param("vignette",{label="Vignette",min=0,max=1,default=0.4,group="Post-processing"})
+param("grain",{label="Film grain",min=0,max=1,default=0.06,group="Post-processing"})
+param("chroma",{label="Chromatic aberration",min=0,max=2,default=0.9,group="Chromatic",band="highmid",depth=0.3})
+param("feedback",{label="Feedback trails",min=0,max=0.95,default=0.2,group="Post-processing"})
+local function grade(p)
+  gfx.post("hue", p.hue) gfx.post("saturation", p.saturation) gfx.post("brightness", p.brightness) gfx.post("contrast", p.contrast)
+  gfx.post("bloom", p.bloom) gfx.post("vignette", p.vignette) gfx.post("grain", p.grain)
+  gfx.post("chroma", p.chroma)
+  gfx.post("feedback", p.feedback) gfx.post("zoom", 1 + p.feedback * 0.02) gfx.post("rotate", p.feedback * 0.004)
+end
+local ph, rot = 0, 0
+function update(dt, a, p)
+  ph = ph + dt * p.speed * (1 + a.mid)
+  rot = rot + dt * p.spin * (1 + a.bass)
+  gfx.uniforms(0, ph, p.segments, p.zoom, p.palette + a.centroid * 0.1, rot, math.min(p.complexity, 2 + host.quality * 1.4), p.distort, p.shimmer)
+  grade(p)
+end

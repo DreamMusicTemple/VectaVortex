@@ -1,0 +1,32 @@
+visual{ name="Hyperspace", category="Space", author="Vektur", shader="hyperspace",
+  desc="Warp-speed star streaks in parallax layers. Bass sets the jump speed and streak length, the beat flares the core." }
+param("hue",{label="Hue",min=0,max=1,default=0,step=0.001,group="Colour"})
+param("saturation",{label="Saturation",min=0,max=2,default=1,group="Colour"})
+param("brightness",{label="Brightness",min=0.2,max=2,default=1,group="Colour"})
+param("contrast",{label="Contrast",min=0.5,max=2,default=1,group="Colour"})
+param("palette",{label="Palette shift",min=0,max=1,default=0.6,step=0.001,group="Colour"})
+param("speed",{label="Warp speed",min=0,max=4,default=1.3,group="Geometry and movement",band="bass",depth=0.5})
+param("streak",{label="Streak length",min=0,max=3,default=1.2,group="Geometry and movement",band="sub",depth=0.4})
+param("bend",{label="Space bend",min=-2,max=2,default=0.4,group="Geometry and movement",band="mid",depth=0.3})
+param("density",{label="Star density",min=0.3,max=2,default=1,group="Particles and textures"})
+param("layers",{label="Depth layers",min=1,max=6,default=5,step=1,group="Particles and textures"})
+param("core",{label="Core glow",min=0,max=2,default=0.9,group="Particles and textures"})
+param("brightness2",{label="Star brightness",min=0.2,max=3,default=1.2,group="Particles and textures",band="high",depth=0.4})
+param("bloom",{label="Bloom",min=0,max=2,default=0.8,group="Post-processing"})
+param("vignette",{label="Vignette",min=0,max=1,default=0.35,group="Post-processing"})
+param("grain",{label="Film grain",min=0,max=1,default=0.05,group="Post-processing"})
+param("chroma",{label="Chromatic aberration",min=0,max=2,default=0.4,group="Chromatic",band="highmid",depth=0.3})
+param("feedback",{label="Feedback trails",min=0,max=0.95,default=0.15,group="Post-processing"})
+local function grade(p)
+  gfx.post("hue", p.hue) gfx.post("saturation", p.saturation) gfx.post("brightness", p.brightness) gfx.post("contrast", p.contrast)
+  gfx.post("bloom", p.bloom) gfx.post("vignette", p.vignette) gfx.post("grain", p.grain)
+  gfx.post("chroma", p.chroma)
+  gfx.post("feedback", p.feedback) gfx.post("zoom", 1 + p.feedback * 0.02) gfx.post("rotate", p.feedback * 0.004)
+end
+local travel, kick = 0, 0
+function update(dt, a, p)
+  kick = math.max(kick * math.exp(-dt * 5), a.beat)
+  travel = travel + dt * p.speed * (0.4 + a.bass * 1.6 + kick)
+  gfx.uniforms(0, travel, p.streak * (0.5 + a.sub + a.bass), p.density, p.palette, math.min(p.layers, 2 + host.quality * 1.4), p.core * (0.6 + kick), p.bend, p.brightness2)
+  grade(p)
+end

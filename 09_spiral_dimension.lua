@@ -1,0 +1,32 @@
+visual{ name="Spiral Dimension", category="Geometric", author="Vektur", shader="spiral_dimension",
+  desc="Counter-rotating logarithmic spirals in parallax layers; bass thickens the arms, mids tighten the twist." }
+param("hue",{label="Hue",min=0,max=1,default=0,step=0.001,group="Colour"})
+param("saturation",{label="Saturation",min=0,max=2,default=1,group="Colour"})
+param("brightness",{label="Brightness",min=0.2,max=2,default=1,group="Colour"})
+param("contrast",{label="Contrast",min=0.5,max=2,default=1,group="Colour"})
+param("palette",{label="Palette shift",min=0,max=1,default=0.35,step=0.001,group="Colour"})
+param("arms",{label="Spiral arms",min=1,max=16,default=5,step=1,group="Geometry and movement"})
+param("twist",{label="Twist tightness",min=0.2,max=6,default=2,group="Geometry and movement",band="mid",depth=0.4})
+param("thickness",{label="Arm thickness",min=0.05,max=0.9,default=0.6,group="Geometry and movement",band="bass",depth=0.35})
+param("depth",{label="Layer depth",min=0,max=2,default=0.8,group="Geometry and movement"})
+param("layers",{label="Layers",min=1,max=4,default=3,step=1,group="Particles and textures"})
+param("speed",{label="Rotation speed",min=-3,max=3,default=0.7,group="Animation"})
+param("pulse",{label="Beat pulse",min=0,max=1,default=0.6,group="Audio reactivity"})
+param("bloom",{label="Bloom",min=0,max=2,default=0.7,group="Post-processing"})
+param("vignette",{label="Vignette",min=0,max=1,default=0.4,group="Post-processing"})
+param("grain",{label="Film grain",min=0,max=1,default=0.06,group="Post-processing"})
+param("chroma",{label="Chromatic aberration",min=0,max=2,default=0.3,group="Chromatic",band="highmid",depth=0.3})
+param("feedback",{label="Feedback trails",min=0,max=0.95,default=0.25,group="Post-processing"})
+local function grade(p)
+  gfx.post("hue", p.hue) gfx.post("saturation", p.saturation) gfx.post("brightness", p.brightness) gfx.post("contrast", p.contrast)
+  gfx.post("bloom", p.bloom) gfx.post("vignette", p.vignette) gfx.post("grain", p.grain)
+  gfx.post("chroma", p.chroma)
+  gfx.post("feedback", p.feedback) gfx.post("zoom", 1 + p.feedback * 0.02) gfx.post("rotate", p.feedback * 0.004)
+end
+local ph, kick = 0, 0
+function update(dt, a, p)
+  kick = math.max(kick * math.exp(-dt * 6), a.beat)
+  ph = ph + dt * p.speed * (0.5 + a.full * 1.5 + kick)
+  gfx.uniforms(0, ph, p.arms, p.twist, p.palette + a.centroid * 0.12, p.thickness, p.depth, p.pulse * (kick + a.bass * 0.5), math.min(p.layers, 1 + host.quality))
+  grade(p)
+end

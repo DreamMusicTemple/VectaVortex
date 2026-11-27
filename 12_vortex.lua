@@ -1,0 +1,32 @@
+visual{ name="Vortex", category="Fluid", author="Vektur", shader="vortex",
+  desc="A whirlpool whose swirl grows toward a bright eye. Sub bass opens the funnel, mids add turbulence." }
+param("hue",{label="Hue",min=0,max=1,default=0,step=0.001,group="Colour"})
+param("saturation",{label="Saturation",min=0,max=2,default=1,group="Colour"})
+param("brightness",{label="Brightness",min=0.2,max=2,default=1,group="Colour"})
+param("contrast",{label="Contrast",min=0.5,max=2,default=1,group="Colour"})
+param("palette",{label="Palette shift",min=0,max=1,default=0.5,step=0.001,group="Colour"})
+param("swirl",{label="Swirl strength",min=0,max=6,default=2.2,group="Geometry and movement",band="mid",depth=0.4})
+param("funnel",{label="Funnel depth",min=0.3,max=4,default=1.6,group="Geometry and movement",band="sub",depth=0.4})
+param("streaks",{label="Streak scale",min=0.5,max=8,default=3,group="Particles and textures"})
+param("turbulence",{label="Turbulence",min=0,max=3,default=0.8,group="Particles and textures",band="highmid",depth=0.5})
+param("detail",{label="Octaves",min=2,max=6,default=5,step=1,group="Particles and textures"})
+param("eye",{label="Eye glow",min=0,max=2,default=1,group="Particles and textures",band="bass",depth=0.5})
+param("speed",{label="Rotation speed",min=-2,max=2,default=0.4,group="Animation"})
+param("bloom",{label="Bloom",min=0,max=2,default=0.7,group="Post-processing"})
+param("vignette",{label="Vignette",min=0,max=1,default=0.45,group="Post-processing"})
+param("grain",{label="Film grain",min=0,max=1,default=0.07,group="Post-processing"})
+param("chroma",{label="Chromatic aberration",min=0,max=2,default=0.3,group="Chromatic",band="highmid",depth=0.3})
+param("feedback",{label="Feedback trails",min=0,max=0.95,default=0.2,group="Post-processing"})
+local function grade(p)
+  gfx.post("hue", p.hue) gfx.post("saturation", p.saturation) gfx.post("brightness", p.brightness) gfx.post("contrast", p.contrast)
+  gfx.post("bloom", p.bloom) gfx.post("vignette", p.vignette) gfx.post("grain", p.grain)
+  gfx.post("chroma", p.chroma)
+  gfx.post("feedback", p.feedback) gfx.post("zoom", 1 + p.feedback * 0.02) gfx.post("rotate", p.feedback * 0.004)
+end
+local ph = 0
+function update(dt, a, p)
+  ph = ph + dt * p.speed * (0.5 + a.full)
+  local o = math.min(p.detail, 2 + host.quality * 1.2)
+  gfx.uniforms(0, ph, p.swirl * (1 + a.bass * 0.4), p.funnel, p.palette + a.centroid * 0.1, p.streaks, p.eye * (1 + a.beat), p.turbulence, o)
+  grade(p)
+end

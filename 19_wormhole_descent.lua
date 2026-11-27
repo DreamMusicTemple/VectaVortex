@@ -1,0 +1,37 @@
+visual{ name="Wormhole Descent", category="Tunnels", author="Vektur", shader="fractal_tunnel",
+  desc="A deep six-armed fractal wormhole that spirals faster with the bass. Mids twist the folds, the beat throws a pulse down the throat." }
+param("hue",{label="Hue",min=0,max=1,default=0,step=0.001,group="Colour"})
+param("saturation",{label="Saturation",min=0,max=2,default=1.25,group="Colour"})
+param("brightness",{label="Brightness",min=0.2,max=2,default=1,group="Colour"})
+param("contrast",{label="Contrast",min=0.5,max=2,default=1,group="Colour"})
+param("palette",{label="Palette shift",min=0,max=1,default=0.72,step=0.001,group="Colour"})
+param("speed",{label="Travel speed",min=0,max=3,default=1.1,group="Geometry and movement"})
+param("twist",{label="Twist",min=-2,max=2,default=0.9,group="Geometry and movement",band="mid",depth=0.4})
+param("arms",{label="Arms",min=1,max=12,default=6,step=1,group="Geometry and movement"})
+param("fold",{label="Fold offset",min=0.2,max=1.6,default=0.55,group="Geometry and movement",band="lowmid",depth=0.25})
+param("depth",{label="Tunnel depth",min=0.3,max=3,default=1.8,group="Geometry and movement"})
+param("pulse",{label="Beat pulse",min=0,max=1,default=0.6,group="Audio reactivity",band="bass",depth=0.6})
+param("detail",{label="Fractal iterations",min=3,max=12,default=9,step=1,group="Particles and textures"})
+param("glow",{label="Fractal glow",min=0,max=2,default=1.2,group="Particles and textures",band="high",depth=0.5})
+param("spin",{label="Fold rotation",min=-2,max=2,default=0.25,group="Animation"})
+param("bloom",{label="Bloom",min=0,max=2,default=0.6,group="Post-processing"})
+param("vignette",{label="Vignette",min=0,max=1,default=0.4,group="Post-processing"})
+param("grain",{label="Film grain",min=0,max=1,default=0.08,group="Post-processing"})
+param("chroma",{label="Chromatic aberration",min=0,max=2,default=0.25,group="Chromatic",band="highmid",depth=0.3})
+param("feedback",{label="Feedback trails",min=0,max=0.95,default=0.3,group="Post-processing"})
+local function grade(p)
+  gfx.post("hue", p.hue) gfx.post("saturation", p.saturation) gfx.post("brightness", p.brightness) gfx.post("contrast", p.contrast)
+  gfx.post("bloom", p.bloom) gfx.post("vignette", p.vignette) gfx.post("grain", p.grain)
+  gfx.post("chroma", p.chroma)
+  gfx.post("feedback", p.feedback) gfx.post("zoom", 1 + p.feedback * 0.02) gfx.post("rotate", p.feedback * 0.004)
+end
+local travel, twistPh, rotPh, kick = 0, 0, 0, 0
+function update(dt, a, p)
+  kick = math.max(kick * math.exp(-dt * 7), a.beat)
+  travel = travel + dt * p.speed * (1 + a.bass * 1.2 + kick * 0.8)
+  twistPh = twistPh + dt * p.twist * (0.5 + a.mid)
+  rotPh = rotPh + dt * p.spin * 0.4
+  local it = math.min(p.detail, 4 + host.quality * 2.5)
+  gfx.uniforms(0, travel, twistPh, rotPh, p.fold, p.arms, p.depth, p.palette + a.centroid * 0.1, p.glow, it, p.pulse * (kick * 0.7 + a.bass * 0.5))
+  grade(p)
+end
