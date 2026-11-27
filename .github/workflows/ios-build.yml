@@ -1,0 +1,25 @@
+name: Vektur Vortex iOS build
+on:
+  push:
+    branches:
+      - recovery/reconstruct-directory-structure
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Generate Xcode project
+        working-directory: Apple
+        run: xcodegen generate
+      - name: Build iOS Simulator
+        run: |
+          xcodebuild -project Apple/VectaVortex.xcodeproj \
+            -scheme VectaVortex \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO \
+            build
