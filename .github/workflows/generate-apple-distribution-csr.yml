@@ -1,9 +1,6 @@
 name: Generate Apple Distribution CSR
 
 on:
-  push:
-    branches:
-      - recovery/reconstruct-directory-structure
   workflow_dispatch:
 
 permissions:
