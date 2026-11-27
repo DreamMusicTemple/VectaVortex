@@ -131,6 +131,8 @@ jobs:
               text = p.read_text()
               for old, new in replacements:
                   if old not in text:
+                      if new in text:
+                          continue
                       raise SystemExit(f"Expected declaration not found: {name}: {old}")
                   text = text.replace(old, new, 1)
               p.write_text(text)
