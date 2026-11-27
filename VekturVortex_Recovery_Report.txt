@@ -1,0 +1,1087 @@
+VEKTUR VORTEX - GITHUB RECOVERY REPORT
+
+Original project (read-only): VectaVortex-iOS working tree, same as the manifest
+Compared against: DreamMusicTemple/VectaVortex branch recovery/reconstruct-directory-structure @ 2cd2ebf (895 tracked files, fetched read-only; nothing committed or uploaded)
+
+SUMMARY
+  Files in ZIP: 9   Uncompressed: 204588 bytes   ZIP size: 59857 bytes
+  Files in the original project: 1935 (of which Core/build output 429)
+  Already on the branch with identical contents (not included): 892
+  Same name, different contents (conflicts, not included): 1
+  Deliberately excluded (not needed for the Xcode build, or build output): 1033
+  Unrecoverable: 0
+
+HOW "ALREADY PRESENT" WAS DECIDED
+  A file counts as present when the branch holds the same bytes (git blob SHA-1) at its correct path, OR in the flat repository root under the same filename.
+  Flat-root copies are present but still need to be MOVED to their original path; they are listed in the path mapping CSV from the manifest, not duplicated in the ZIP.
+
+LX HEADERS (the seven you asked about)
+  Required: yes. Core/include/vv/lua_host.hpp includes them (lx/lx_*.hpp, viz_host.hpp). Include closure of Bridge/ + bridging header reaches: lx_core.hpp, lx_engine.hpp, lx_interp.hpp, lx_lib.hpp, lx_viz.hpp, lx_vm.hpp, viz_host.hpp.
+  Included in ZIP: 7 of 7.
+
+FILES INCLUDED IN THE ZIP (9)
+  path | bytes | git-blob-sha1 | why required | verified
+  Apple/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json | 164 | 855d7c8264d06b6f01dd280ba92426c575cc7939 | Asset catalog: Bundled resource referenced by project.yml | byte-for-byte hash match with the original file (and re-read from the ZIP)
+  Apple/Resources/PrivacyInfo.xcprivacy | 1019 | b4668ad7a08de5a9d46e5ac481fa030b30090434 | Privacy manifest: Bundled resource referenced by project.yml | byte-for-byte hash match with the original file (and re-read from the ZIP)
+  Core/include/vv/lx/lx_core.hpp | 13156 | de11a6aaf9fb1f2ba8b0b11b9d036e5a48023e4a | C++ core header (header-only DSP engine): in include closure of Bridge/ + bridging header | byte-for-byte hash match with the original file (and re-read from the ZIP)
+  Core/include/vv/lx/lx_engine.hpp | 54453 | 09b45bf6a374a5b7176d29108b92ca30a9544746 | C++ core header (header-only DSP engine): in include closure of Bridge/ + bridging header | byte-for-byte hash match with the original file (and re-read from the ZIP)
+  Core/include/vv/lx/lx_interp.hpp | 56370 | d92bcbbf3fd1181edd23c803ab9db922e431a409 | C++ core header (header-only DSP engine): in include closure of Bridge/ + bridging header | byte-for-byte hash match with the original file (and re-read from the ZIP)
+  Core/include/vv/lx/lx_lib.hpp | 28638 | 288d46380dd47af743d08846f6a39c789884cfaf | C++ core header (header-only DSP engine): in include closure of Bridge/ + bridging header | byte-for-byte hash match with the original file (and re-read from the ZIP)
+  Core/include/vv/lx/lx_viz.hpp | 22610 | f0fec34ba1b3b10503b0419540f62a6e71a539ff | C++ core header (header-only DSP engine): in include closure of Bridge/ + bridging header | byte-for-byte hash match with the original file (and re-read from the ZIP)
+  Core/include/vv/lx/lx_vm.hpp | 16903 | 0c5ef6972e19ce9c5304bbbcb9279d8fe69227fb | C++ core header (header-only DSP engine): in include closure of Bridge/ + bridging header | byte-for-byte hash match with the original file (and re-read from the ZIP)
+  Core/include/vv/lx/viz_host.hpp | 11275 | 7a2440058c6f340359592c2af307859d4c820c6e | C++ core header (header-only DSP engine): in include closure of Bridge/ + bridging header | byte-for-byte hash match with the original file (and re-read from the ZIP)
+
+CONFLICTS - SAME NAME ON THE BRANCH BUT DIFFERENT CONTENT (NOT included, do not overwrite)
+  .github/workflows/ios-build.yml  [SAME_PATH_DIFFERENT; branch blob 1b053386f744f0ea93b968a049089917ad50c7b8; not needed for Xcode]
+
+DELIBERATELY EXCLUDED (summary by reason)
+    600  C++ test / golden reference data - not needed for the Xcode build  [branch status: MISSING]
+    429  build output (CMake)  [branch status: MISSING]
+      1  GitHub Actions workflow - not needed for the Xcode build  [branch status: MISSING]
+      1  Git config - not needed for the Xcode build  [branch status: MISSING]
+      1  CMake configuration (core tests) - not needed for the Xcode build  [branch status: MISSING]
+      1  Web app reference - not needed for the Xcode build  [branch status: MISSING]
+
+EXCLUDED FILES, FULL LIST
+  .github/workflows/juce-vst3.yml | GitHub Actions workflow - not needed for the Xcode build | MISSING
+  .gitignore | Git config - not needed for the Xcode build | MISSING
+  Core/CMakeLists.txt | CMake configuration (core tests) - not needed for the Xcode build | MISSING
+  Core/build/CMakeCache.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/3.28.3/CMakeDetermineCompilerABI_CXX.bin | build output (CMake) | MISSING
+  Core/build/CMakeFiles/3.28.3/CMakeSystem.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp | build output (CMake) | MISSING
+  Core/build/CMakeFiles/3.28.3/CompilerIdCXX/a.out | build output (CMake) | MISSING
+  Core/build/CMakeFiles/CMakeConfigureLog.yaml | build output (CMake) | MISSING
+  Core/build/CMakeFiles/CMakeDirectoryInformation.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/Makefile.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/Makefile2 | build output (CMake) | MISSING
+  Core/build/CMakeFiles/TargetDirectories.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/cmake.check_cache | build output (CMake) | MISSING
+  Core/build/CMakeFiles/progress.marks | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_authoring_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_authoring_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_authoring_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_authoring_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_authoring_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_authoring_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_authoring_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_authoring_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_authoring_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_authoring_tests.dir/tests/authoring_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_authoring_tests.dir/tests/authoring_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_chordmaker_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_chordmaker_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_chordmaker_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_chordmaker_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_chordmaker_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_chordmaker_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_chordmaker_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_chordmaker_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_chordmaker_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_chordmaker_tests.dir/tests/chordmaker_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_chordmaker_tests.dir/tests/chordmaker_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_compressor_test.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_compressor_test.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_compressor_test.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_compressor_test.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_compressor_test.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_compressor_test.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_compressor_test.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_compressor_test.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_compressor_test.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_compressor_test.dir/tests/compressor_test.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_compressor_test.dir/tests/compressor_test.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_engine_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_engine_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_engine_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_engine_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_engine_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_engine_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_engine_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_engine_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_engine_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_engine_tests.dir/tests/dx7_engine_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_engine_tests.dir/tests/dx7_engine_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_golden_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_golden_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_golden_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_golden_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_golden_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_golden_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_golden_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_golden_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_golden_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_golden_tests.dir/tests/dx7_golden_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_dx7_golden_tests.dir/tests/dx7_golden_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_echo_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_echo_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_echo_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_echo_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_echo_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_echo_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_echo_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_echo_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_echo_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_echo_tests.dir/tests/echo_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_echo_tests.dir/tests/echo_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_engine_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_engine_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_engine_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_engine_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_engine_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_engine_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_engine_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_engine_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_engine_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_engine_tests.dir/tests/engine_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_engine_tests.dir/tests/engine_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_flute_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_flute_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_flute_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_flute_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_flute_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_flute_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_flute_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_flute_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_flute_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_flute_tests.dir/tests/flute_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_flute_tests.dir/tests/flute_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden2_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden2_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden2_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden2_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden2_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden2_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden2_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden2_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden2_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden2_tests.dir/tests/golden2_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden2_tests.dir/tests/golden2_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden_tests.dir/tests/golden_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_golden_tests.dir/tests/golden_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_granular_x_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_granular_x_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_granular_x_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_granular_x_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_granular_x_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_granular_x_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_granular_x_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_granular_x_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_granular_x_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_granular_x_tests.dir/tests/granular_x_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_granular_x_tests.dir/tests/granular_x_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_hybrid_vocoder_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_hybrid_vocoder_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_hybrid_vocoder_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_hybrid_vocoder_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_hybrid_vocoder_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_hybrid_vocoder_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_hybrid_vocoder_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_hybrid_vocoder_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_hybrid_vocoder_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_hybrid_vocoder_tests.dir/tests/hybrid_vocoder_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_hybrid_vocoder_tests.dir/tests/hybrid_vocoder_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_engine_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_engine_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_engine_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_engine_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_engine_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_engine_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_engine_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_engine_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_engine_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_engine_tests.dir/tests/interstellar_engine_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_engine_tests.dir/tests/interstellar_engine_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_golden_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_golden_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_golden_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_golden_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_golden_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_golden_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_golden_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_golden_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_golden_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_golden_tests.dir/tests/interstellar_golden_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_golden_tests.dir/tests/interstellar_golden_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_tests.dir/tests/interstellar_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_interstellar_tests.dir/tests/interstellar_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lfo_golden_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lfo_golden_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lfo_golden_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lfo_golden_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lfo_golden_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lfo_golden_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lfo_golden_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lfo_golden_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lfo_golden_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lfo_golden_tests.dir/tests/lfo_golden_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lfo_golden_tests.dir/tests/lfo_golden_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lua_layer_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lua_layer_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lua_layer_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lua_layer_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lua_layer_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lua_layer_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lua_layer_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lua_layer_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lua_layer_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lua_layer_tests.dir/tests/lua_layer_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_lua_layer_tests.dir/tests/lua_layer_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_master_out_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_master_out_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_master_out_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_master_out_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_master_out_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_master_out_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_master_out_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_master_out_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_master_out_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_master_out_tests.dir/tests/master_out_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_master_out_tests.dir/tests/master_out_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_performance_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_performance_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_performance_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_performance_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_performance_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_performance_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_performance_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_performance_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_performance_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_performance_tests.dir/tests/performance_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_performance_tests.dir/tests/performance_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_power_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_power_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_power_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_power_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_power_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_power_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_power_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_power_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_power_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_power_tests.dir/tests/power_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_power_tests.dir/tests/power_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_preset_bank_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_preset_bank_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_preset_bank_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_preset_bank_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_preset_bank_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_preset_bank_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_preset_bank_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_preset_bank_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_preset_bank_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_preset_bank_tests.dir/tests/preset_bank_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_preset_bank_tests.dir/tests/preset_bank_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_parity_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_parity_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_parity_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_parity_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_parity_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_parity_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_parity_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_parity_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_parity_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_parity_tests.dir/tests/presetgen_parity_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_parity_tests.dir/tests/presetgen_parity_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_tests.dir/tests/presetgen_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_presetgen_tests.dir/tests/presetgen_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_ref_compare.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_ref_compare.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_ref_compare.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_ref_compare.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_ref_compare.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_ref_compare.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_ref_compare.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_ref_compare.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_ref_compare.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_ref_compare.dir/tests/ref_compare.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_ref_compare.dir/tests/ref_compare.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_roll_automation_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_roll_automation_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_roll_automation_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_roll_automation_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_roll_automation_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_roll_automation_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_roll_automation_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_roll_automation_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_roll_automation_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_roll_automation_tests.dir/tests/roll_automation_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_roll_automation_tests.dir/tests/roll_automation_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_rt_alloc_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_rt_alloc_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_rt_alloc_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_rt_alloc_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_rt_alloc_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_rt_alloc_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_rt_alloc_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_rt_alloc_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_rt_alloc_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_rt_alloc_tests.dir/tests/rt_alloc_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_rt_alloc_tests.dir/tests/rt_alloc_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_scope_tap_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_scope_tap_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_scope_tap_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_scope_tap_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_scope_tap_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_scope_tap_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_scope_tap_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_scope_tap_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_scope_tap_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_scope_tap_tests.dir/tests/scope_tap_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_scope_tap_tests.dir/tests/scope_tap_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_engine_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_engine_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_engine_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_engine_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_engine_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_engine_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_engine_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_engine_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_engine_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_engine_tests.dir/tests/sid_engine_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_engine_tests.dir/tests/sid_engine_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_golden_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_golden_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_golden_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_golden_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_golden_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_golden_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_golden_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_golden_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_golden_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_golden_tests.dir/tests/sid_golden_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_golden_tests.dir/tests/sid_golden_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_instrument_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_instrument_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_instrument_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_instrument_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_instrument_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_instrument_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_instrument_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_instrument_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_instrument_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_instrument_tests.dir/tests/sid_instrument_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_sid_instrument_tests.dir/tests/sid_instrument_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_stress_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_stress_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_stress_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_stress_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_stress_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_stress_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_stress_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_stress_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_stress_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_stress_tests.dir/tests/stress_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_stress_tests.dir/tests/stress_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_void_golden_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_void_golden_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_void_golden_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_void_golden_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_void_golden_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_void_golden_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_void_golden_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_void_golden_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_void_golden_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_void_golden_tests.dir/tests/void_golden_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_void_golden_tests.dir/tests/void_golden_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_xfx_env_tests.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_xfx_env_tests.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_xfx_env_tests.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_xfx_env_tests.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_xfx_env_tests.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_xfx_env_tests.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_xfx_env_tests.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_xfx_env_tests.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_xfx_env_tests.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_xfx_env_tests.dir/tests/xfx_env_tests.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vv_xfx_env_tests.dir/tests/xfx_env_tests.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vvengine.dir/DependInfo.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vvengine.dir/build.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vvengine.dir/cmake_clean.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vvengine.dir/cmake_clean_target.cmake | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vvengine.dir/compiler_depend.internal | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vvengine.dir/compiler_depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vvengine.dir/compiler_depend.ts | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vvengine.dir/depend.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vvengine.dir/flags.make | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vvengine.dir/home/claude/native/VectaVortex-iOS/Bridge/vv_engine.cpp.o | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vvengine.dir/home/claude/native/VectaVortex-iOS/Bridge/vv_engine.cpp.o.d | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vvengine.dir/link.txt | build output (CMake) | MISSING
+  Core/build/CMakeFiles/vvengine.dir/progress.make | build output (CMake) | MISSING
+  Core/build/CTestTestfile.cmake | build output (CMake) | MISSING
+  Core/build/Makefile | build output (CMake) | MISSING
+  Core/build/Testing/Temporary/CTestCostData.txt | build output (CMake) | MISSING
+  Core/build/Testing/Temporary/LastTest.log | build output (CMake) | MISSING
+  Core/build/Testing/Temporary/LastTestsFailed.log | build output (CMake) | MISSING
+  Core/build/cmake_install.cmake | build output (CMake) | MISSING
+  Core/build/libvvengine.a | build output (CMake) | MISSING
+  Core/build/vv_authoring_tests | build output (CMake) | MISSING
+  Core/build/vv_chordmaker_tests | build output (CMake) | MISSING
+  Core/build/vv_compressor_test | build output (CMake) | MISSING
+  Core/build/vv_dx7_engine_tests | build output (CMake) | MISSING
+  Core/build/vv_dx7_golden_tests | build output (CMake) | MISSING
+  Core/build/vv_echo_tests | build output (CMake) | MISSING
+  Core/build/vv_engine_tests | build output (CMake) | MISSING
+  Core/build/vv_flute_tests | build output (CMake) | MISSING
+  Core/build/vv_golden2_tests | build output (CMake) | MISSING
+  Core/build/vv_golden_tests | build output (CMake) | MISSING
+  Core/build/vv_granular_x_tests | build output (CMake) | MISSING
+  Core/build/vv_hybrid_vocoder_tests | build output (CMake) | MISSING
+  Core/build/vv_interstellar_engine_tests | build output (CMake) | MISSING
+  Core/build/vv_interstellar_golden_tests | build output (CMake) | MISSING
+  Core/build/vv_interstellar_tests | build output (CMake) | MISSING
+  Core/build/vv_lfo_golden_tests | build output (CMake) | MISSING
+  Core/build/vv_lua_layer_tests | build output (CMake) | MISSING
+  Core/build/vv_master_out_tests | build output (CMake) | MISSING
+  Core/build/vv_performance_tests | build output (CMake) | MISSING
+  Core/build/vv_power_tests | build output (CMake) | MISSING
+  Core/build/vv_preset_bank_tests | build output (CMake) | MISSING
+  Core/build/vv_presetgen_parity_tests | build output (CMake) | MISSING
+  Core/build/vv_presetgen_tests | build output (CMake) | MISSING
+  Core/build/vv_ref_compare | build output (CMake) | MISSING
+  Core/build/vv_roll_automation_tests | build output (CMake) | MISSING
+  Core/build/vv_rt_alloc_tests | build output (CMake) | MISSING
+  Core/build/vv_scope_tap_tests | build output (CMake) | MISSING
+  Core/build/vv_sid_engine_tests | build output (CMake) | MISSING
+  Core/build/vv_sid_golden_tests | build output (CMake) | MISSING
+  Core/build/vv_sid_instrument_tests | build output (CMake) | MISSING
+  Core/build/vv_stress_tests | build output (CMake) | MISSING
+  Core/build/vv_void_golden_tests | build output (CMake) | MISSING
+  Core/build/vv_xfx_env_tests | build output (CMake) | MISSING
+  Core/tests/data/RoboCop_3.sid | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden/cases.txt | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/bandpan_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/bandpan_off_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/cases.txt | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/chorus_both_44100.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/chorus_both_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/delay_m0_44100.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/delay_m0_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/delay_m1_44100.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/delay_m1_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/delay_m2_44100.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/delay_m2_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/delay_m3_44100.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/delay_m3_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/eq_boost_44100.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/eq_boost_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/eq_flat_44100.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/eq_flat_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/fm_algo0_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/fm_algo1_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/fm_algo2_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/fm_algo3_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/fm_algo4_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/fm_algo5_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/fm_algo7_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/fold_m0_o0_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/fold_m1_o1_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/fold_m2_o0_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/fold_m3_o2_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/fold_os2_44100.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/gl_crush_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/gl_crushforce_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/gl_gate_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/gl_pitch_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/gl_reverse_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/gl_revpitch_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/gl_stop_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/gl_stutter_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/gl_stutterforce_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/gran_a_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/gran_env_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/lrv_a0_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/lrv_a1_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/lrv_a2_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/lrv_a3_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/lrv_a4_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/lrv_a5_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/lrv_a9_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/mf_t0_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/mf_t0_hires_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/mf_t10_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/mf_t11_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/mf_t12_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/mf_t1_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/mf_t2_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/mf_t3_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/mf_t4_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/mf_t5_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/mf_t6_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/mf_t7_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/mf_t8_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/mf_t9_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/pan_3d_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/pan_auto_44100.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/pan_shape0_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/pan_shape1_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/pan_shape2_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/pan_width_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/proc_bow_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/proc_breath_bore_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/proc_m0_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/proc_m1_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/proc_m2_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/proc_m3_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/proc_modal_ex_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/proc_pluck_st_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/proc_seed_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/proc_switch_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/res_44100.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/res_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/sat_h0_o0_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/sat_h0_o2_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/sat_h1_o0_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/sat_h2_o1_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/sat_os4_44100.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/spec_all_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/spec_pass_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/spec_shiftneg_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/table0.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/table1.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/tape_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/wt_clamp_44100.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/wt_clamp_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/wt_pingpong_44100.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/wt_pingpong_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/wt_plain_44100.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/wt_plain_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/wt_sweep_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/wt_sweep_pp_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/wt_warp_44100.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/wt_warp_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/wtsync_a_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden2/wtsync_b_48000.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/golden_is/cases.txt | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/fx_panning_mb_patched.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_fxp_phaser_flanger_chorus.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_fxp_reverb_delay.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_fxp_sat_filter_glitch.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_gen_micmix.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_gen_pro_level_tune.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_gen_pro_pA.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_gen_pro_pB.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_gen_pro_pC.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_gen_pro_pD.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_gen_smp_tune_env.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_gen_wt_env_pan.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_gen_wt_gA.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_gen_wt_gB.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_gen_wt_gC.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_gen_wt_width_detune.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_global_mix_tone.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_lfo_autoscan.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_lfo_cross.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_lfo_cutoff.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_lfo_held.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_lfo_level_fvol.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_lfo_pitch.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_lfo_pitch_unison.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_lfo_reso.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_lfo_retrig.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_lfo_scan.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_lfo_scan_shared.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_lfo_segment.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_lfo_sync.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_lfo_tune.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_macros.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_mpe_pressure.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_mpe_timbre.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_note_source.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_pro_gen.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_smp_pitch_cutoff.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_sources.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_wave_noise.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_wave_pulse.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_wave_sawDown.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_wave_sawUp.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_wave_sh.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_wave_triangle.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_wave_unipolar_custom.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_wt_shape_source.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/mod_xmod_amount.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/pro_breath.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/pro_chaos.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/pro_modal.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/pro_pluck.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_algo0.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_algo0.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_algo1.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_algo1.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_algo2.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_algo2.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_algo3.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_algo3.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_algo4.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_algo4.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_algo5.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_algo5.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_default.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_default.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_feedback.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_feedback.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_filter.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_filter.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_glide.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_glide.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_two_engines.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fm_two_engines.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_chain3.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_chain3.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_chorus.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_chorus.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_delay_pingpong_sync.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_delay_pingpong_sync.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_delay_reverse.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_delay_reverse.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_delay_stereo.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_delay_stereo.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_disabled_stage.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_disabled_stage.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_filter.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_filter.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_flanger.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_flanger.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_glitch_bits.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_glitch_bits.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_mbcomp_normal.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_mbcomp_normal.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_mbcomp_ott.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_mbcomp_ott.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_panning_3d.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_panning_3d.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_panning_auto.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_panning_auto.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_panning_mb_patched.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_panning_mb_patched.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_panning_multiband.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_panning_multiband.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_phaser.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_phaser.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_resonator.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_resonator.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_reverb_hall.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_reverb_hall.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_reverb_plate_amb.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_reverb_plate_amb.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_reverb_room.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_reverb_room.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_reverb_shimmer.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_reverb_shimmer.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_route_serial.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_route_serial.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_route_serial.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_route_shared.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_route_shared.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_route_shared.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_route_skip.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_route_skip.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_route_skip.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_route_split.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_route_split.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_route_split.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_saturation.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_saturation.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_saturation_multiband.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_saturation_multiband.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_saturation_os.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_saturation_os.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_sends_mixed.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_sends_mixed.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_sends_mixed.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_spectral.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_spectral.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_spectral_tilt_disperse.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_spectral_tilt_disperse.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_wavefolder.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/fx_wavefolder.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_carbon.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_carbon.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_carbon.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_phone.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_phone.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_phone.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_piezo.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_piezo.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_piezo.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_r121.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_r121.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_r121.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_sm57.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_sm57.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_sm57.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_tincan.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_tincan.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_tincan.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_u87.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_u87.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_u87.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_walkie.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_walkie.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/micfx_walkie.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mix_wt_fm.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mix_wt_fm.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_chord_poly.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_chord_poly.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_env_follow.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_env_follow.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fm_cutoff_pitch.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fm_cutoff_pitch.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fm_feedback.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fm_feedback.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fm_ratio.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fm_ratio.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fm_tune.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fm_tune.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fx_filter.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fx_filter.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fx_wavefolder.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fx_wavefolder.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fxp_panning.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fxp_panning.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fxp_phaser_flanger_chorus.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fxp_phaser_flanger_chorus.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fxp_reverb_delay.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fxp_reverb_delay.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fxp_sat_filter_glitch.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_fxp_sat_filter_glitch.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_micmix.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_micmix.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_micmix.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_pro_level_tune.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_pro_level_tune.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_pro_pA.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_pro_pA.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_pro_pB.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_pro_pB.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_pro_pC.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_pro_pC.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_pro_pD.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_pro_pD.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_smp_tune_env.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_smp_tune_env.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_smp_tune_env.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_wt_env_pan.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_wt_env_pan.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_wt_gA.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_wt_gA.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_wt_gB.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_wt_gB.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_wt_gC.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_wt_gC.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_wt_width_detune.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_gen_wt_width_detune.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_global_mix_tone.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_global_mix_tone.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_autoscan.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_autoscan.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_cross.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_cross.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_cutoff.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_cutoff.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_held.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_held.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_level_fvol.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_level_fvol.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_pitch.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_pitch.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_pitch_unison.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_pitch_unison.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_reso.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_reso.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_retrig.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_retrig.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_scan.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_scan.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_scan_shared.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_scan_shared.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_segment.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_segment.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_sync.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_sync.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_tune.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_lfo_tune.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_macros.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_macros.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_mpe_pressure.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_mpe_pressure.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_mpe_timbre.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_mpe_timbre.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_note_source.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_note_source.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_pro_gen.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_pro_gen.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_smp_pitch_cutoff.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_smp_pitch_cutoff.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_smp_pitch_cutoff.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_sources.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_sources.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_wave_noise.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_wave_noise.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_wave_pulse.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_wave_pulse.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_wave_sawDown.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_wave_sawDown.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_wave_sawUp.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_wave_sawUp.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_wave_sh.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_wave_sh.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_wave_triangle.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_wave_triangle.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_wave_unipolar_custom.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_wave_unipolar_custom.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_wt_shape_source.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_wt_shape_source.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_xmod_amount.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/mod_xmod_amount.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/pro_breath.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/pro_breath.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/pro_chaos.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/pro_chaos.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/pro_modal.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/pro_modal.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/pro_pluck.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/pro_pluck.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_default.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_default.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_default.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_env.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_env.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_env.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_fades.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_fades.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_fades.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_filter.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_filter.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_filter.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_glide.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_glide.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_glide.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_global_adsr.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_global_adsr.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_global_adsr.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_loop_points.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_loop_points.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_loop_points.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_noloop.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_noloop.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_noloop.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_pingpong.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_pingpong.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_pingpong.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_pitch.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_pitch.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_pitch.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_plock_slice.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_plock_slice.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_plock_slice.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_reverse_flag.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_reverse_flag.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_reverse_flag.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_two_slots.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_two_slots.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_two_slots.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_two_slots.smp1.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_zones_noise.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_zones_noise.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_zones_noise.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/smp_zones_noise.smp1.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_classic24_q.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_classic24_q.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_classic24_q.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_drive.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_drive.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_drive.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_formant_lpc.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_formant_lpc.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_formant_lpc.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_lin16.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_lin16.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_lin16.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_log8.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_log8.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_log8.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_pitch.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_pitch.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_pitch.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_slots.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_slots.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_slots.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_slots.smp1.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_spectral.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_spectral.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/vocoder_spectral.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_chord.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_chord.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_default.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_default.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_env.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_env.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_env2.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_env2.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_eq.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_eq.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_bandpass.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_bandpass.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_comb.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_comb.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_diode4pole.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_diode4pole.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_env.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_env.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_formant.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_formant.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_formant_female.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_formant_female.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_formant_male.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_formant_male.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_highpass.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_highpass.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_moog4pole.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_moog4pole.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_onepole6db.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_onepole6db.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_statevariable.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_statevariable.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_twopole12db.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_filter_twopole12db.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_glide.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_glide.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_glide_gap.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_glide_gap.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_glide_unison.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_glide_unison.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_legato.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_legato.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_limiter.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_limiter.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_lpg.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_lpg.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_master.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_master.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_plocks.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_plocks.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_pwm_phase_seg.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_pwm_phase_seg.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_sub_noise.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_sub_noise.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_sync.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_sync.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_two_osc.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_two_osc.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_unison.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_unison.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_zones.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/wt_zones.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/xmod_am.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/xmod_am.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/xmod_chain_two.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/xmod_chain_two.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/xmod_chain_two.smp0.wav | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/xmod_fm_fm_to_wt.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/xmod_fm_fm_to_wt.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/xmod_fm_wt_to_fm.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/xmod_fm_wt_to_fm.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/xmod_loop.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/xmod_loop.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/xmod_pm.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/xmod_pm.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/xmod_rm.ref.f32 | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/ref/xmod_rm.resolved.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/smp_default.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/smp_env.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/smp_fades.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/smp_filter.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/smp_glide.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/smp_global_adsr.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/smp_loop_points.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/smp_noloop.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/smp_pingpong.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/smp_pitch.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/smp_plock_slice.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/smp_reverse_flag.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/smp_two_slots.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/smp_zones_noise.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/vocoder_classic24_q.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/vocoder_drive.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/vocoder_formant_lpc.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/vocoder_lin16.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/vocoder_log8.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/vocoder_pitch.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/vocoder_slots.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/vocoder_spectral.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_chord.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_default.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_env.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_env2.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_eq.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_filter_bandpass.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_filter_comb.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_filter_diode4pole.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_filter_env.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_filter_formant.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_filter_formant_female.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_filter_formant_male.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_filter_highpass.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_filter_moog4pole.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_filter_onepole6db.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_filter_statevariable.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_filter_twopole12db.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_glide.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_glide_gap.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_glide_unison.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_legato.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_limiter.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_lpg.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_master.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_plocks.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_pwm_phase_seg.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_sub_noise.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_sync.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_two_osc.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_unison.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/wt_zones.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/xmod_am.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/xmod_chain_two.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/xmod_fm_fm_to_wt.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/xmod_fm_wt_to_fm.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/xmod_loop.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/xmod_pm.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Core/tests/scenarios/xmod_rm.json | C++ test / golden reference data - not needed for the Xcode build | MISSING
+  Web/full-app.html | Web app reference - not needed for the Xcode build | MISSING
+
+MISSING AND UNRECOVERABLE
+  none: every file needed was present in the original project.
+
+VERIFICATION
+  ZIP opens and passes CRC test: yes
+  Entries: 9, unique paths: 9, hash matches vs original: 9/9
+  Entries under Core/build, .git or absolute paths: 0
+  Extracts directly into the repo root (no enclosing folder): yes (first path component examples: Apple, Core)
