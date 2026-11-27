@@ -136,7 +136,7 @@ public final class VectaAudioUnit: AUAudioUnit {
         case "Ratio": return .ratio
         case "Boolean": return .boolean
         case "Indexed": return .indexed
-        case "BPM": return .beatsPerMinute
+        case "BPM": return .BPM
         default: return .generic
         }
     }
@@ -176,7 +176,9 @@ public final class VectaAudioUnit: AUAudioUnit {
         let sr = outputBus.format.sampleRate
         vv_engine_prepare(state.engine, sr)        // not realtime-safe, fine here
         // playheads (roll, step and drum sequencers) are drawn one output-latency in the past, so the picture matches what is heard
-        let outLat = max(self.outputLatency, AVAudioSession.sharedInstance().outputLatency) + AVAudioSession.sharedInstance().ioBufferDuration
+        // AUAudioUnit.latency is this unit's own processing latency; the synth reports none, so only the audio-session output path counts here.
+        let session = AVAudioSession.sharedInstance()
+        let outLat = session.outputLatency + session.ioBufferDuration
         vv_engine_set_display_latency(state.engine, Int32(max(0, min(0.5, outLat)) * sr))
         state.musicalContext = musicalContextBlock
         state.transportState = transportStateBlock
@@ -229,7 +231,7 @@ public final class VectaAudioUnit: AUAudioUnit {
                     let t = Int(e.pointee.head.eventSampleTime - blockStart)
                     if t > offset { next = min(next, t); break }
                     switch e.pointee.head.eventType {
-                    case .midi:   // if Xcode reports no member "midi", the Swift spelling in your SDK is .MIDI
+                    case .MIDI:
                         var data = e.pointee.MIDI.data
                         let len = Int(min(e.pointee.MIDI.length, 3))
                         withUnsafeBytes(of: &data) { raw in

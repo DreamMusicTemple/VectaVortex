@@ -171,7 +171,7 @@ struct ScopeView: View {
             let col = hist[n - 1 - rr]; let ox = 10 + CGFloat(rr) * dx, oy = r.height - 14 - CGFloat(rr) * dy
             var p = Path(); p.move(to: CGPoint(x: ox, y: oy))
             for b in 0..<bins { p.addLine(to: CGPoint(x: ox + w * CGFloat(b) / CGFloat(bins - 1), y: oy - CGFloat(col[b]) * h)) }
-            p.addLine(to: CGPoint(x: ox + w, y: oy)); p.closeSubPath()
+            p.addLine(to: CGPoint(x: ox + w, y: oy)); p.closeSubpath()
             ctx.fill(p, with: .color(Color(white: 0.03)))
             ctx.stroke(p, with: .color(lineColor.opacity(1 - 0.75 * Double(rr) / Double(rows))), lineWidth: thick * 0.7)
         }

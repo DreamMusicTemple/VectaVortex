@@ -52,7 +52,7 @@ private func proCurve(_ ctx: GraphicsContext, _ r: CGRect, _ fn: (Double) -> Dou
     let n = max(64, Int(r.width)); var line = Path()
     for i in 0...n { let x = Double(i) / Double(n), y = min(1.15, max(-0.15, fn(x))); let pt = CGPoint(x: r.minX + CGFloat(x) * r.width, y: r.maxY - CGFloat(y) * r.height); if i == 0 { line.move(to: pt) } else { line.addLine(to: pt) } }
     var c = ctx; c.clip(to: Path(CGRect(x: r.minX, y: r.minY - 4, width: r.width, height: r.height + 8)))
-    var fill = line; fill.addLine(to: CGPoint(x: r.maxX, y: r.maxY)); fill.addLine(to: CGPoint(x: r.minX, y: r.maxY)); fill.closeSubPath()
+    var fill = line; fill.addLine(to: CGPoint(x: r.maxX, y: r.maxY)); fill.addLine(to: CGPoint(x: r.minX, y: r.maxY)); fill.closeSubpath()
     c.fill(fill, with: .linearGradient(Gradient(colors: [vvCyan.opacity(0.33), vvCyan.opacity(0.02)]), startPoint: CGPoint(x: 0, y: r.minY), endPoint: CGPoint(x: 0, y: r.maxY)))
     c.stroke(line, with: .color(vvCyan.opacity(0.28)), style: StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round))
     c.stroke(line, with: .color(vvCyan), style: StrokeStyle(lineWidth: 2.4, lineCap: .round, lineJoin: .round))
