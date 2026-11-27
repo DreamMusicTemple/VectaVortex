@@ -84,6 +84,7 @@ targets:
     sources:
       - Extension
       - Shared
+      - path: Extension/PrivacyInfo.xcprivacy
       - path: ../Assets/Wavetables
         type: folder
       - path: ../Core/viz/factory
