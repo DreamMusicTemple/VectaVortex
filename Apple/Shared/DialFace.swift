@@ -69,7 +69,7 @@ struct VVDotRing: View {
             let c = CGPoint(x: sz.width / 2, y: sz.height / 2)
             let R = sz.width / 2 - maxR - 0.5
             func point(_ t: Double) -> CGPoint {
-                let a = (135 + 270 * t) * .pi / 180
+                let a: CGFloat = (135 + 270 * CGFloat(t)) * .pi / 180
                 return CGPoint(x: c.x + R * cos(a), y: c.y + R * sin(a))
             }
             func dot(_ p: CGPoint, _ r: Double) -> Path { Path(ellipseIn: CGRect(x: p.x - r, y: p.y - r, width: r * 2, height: r * 2)) }
