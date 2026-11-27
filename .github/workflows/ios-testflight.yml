@@ -51,6 +51,37 @@ jobs:
           [ -n "$P" ] || { echo "::error::ASC_KEY_P8 / APP_STORE_CONNECT_PRIVATE_KEY is missing or empty"; bad=1; }
           exit $bad
 
+      - name: Test the API key against Apple (prints HTTP status and Apple's error title only)
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID || secrets.APP_STORE_CONNECT_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID || secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 || secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
+        run: |
+          set -euo pipefail
+          umask 077
+          pip3 install -q --break-system-packages pyjwt cryptography 2>&1 | tail -1 || pip3 install -q pyjwt cryptography
+          python3 - <<'PY'
+          import os, re, time, json, base64, urllib.request, urllib.error
+          import jwt
+          kid = re.sub(r"\s", "", os.environ["ASC_KEY_ID"]); iss = re.sub(r"\s", "", os.environ["ASC_ISSUER_ID"])
+          pem = os.environ["ASC_KEY_P8"]
+          if "BEGIN PRIVATE KEY" not in pem:
+              pem = base64.b64decode(pem).decode()
+          print("Key ID length:", len(kid), "(Apple Key IDs are 10 characters)")
+          print("Issuer ID looks like a UUID:", bool(re.fullmatch(r"[0-9a-fA-F-]{36}", iss)))
+          tok = jwt.encode({"iss": iss, "iat": int(time.time()), "exp": int(time.time()) + 600, "aud": "appstoreconnect-v1"}, pem, algorithm="ES256", headers={"kid": kid, "typ": "JWT"})
+          req = urllib.request.Request("https://api.appstoreconnect.apple.com/v1/apps?limit=50&fields[apps]=bundleId", headers={"Authorization": "Bearer " + tok})
+          try:
+              r = urllib.request.urlopen(req, timeout=30); d = json.load(r)
+              ids = [a["attributes"]["bundleId"] for a in d.get("data", [])]
+              print("HTTP", r.status, "- API key accepted by Apple. Apps visible:", ids)
+              print("App record for com.dreammusictemple.vectavortex exists:", "com.dreammusictemple.vectavortex" in ids)
+          except urllib.error.HTTPError as e:
+              body = json.loads(e.read().decode() or "{}")
+              print("HTTP", e.code, [(x.get("code"), x.get("title"), x.get("detail")) for x in body.get("errors", [])])
+              raise SystemExit("::error::Apple rejected the API key (see status above)")
+          PY
+
       - name: Install XcodeGen and generate project
         run: brew install xcodegen && cd Apple && xcodegen generate
 
@@ -62,6 +93,8 @@ jobs:
         run: |
           set -euo pipefail
           umask 077
+          ASC_KEY_ID="$(printf '%s' "$ASC_KEY_ID" | tr -d '[:space:]')"
+          ASC_ISSUER_ID="$(printf '%s' "$ASC_ISSUER_ID" | tr -d '[:space:]')"
           KEYFILE="$RUNNER_TEMP/AuthKey_${ASC_KEY_ID}.p8"
           case "$ASC_KEY_P8" in
             *"BEGIN PRIVATE KEY"*) printf '%s\n' "$ASC_KEY_P8" > "$KEYFILE" ;;
