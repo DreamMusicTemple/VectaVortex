@@ -1,1 +1,1 @@
-TestFlight build requested 2026-11-27T15:48:18Z - Xcode 27 / iOS 27 SDK, 3D wavetable.
+TestFlight build requested 2026-11-27T21:40:06Z - user-supplied icon.
