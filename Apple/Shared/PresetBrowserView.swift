@@ -61,7 +61,7 @@ struct PresetBrowserView: View {
                 ForEach(presetCategories, id: \.self) { cat in
                     let rows = entries.filter { $0.category == cat && (catSel.isEmpty || catSel == cat) && (artistSel.isEmpty || $0.artist == artistSel) && (query.isEmpty || $0.name.localizedCaseInsensitiveContains(query)) }
                     if !rows.isEmpty {
-                        Section(cat.uppercased()) {
+                        SwiftUI.Section(cat.uppercased()) {
                             ForEach(rows) { p in
                                 Button { loadFile(p.url, p.name) } label: { HStack { Text(p.name); Spacer(); if artistSel.isEmpty { Text(p.artist).font(.caption2).foregroundStyle(.secondary) }; if current == p.name { Image(systemName: "checkmark").foregroundStyle(vvCyan) } } }
                             }.onDelete { idx in for i in idx where !rows[i].factory { try? FileManager.default.removeItem(at: rows[i].url) }; refresh() }

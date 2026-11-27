@@ -22,17 +22,20 @@ struct PluginRootView: View {
     var body: some View {
         VStack(spacing: 0) {
         PresetBar(s: presets, showPresets: { tab = 5 })
-        TabView(selection: $tab) {
-            SoundView(s: presets).tabItem { Label { Text("Sound") } icon: { NavIcon.osc.image() } }.tag(1)
-            ModView(s: presets).tabItem { Label { Text("Mod") } icon: { NavIcon.matrix.image() } }.tag(2)
-            FXRackView(s: presets).tabItem { Label { Text("FX") } icon: { NavIcon.fx.image() } }.tag(4)
-            SequencerView(s: presets).tabItem { Label { Text("Seq") } icon: { NavIcon.seq.image() } }.tag(3)
-            PlayView(store: store, presets: presets, showMod: { tab = 2 }).tabItem { Label("Play", systemImage: "pianokeys") }.tag(0)
-            MixerView(s: presets).tabItem { Label { Text("Mixer") } icon: { NavIcon.mixer.image() } }.tag(8)
-            PresetBrowserView(s: presets).tabItem { Label { Text("Presets") } icon: { NavIcon.presets.image() } }.tag(5)
-            SettingsView(s: presets).tabItem { Label { Text("Settings") } icon: { NavIcon.settings.image() } }.tag(6)
-            ParameterBrowserView(store: store).tabItem { Label("Host params", systemImage: "slider.horizontal.3") }.tag(7)
-        }
+        TopNav(tab: $tab)
+        Group {
+            switch tab {
+            case 1: SoundView(s: presets)
+            case 2: ModView(s: presets)
+            case 4: FXRackView(s: presets)
+            case 3: SequencerView(s: presets)
+            case 8: MixerView(s: presets)
+            case 5: PresetBrowserView(s: presets)
+            case 6: SettingsView(s: presets)
+            case 7: ParameterBrowserView(store: store)
+            default: PlayView(store: store, presets: presets, showMod: { tab = 2 })
+            }
+        }.frame(maxWidth: .infinity, maxHeight: .infinity)
         PlayFooterView(s: presets, panic: { store.audioUnit.panic() })   // persistent footer, as in the web layout and the JUCE editor
         }
         .scrollContentBackground(.hidden)
@@ -180,7 +183,7 @@ struct ParameterBrowserView: View {
                 ForEach(store.groups, id: \.name) { g in
                     let items = g.models.filter { search.isEmpty || $0.spec.label.localizedCaseInsensitiveContains(search) }
                     if !items.isEmpty {
-                        Section(g.name) { ForEach(items) { ParameterSlider(model: $0) } }
+                        SwiftUI.Section(g.name) { ForEach(items) { ParameterSlider(model: $0) } }
                     }
                 }
             }
@@ -401,7 +404,7 @@ struct BendTargetsSheet: View {
         NavigationStack {
             Form {
                 ForEach(groups, id: \.key) { g in
-                    Section(g.title) {
+                    SwiftUI.Section(g.title) {
                         ForEach(0..<g.n, id: \.self) { i in
                             Toggle(g.key == "FM" ? "FM \(i == 0 ? "A" : "B")" : "\(g.key) \(i + 1)", isOn: Binding(
                                 get: { s.value("extra.pitchBendTargets.\(g.key).\(i)") as? Bool ?? true },
@@ -450,5 +453,28 @@ struct PresetTreeMenu: View {
         }
         .onAppear { entries = PresetLibrary.scan() }
         .onChange(of: s.presetName) { _ in entries = PresetLibrary.scan() }
+    }
+}
+
+
+/// The web app's top icon navigation: a row of rounded glass buttons, the active one outlined in the accent colour.
+struct TopNav: View {
+    @Binding var tab: Int
+    private let items: [(NavIcon?, String, Int)] = [(.osc, "Sound", 1), (.matrix, "Mod", 2), (.fx, "FX", 4), (.seq, "Seq", 3), (nil, "Play", 0), (.mixer, "Mixer", 8), (.presets, "Presets", 5), (.settings, "Settings", 6), (nil, "Params", 7)]
+    var body: some View {
+        HStack(spacing: 6) {
+            ForEach(items, id: \.2) { it in
+                let on = tab == it.2
+                Button { tab = it.2 } label: {
+                    Group {
+                        if let ic = it.0 { ic.image(points: 22) } else { Image(systemName: it.2 == 0 ? "pianokeys" : "slider.horizontal.3").font(.system(size: 18)) }
+                    }
+                    .frame(maxWidth: .infinity, minHeight: 36)
+                    .foregroundStyle(on ? vvCyan : Color.white.opacity(0.75))
+                    .background(RoundedRectangle(cornerRadius: 8).fill(on ? vvCyan.opacity(0.14) : Color.black.opacity(0.35)))
+                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(on ? vvCyan : Color.white.opacity(0.18), lineWidth: on ? 1.5 : 1))
+                }.buttonStyle(.plain).accessibilityLabel(it.1)
+            }
+        }.padding(.horizontal, 8).padding(.vertical, 4)
     }
 }

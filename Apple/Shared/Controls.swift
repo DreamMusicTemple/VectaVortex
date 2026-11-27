@@ -34,7 +34,8 @@ struct SliderRow: View {
     @State private var startValue: Double?
     @State private var clipRecorded = false
     var body: some View {
-        HStack(spacing: 10) {
+        VStack(spacing: 4) {
+            HStack(spacing: 3) { Text(label).font(.system(size: 11)).lineLimit(2).multilineTextAlignment(.center).minimumScaleFactor(0.8); if hasRoute { Circle().fill(vvCyan).frame(width: 6, height: 6) } }.frame(height: 28, alignment: .bottom)
             VVDialFace(norm: norm.wrappedValue, modNorm: nil, light: vvCyan, size: 52, active: startNorm != nil, steps: 0)
                 .frame(width: 52, height: 52)
                 .contentShape(Circle())
@@ -55,12 +56,9 @@ struct SliderRow: View {
                 .accessibilityLabel(label)
                 .accessibilityValue(String(format: fmt, s.double(path, def)) + unit)
                 .accessibilityAdjustableAction { dir in norm.wrappedValue += dir == .increment ? 0.05 : -0.05 }
-            VStack(alignment: .leading, spacing: 2) {
-                HStack(spacing: 4) { Text(label).font(.caption).lineLimit(1); if hasRoute { Circle().fill(vvCyan).frame(width: 6, height: 6) } }
-                Text(String(format: fmt, s.double(path, def)) + unit).font(.caption.monospacedDigit()).foregroundStyle(.white).padding(.horizontal, 5).padding(.vertical, 1).background(RoundedRectangle(cornerRadius: 2).fill(Color(red: 0.169, green: 0.18, blue: 0.208)))
-            }
-            Spacer()
+            Text(String(format: fmt, s.double(path, def)) + unit).font(.system(size: 11, design: .monospaced)).lineLimit(1).minimumScaleFactor(0.7).foregroundStyle(.white).frame(width: 74).padding(.vertical, 2).background(RoundedRectangle(cornerRadius: 3).fill(Color(red: 0.12, green: 0.15, blue: 0.19)).overlay(RoundedRectangle(cornerRadius: 3).stroke(Color.white.opacity(0.14), lineWidth: 1)))
         }
+        .frame(width: 86)
         .contentShape(Rectangle())
         .contextMenu {   // iOS shows this on a long press
             if let d = modDest {
@@ -76,7 +74,7 @@ struct SliderRow: View {
 struct ToggleRow: View {
     @ObservedObject var s: PresetStore
     let label: String; let path: String; var def = false
-    var body: some View { Toggle(label, isOn: s.binding(path, bool: def)).font(.caption) }
+    var body: some View { Toggle(label, isOn: s.binding(path, bool: def)).font(.caption).toggleStyle(.switch).frame(width: 300) }
 }
 
 struct PickerRow: View {
@@ -90,7 +88,7 @@ struct PickerRow: View {
             Picker(label, selection: s.binding(path, string: def ?? options.first ?? "")) {
                 ForEach(options, id: \.self) { Text(labels[$0] ?? $0).tag($0) }
             }.pickerStyle(.menu).labelsHidden()
-        }
+        }.frame(width: 300)
     }
 }
 
@@ -98,7 +96,7 @@ struct PickerRow: View {
 struct StepperRow: View {
     @ObservedObject var s: PresetStore
     let label: String; let path: String; let range: ClosedRange<Int>; var def = 0
-    var body: some View { Stepper("\(label): \(s.int(path, def))", value: s.binding(path, int: def), in: range).font(.caption) }
+    var body: some View { Stepper("\(label): \(s.int(path, def))", value: s.binding(path, int: def), in: range).font(.caption).frame(width: 260) }
 }
 
 /// Picker over a numeric value with named choices (e.g. arp division 1 / 0.5 / 0.25).
@@ -111,7 +109,7 @@ struct ChoiceRow: View {
             Picker(label, selection: Binding(get: { choices.min(by: { abs($0.1 - s.double(path, def)) < abs($1.1 - s.double(path, def)) })?.1 ?? def }, set: { s.set(path, $0) })) {
                 ForEach(choices, id: \.1) { Text($0.0).tag($0.1) }
             }.pickerStyle(.menu).labelsHidden()
-        }
+        }.frame(width: 300)
     }
 }
 
