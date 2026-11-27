@@ -66,8 +66,14 @@ struct WavetableDisplay: View {
             var grid = Path(); for k in 0...4 { let t = Double(k) / 4; grid.move(to: geo(t, 0, -0.55)); grid.addLine(to: geo(t, 1, -0.55)); grid.move(to: geo(0, t, -0.55)); grid.addLine(to: geo(1, t, -0.55)) }
             ctx.stroke(grid, with: .color(col(0.22)), lineWidth: 0.6)
         } else {
-            let bw = W * 0.80, x0 = W * 0.10, yNear = H * 0.80, rise = H * 0.46, shrink = 0.20, hh = H * 0.20
-            geo = { u, d, sv in let k = 1 - shrink * d; return CGPoint(x: x0 + bw * (1 - k) * 0.5 + u * bw * k + d * W * 0.03, y: yNear - d * rise - sv * hh * (1 - 0.35 * d)) }
+            let bw = W * 0.80, x0 = W * 0.10, yNear = H * 0.80, rise = H * 0.46, shrink: CGFloat = 0.20, hh = H * 0.20
+            geo = { u, d, sv in
+                let uu = CGFloat(u), dd = CGFloat(d), ss = CGFloat(sv)
+                let k: CGFloat = 1 - shrink * dd
+                let x: CGFloat = x0 + bw * (1 - k) * 0.5 + uu * bw * k + dd * W * 0.03
+                let y: CGFloat = yNear - dd * rise - ss * hh * (1 - 0.35 * dd)
+                return CGPoint(x: x, y: y)
+            }
             var plate = Path(); plate.move(to: geo(0, 0, -0.35)); plate.addLine(to: geo(1, 0, -0.35)); plate.addLine(to: geo(1, 1, -0.35)); plate.addLine(to: geo(0, 1, -0.35)); plate.closeSubpath()
             ctx.stroke(plate, with: .color(col(0.16)), lineWidth: 0.6)
         }
