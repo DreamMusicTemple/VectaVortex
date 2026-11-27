@@ -40,10 +40,13 @@ final class AudioHost: ObservableObject {
             try session.setPreferredIOBufferDuration(0.005)
             try session.setActive(true)
 
-            let desc = VectaAudioUnit.componentDescription
+            // The standalone app uses its OWN component code ('VvtA'). With the extension's code ('Vvtx') the system hands back the
+            // out-of-process AUv3 extension (not a VectaAudioUnit), which made the app stop with "Unexpected audio unit type".
+            var desc = VectaAudioUnit.componentDescription
+            desc.componentSubType = 0x56767441   // 'VvtA' 
             if !registered { AUAudioUnit.registerSubclass(VectaAudioUnit.self, as: desc, name: "Dream Music Temple: Vektur Vortex", version: 1); registered = true }
             let avUnit: AVAudioUnit = try await withCheckedThrowingContinuation { cont in
-                AVAudioUnit.instantiate(with: desc, options: [.loadInProcess]) { unit, err in   // in-process: otherwise the system may return the out-of-process AUv3 extension (same component), which is not a VectaAudioUnit
+                AVAudioUnit.instantiate(with: desc, options: []) { unit, err in
                     if let unit { cont.resume(returning: unit) } else { cont.resume(throwing: err ?? NSError(domain: "VectaVortex", code: 1)) }
                 }
             }
