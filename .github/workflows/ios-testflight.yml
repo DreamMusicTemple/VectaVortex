@@ -27,7 +27,7 @@ jobs:
     runs-on: macos-15
     timeout-minutes: 75
     env:
-      TEAM_ID: ${{ vars.APPLE_TEAM_ID || 'H4358J7N36' }}
+      TEAM_ID: ${{ secrets.APPLE_TEAM_ID || vars.APPLE_TEAM_ID || 'H4358J7N36' }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -41,14 +41,14 @@ jobs:
 
       - name: Check secrets are present (names only, values never printed)
         env:
-          K: ${{ secrets.ASC_KEY_ID }}
-          I: ${{ secrets.ASC_ISSUER_ID }}
-          P: ${{ secrets.ASC_KEY_P8 }}
+          K: ${{ secrets.ASC_KEY_ID || secrets.APP_STORE_CONNECT_KEY_ID }}
+          I: ${{ secrets.ASC_ISSUER_ID || secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          P: ${{ secrets.ASC_KEY_P8 || secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
         run: |
           bad=0
-          [ -n "$K" ] || { echo "::error::ASC_KEY_ID is missing or empty"; bad=1; }
-          [ -n "$I" ] || { echo "::error::ASC_ISSUER_ID is missing or empty"; bad=1; }
-          [ -n "$P" ] || { echo "::error::ASC_KEY_P8 is missing or empty"; bad=1; }
+          [ -n "$K" ] || { echo "::error::ASC_KEY_ID / APP_STORE_CONNECT_KEY_ID is missing or empty"; bad=1; }
+          [ -n "$I" ] || { echo "::error::ASC_ISSUER_ID / APP_STORE_CONNECT_ISSUER_ID is missing or empty"; bad=1; }
+          [ -n "$P" ] || { echo "::error::ASC_KEY_P8 / APP_STORE_CONNECT_PRIVATE_KEY is missing or empty"; bad=1; }
           exit $bad
 
       - name: Install XcodeGen and generate project
@@ -56,14 +56,18 @@ jobs:
 
       - name: Archive, sign and upload to TestFlight
         env:
-          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
-          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
-          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID || secrets.APP_STORE_CONNECT_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID || secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 || secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
         run: |
           set -euo pipefail
           umask 077
           KEYFILE="$RUNNER_TEMP/AuthKey_${ASC_KEY_ID}.p8"
-          printf '%s\n' "$ASC_KEY_P8" > "$KEYFILE"
+          case "$ASC_KEY_P8" in
+            *"BEGIN PRIVATE KEY"*) printf '%s\n' "$ASC_KEY_P8" > "$KEYFILE" ;;
+            *) printf '%s' "$ASC_KEY_P8" | base64 -d > "$KEYFILE" ;;   # accept a base64-encoded .p8 as well
+          esac
+          grep -q "BEGIN PRIVATE KEY" "$KEYFILE" || { echo "::error::API key secret is not a valid .p8 (neither PEM nor base64 PEM)"; exit 1; }
           AUTH=(-allowProvisioningUpdates -authenticationKeyPath "$KEYFILE" -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID")
 
           cat > "$RUNNER_TEMP/ExportOptions.plist" <<PLIST
