@@ -14,6 +14,11 @@ struct VectaVortexApp: App {
                 if let store = host.store { PluginRootView(store: store) }
                 else { ProgressView("Starting audio engine…").task { await host.start() } }
             }
+            .onAppear {   // CI screenshot aid only: set by the screenshot workflow, never present for users
+                if ProcessInfo.processInfo.environment["VV_LANDSCAPE"] != nil, let sc = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                    sc.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight))
+                }
+            }
             .alert("Audio error", isPresented: .constant(host.error != nil)) { Button("OK") { host.error = nil } } message: { Text(host.error ?? "") }
         }
     }

@@ -1,0 +1,60 @@
+name: Vektur Vortex native screenshots
+
+# Renders the native app in the iPad simulator and publishes PNGs to the branch `ci-screenshots`
+# (screenshots only: no secrets, no signing). Start it by editing .github/screenshots-trigger.txt or with "Run workflow".
+on:
+  workflow_dispatch:
+  push:
+    branches: [recovery/reconstruct-directory-structure]
+    paths: [.github/screenshots-trigger.txt]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ios-screenshots
+  cancel-in-progress: true
+
+jobs:
+  shots:
+    runs-on: xcode-27
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Select Xcode 27
+        run: |
+          X=$(ls -d /Applications/Xcode_27*.app | grep -vi 'beta\|candidate' | sort -V | tail -1 || true); [ -n "$X" ] || X=$(ls -d /Applications/Xcode_27*.app | sort -V | tail -1)
+          sudo xcode-select -s "$X/Contents/Developer"; xcodebuild -version
+      - name: Generate project and build for the simulator
+        run: |
+          brew install xcodegen >/dev/null 2>&1 || true
+          cd Apple && xcodegen generate
+          xcodebuild -project VectaVortex.xcodeproj -scheme VectaVortex -configuration Debug -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' -derivedDataPath "$RUNNER_TEMP/DD" \
+            CODE_SIGNING_ALLOWED=NO build 2>&1 | tail -n 15
+      - name: Boot an iPad simulator and take screenshots
+        run: |
+          set -euo pipefail
+          UDID=$(xcrun simctl list devices available | grep -E "iPad Pro 13-inch" | head -1 | grep -oE "[0-9A-F-]{36}" || true)
+          [ -n "$UDID" ] || UDID=$(xcrun simctl list devices available | grep -E "iPad" | head -1 | grep -oE "[0-9A-F-]{36}")
+          echo "Simulator: $UDID"; xcrun simctl boot "$UDID" || true; xcrun simctl bootstatus "$UDID" -b >/dev/null 2>&1 || true
+          APP=$(find "$RUNNER_TEMP/DD/Build/Products" -name "VectaVortex.app" -maxdepth 3 | head -1)
+          xcrun simctl install "$UDID" "$APP"
+          BID=$(/usr/libexec/PlistBuddy -c "Print CFBundleIdentifier" "$APP/Info.plist")
+          mkdir -p shots
+          # tab numbers as in PluginRootView: 1 Sound, 2 Mod, 4 FX, 3 Seq, 0 Play, 8 Mixer, 5 Presets, 6 Settings, 7 Host params
+          for pair in 1:sound 2:mod 4:fx 3:seq 0:play 8:mixer 5:presets 6:settings; do
+            T=${pair%%:*}; N=${pair##*:}
+            xcrun simctl terminate "$UDID" "$BID" >/dev/null 2>&1 || true
+            SIMCTL_CHILD_VV_START_TAB=$T SIMCTL_CHILD_VV_LANDSCAPE=1 xcrun simctl launch "$UDID" "$BID" >/dev/null
+            sleep 14
+            xcrun simctl io "$UDID" screenshot "shots/native-$N.png" || true
+          done
+          ls -la shots
+      - name: Publish screenshots to the ci-screenshots branch
+        run: |
+          set -euo pipefail
+          cd shots && git init -q && git checkout -q -b ci-screenshots
+          git config user.name "ci-screenshots"; git config user.email "ci@users.noreply.github.com"
+          git add . && git commit -q -m "native simulator screenshots from run ${{ github.run_id }}"
+          git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" ci-screenshots

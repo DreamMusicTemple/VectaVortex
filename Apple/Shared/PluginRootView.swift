@@ -15,7 +15,9 @@ struct PluginRootView: View {
     init(store: ParameterStore) {
         self.store = store
         _presets = StateObject(wrappedValue: PresetStore(audioUnit: store.audioUnit))
-        _tab = State(initialValue: store.audioUnit.uiValue("tab"))   // restored from the host session (fullState)
+        var startTab = store.audioUnit.uiValue("tab")                // restored from the host session (fullState)
+        if let e = ProcessInfo.processInfo.environment["VV_START_TAB"], let n = Int(e) { startTab = n }   // CI screenshot aid only
+        _tab = State(initialValue: startTab)
     }
     var body: some View {
         VStack(spacing: 0) {
