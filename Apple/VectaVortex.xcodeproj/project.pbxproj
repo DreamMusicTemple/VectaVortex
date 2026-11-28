@@ -1,0 +1,1244 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		008D080B2CCFA458977F47C0 /* DialFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C8AC5912FE54325216B7A /* DialFace.swift */; };
+		0264D263E26CD6F12CF5AF9D /* PanelKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B290269BE99A8070CE5B9D98 /* PanelKit.swift */; };
+		043A348131A6D1A8139B7DF5 /* vv_viz.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4545546E540D5E7D6087A722 /* vv_viz.cpp */; };
+		0592B4E56FF2E672E200B7C1 /* LuaEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FBD03D7A4A8EA27626D289 /* LuaEditorView.swift */; };
+		05F3A2D3C91777F512589F9B /* ProPlots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4F5AE606AAC4D429914579 /* ProPlots.swift */; };
+		0917A17267B132E4935CD258 /* WireOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BAE60129BCE5BE8AC55865 /* WireOverviewView.swift */; };
+		0A266D7176EFDB07917AE167 /* libVVEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3873337B42FDE4F737AF06 /* libVVEngine.a */; };
+		0ADD4DB6A4BF9BA76B0BCBD1 /* PresetBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD67D5E2BB0EF327A406D2A /* PresetBrowserView.swift */; };
+		0E9B237E42FC38C590BD07A6 /* NavIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D010D89850722864A2B7ED /* NavIcons.swift */; };
+		0EDA43B5B21F30522284A3B5 /* AuthoringTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = A847BDC2A17EF998E35633A9 /* AuthoringTools.swift */; };
+		0EEBFF6D290B0A99C7D722D7 /* ParameterTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F3A23C41CE8A1788189BE3 /* ParameterTable.swift */; };
+		0FB150A8785F9C0837F8CF66 /* MixerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF33A7554D6AFAB22438A99D /* MixerView.swift */; };
+		13549B9F10856F3F8CFB9571 /* VizMetalRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BFA82185FE9C82C49D0CBB /* VizMetalRenderer.swift */; };
+		13DD5B0EF5DEE4890CCF9117 /* ClipLauncherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F619F985F362308592645C /* ClipLauncherView.swift */; };
+		155490E1620E96E82C4644C0 /* PitchEnvelopeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8293DABACFAC9F6AAF0B2E /* PitchEnvelopeView.swift */; };
+		1991AA3805E2563BD952A77F /* SampleWaveformEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF25307888F00EEB9F0A598 /* SampleWaveformEditor.swift */; };
+		19D32844B78FFF014275B11B /* DawRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570BB4B30327E9F19E4D36C2 /* DawRecorderView.swift */; };
+		1A357AC80587A975D4D7C229 /* VizGenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C25343244BB881067F1750 /* VizGenData.swift */; };
+		1AA2C1338B915DF6D7831FC5 /* CurveEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FB4023D249FF91F677775 /* CurveEditorView.swift */; };
+		1AAB318941F7FEA3FBC70FE0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A38108C41A8FC5599E997A3B /* PrivacyInfo.xcprivacy */; };
+		1AFA71D17FF3CF30D0E5E127 /* default_preset.json in Resources */ = {isa = PBXBuildFile; fileRef = EB4E47C1E650753C43E7FA4E /* default_preset.json */; };
+		1DAA99A24D2677B87220CB0E /* ArpAdvInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C87DCD8E7850207323E89DB /* ArpAdvInfo.swift */; };
+		2029307D4ED088034A9A8F72 /* DialStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB7C0592B2E1981B4DCD791 /* DialStyles.swift */; };
+		204DD5E98C39C977EB0821B1 /* builtin_samples.json in Resources */ = {isa = PBXBuildFile; fileRef = C675BA5D83668595D5C29B0C /* builtin_samples.json */; };
+		20B8C5577C413077195A2120 /* MpcPadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F7D20837C37E141C89E337 /* MpcPadsView.swift */; };
+		266E52EC23BB4FBD42A46D9D /* FXRackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AF38264AF50A6350260ACE /* FXRackView.swift */; };
+		2839EE43A861C61643AA744A /* LayerIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC879F6EAA8D3D6F0D04D48 /* LayerIdentity.swift */; };
+		285DA28127085A31121D702E /* BatterySaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758423C172D374E755FE3F43 /* BatterySaving.swift */; };
+		2ADDA1AC57F98E8FDD42003C /* SequencerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6037C3A8B92CF97F6C70BDAB /* SequencerView.swift */; };
+		2F234D43D8B55B219CD1AB9B /* ScopeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D6B1643AEC9A2610341545 /* ScopeView.swift */; };
+		2F28CE97A543626C3B69DCF1 /* InterstellarPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06ADFF80BF45771C40AA05F /* InterstellarPresets.swift */; };
+		30349CAE62F1B54DBB9568CC /* InterstellarPresets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06ADFF80BF45771C40AA05F /* InterstellarPresets.swift */; };
+		336EC9BF6D076DEDAEDD8963 /* SoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF15026430065C71CE7D69B /* SoundView.swift */; };
+		39ACAC2F437B13C19575CEC6 /* ClipLauncherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F619F985F362308592645C /* ClipLauncherView.swift */; };
+		3A2E4BABC077281F4F4131EA /* MidiLearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5220EC44D9BCD8CAFEE51047 /* MidiLearnView.swift */; };
+		3ADE3D0896E438B3F4CA53DD /* DialFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C8AC5912FE54325216B7A /* DialFace.swift */; };
+		3AFBC4AF0A344A25BCBF4764 /* PresetLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F0A6215910CCB2201751ED /* PresetLibrary.swift */; };
+		3BE806A7F40B8FC9BD2AC99E /* CurveEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FB4023D249FF91F677775 /* CurveEditorView.swift */; };
+		3EA22E6C963CF0944EE68D46 /* VectaAudioUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E27BE5679E4F64705D2AF8 /* VectaAudioUnit.swift */; };
+		4049949E24CC3DA9C942D324 /* Backgrounds in Resources */ = {isa = PBXBuildFile; fileRef = 4C1B0FBA6A8B576DE2744C5C /* Backgrounds */; };
+		47579DB967CF723B7BEB13C0 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF07A702215C3DE1ECB7FDE /* Appearance.swift */; };
+		47E6D3B7ABD432838250BC10 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF07A702215C3DE1ECB7FDE /* Appearance.swift */; };
+		4863D6F1A2DB43D22F21802D /* factory in Resources */ = {isa = PBXBuildFile; fileRef = DB5AC3978001F3C7B2E5FB6F /* factory */; };
+		4B4BA429DBF4897CA80B747D /* VectaVortexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D39733FF02EF57141C0DD0 /* VectaVortexApp.swift */; };
+		4B6EB5AAC23E78CF2BCAF86F /* factory in Resources */ = {isa = PBXBuildFile; fileRef = DB5AC3978001F3C7B2E5FB6F /* factory */; };
+		4C948703A1291AC7907E0294 /* ParameterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C305D2034FA66D254CB978A0 /* ParameterModel.swift */; };
+		4ED682DA63320E5D0DACBECE /* NavIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D010D89850722864A2B7ED /* NavIcons.swift */; };
+		4EE5F8025A6D58DA33E5A9F0 /* VizScenes.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9B48454838CD0328F640EB31 /* VizScenes.metal */; };
+		4FF54AB0127DCAB634C3C8CD /* Presets in Resources */ = {isa = PBXBuildFile; fileRef = A527A9718878FB3E447E38CD /* Presets */; };
+		501E9350505CE3B722A73112 /* IRReverbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDE680DA7EFF6080E4D96B5 /* IRReverbView.swift */; };
+		5108F053AC3420C5867EF8D8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB973284AD09446AEBD0CA8A /* SettingsView.swift */; };
+		515E99288F678FD73E770D55 /* VectaVortexAUv3.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 344CDAE774410DB89F59FEF1 /* VectaVortexAUv3.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		53B561CECBCBB5E9071F1D83 /* Controls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09C1ABBFAB6CAFEC969AFBD /* Controls.swift */; };
+		547FBC275B8DDE69108941A7 /* EQGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA129ADA7186DB2EBECD001 /* EQGraphView.swift */; };
+		55F16759D4B4C71C62A0BA4C /* vv_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A518040D5EABF6940EA83646 /* vv_engine.cpp */; };
+		56588C032F69BD690C00C817 /* ParameterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C305D2034FA66D254CB978A0 /* ParameterModel.swift */; };
+		57638395C8F2B244469FE54F /* ZonesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF8110DB70FFD8314F7C67 /* ZonesView.swift */; };
+		59E2919A671AAEA3AD0E6C99 /* vv_viz.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0A4BE2EFB0178A35718B4C61 /* vv_viz.h */; };
+		5A242D02BD03A8697AFEC0D9 /* SoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF15026430065C71CE7D69B /* SoundView.swift */; };
+		5DDAE791359E7BABB16CD6F4 /* MpcPadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F7D20837C37E141C89E337 /* MpcPadsView.swift */; };
+		5FCFEBCDD20CA86EFC00C4D1 /* ScopeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D6B1643AEC9A2610341545 /* ScopeView.swift */; };
+		60942E3958953F6B6275ED32 /* XfxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B530C7C50248C222A840C75B /* XfxView.swift */; };
+		61AA3C86EC1DF662F227FA88 /* SequencerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6037C3A8B92CF97F6C70BDAB /* SequencerView.swift */; };
+		63CF690466D8A46A855C25AC /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 573B2B4282E0069D8F4E7FF4 /* Samples */; };
+		643DB20667D79A535B0D3B50 /* VectaAudioUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E27BE5679E4F64705D2AF8 /* VectaAudioUnit.swift */; };
+		67E59B3CAF9C98D3940BC30E /* PlayFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3459D7260AE09CFFD3740 /* PlayFooterView.swift */; };
+		6AD0B3468F2E6C501B9135CB /* FXRackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AF38264AF50A6350260ACE /* FXRackView.swift */; };
+		6C2F56499F81632E55A7BDE3 /* VizMetalRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BFA82185FE9C82C49D0CBB /* VizMetalRenderer.swift */; };
+		725136A8D1E7BC715DC1BC79 /* PresetBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD67D5E2BB0EF327A406D2A /* PresetBrowserView.swift */; };
+		72BAE039BC8A114C1ECF24F1 /* AuthoringTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = A847BDC2A17EF998E35633A9 /* AuthoringTools.swift */; };
+		73CF5918B230C95DBAC8D9C2 /* WireOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BAE60129BCE5BE8AC55865 /* WireOverviewView.swift */; };
+		7B4F89A1CB135935A07ECAE9 /* WavetableDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EF64B255CC1D478345632D /* WavetableDisplayView.swift */; };
+		7FA52BF559672FB97E10B0C8 /* default_preset.json in Resources */ = {isa = PBXBuildFile; fileRef = EB4E47C1E650753C43E7FA4E /* default_preset.json */; };
+		7FE7B01A4FE110839667310F /* PanelKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B290269BE99A8070CE5B9D98 /* PanelKit.swift */; };
+		80497E071A583A5EC1BDF265 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CD608B599074F962F06FAD9 /* Assets.xcassets */; };
+		81C49C7008E3DC84CE6D0605 /* InterstellarUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90CD2D04C56842A0A94C1C3 /* InterstellarUi.swift */; };
+		84B197BBDF670139589C4072 /* DawRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570BB4B30327E9F19E4D36C2 /* DawRecorderView.swift */; };
+		871F5B427BD27CC6CB20FFAA /* VizHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB92282033FCAA1FFED3131E /* VizHost.swift */; };
+		8750A7FC1CE4F11697C9B5B0 /* IRReverbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDE680DA7EFF6080E4D96B5 /* IRReverbView.swift */; };
+		8D6CD9549C2068C248849823 /* Backgrounds in Resources */ = {isa = PBXBuildFile; fileRef = 4C1B0FBA6A8B576DE2744C5C /* Backgrounds */; };
+		8EC87F31C7B115F028911D87 /* Controls.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09C1ABBFAB6CAFEC969AFBD /* Controls.swift */; };
+		8FBD668D7FA637CF412D897A /* RollRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DB4466D2A6700E53641785 /* RollRecorder.swift */; };
+		900FECEBBC997264B709F486 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 9D06328A1D490D2EE02BF955 /* PrivacyInfo.xcprivacy */; };
+		916493FB116B2918C3D38179 /* libVVEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3873337B42FDE4F737AF06 /* libVVEngine.a */; };
+		92BC52C7ADEB00C394449119 /* PluginRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D867138BF5EB9D51964CF9 /* PluginRootView.swift */; };
+		9533E450D913F35F9E8175A9 /* LuaEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FBD03D7A4A8EA27626D289 /* LuaEditorView.swift */; };
+		96D3018C1CD07782B0EE7721 /* BatterySaving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758423C172D374E755FE3F43 /* BatterySaving.swift */; };
+		99FFF991AB3BC7A170A85139 /* VizGenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C25343244BB881067F1750 /* VizGenData.swift */; };
+		9AEE39ED50CC49EEC5C45EE0 /* PluginRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D867138BF5EB9D51964CF9 /* PluginRootView.swift */; };
+		9B6E9EF7BEE9875636B92E3F /* RollRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DB4466D2A6700E53641785 /* RollRecorder.swift */; };
+		A062E2B1DD5E78D8CEAC7BAD /* InterstellarUi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B90CD2D04C56842A0A94C1C3 /* InterstellarUi.swift */; };
+		A1517731EC3767F2D5C00D17 /* ProPlots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4F5AE606AAC4D429914579 /* ProPlots.swift */; };
+		A729571B6D748107ADBAC4BF /* MidiLearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5220EC44D9BCD8CAFEE51047 /* MidiLearnView.swift */; };
+		A74E4046024C4C88F7A08F6C /* ArpAdvInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C87DCD8E7850207323E89DB /* ArpAdvInfo.swift */; };
+		AA341730870CC0C675DFBBA8 /* ModView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CCCA59332FA3C92400F3B9 /* ModView.swift */; };
+		B1391BF8A7DD13F082EAF630 /* SampleWaveformEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF25307888F00EEB9F0A598 /* SampleWaveformEditor.swift */; };
+		B6DF7EE98D5B10BDA05B0A05 /* VizPasses.metal in Sources */ = {isa = PBXBuildFile; fileRef = 76C681B9611EBC44D698368C /* VizPasses.metal */; };
+		B7962D3ADE7D3983EC201676 /* LayerIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC879F6EAA8D3D6F0D04D48 /* LayerIdentity.swift */; };
+		BDBC6F7A26FB89A8B311ADBD /* InstrumentLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77FE79A8CF723A3539E9990 /* InstrumentLoader.swift */; };
+		C0E11D8044ED2F5EB3A80E85 /* builtin_samples.json in Resources */ = {isa = PBXBuildFile; fileRef = C675BA5D83668595D5C29B0C /* builtin_samples.json */; };
+		C324A6815A361CDB3D3AA64F /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DB9438C234D126F9EDDCA77C /* logo.png */; };
+		C373BF12B1A54E717CA61073 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB973284AD09446AEBD0CA8A /* SettingsView.swift */; };
+		C4626D9DBE86458E85557E10 /* VizHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB92282033FCAA1FFED3131E /* VizHost.swift */; };
+		C618153461065380713EFF22 /* PresetLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F0A6215910CCB2201751ED /* PresetLibrary.swift */; };
+		C746BB27FB7DDE48CE1B531D /* LuaVisualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD815E090BC7DDAA677203B /* LuaVisualView.swift */; };
+		C7704644FDD5EFDBD305866E /* PresetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1786A3C06B7165038DDA9BBB /* PresetStore.swift */; };
+		C888D25A053A060984B3F45D /* Wavetables in Resources */ = {isa = PBXBuildFile; fileRef = 46CE36D002D5E9029BDD82DC /* Wavetables */; };
+		CAF7A5FA29D19135319E51F8 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DB9438C234D126F9EDDCA77C /* logo.png */; };
+		CC1C83DE65E0EA738550E9DB /* MixerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF33A7554D6AFAB22438A99D /* MixerView.swift */; };
+		CD150EC4D7F881033C2EA73E /* WavetableDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EF64B255CC1D478345632D /* WavetableDisplayView.swift */; };
+		CD17B9A874DCC9647D9C6CD0 /* LuaVisualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD815E090BC7DDAA677203B /* LuaVisualView.swift */; };
+		CE6C120D6CBAF12F7C5B1D07 /* DialStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB7C0592B2E1981B4DCD791 /* DialStyles.swift */; };
+		D0AE505B323B9CB83AC1271E /* VektorVoidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F434CCD9E3081F2E2A40940 /* VektorVoidView.swift */; };
+		D5104C6D387A512FAA23D8B4 /* PlayFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C3459D7260AE09CFFD3740 /* PlayFooterView.swift */; };
+		D69867D722E36EC1F4940516 /* AudioUnitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C740F539EB2DBC1F5238FF1C /* AudioUnitViewController.swift */; };
+		DB7749F5A5F4A47AB2C38929 /* ParameterTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F3A23C41CE8A1788189BE3 /* ParameterTable.swift */; };
+		DFDFF6D729BF9E21BB553F57 /* ZonesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF8110DB70FFD8314F7C67 /* ZonesView.swift */; };
+		E08742EA9F71748F657A1B69 /* VizScenes.metal in Sources */ = {isa = PBXBuildFile; fileRef = 9B48454838CD0328F640EB31 /* VizScenes.metal */; };
+		E15D786632ECCB7B47A386AA /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 573B2B4282E0069D8F4E7FF4 /* Samples */; };
+		E1EE78D0D6C8479D0BA7C7AD /* VizPasses.metal in Sources */ = {isa = PBXBuildFile; fileRef = 76C681B9611EBC44D698368C /* VizPasses.metal */; };
+		E1F2D5732725410A18B933FD /* EQGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA129ADA7186DB2EBECD001 /* EQGraphView.swift */; };
+		E22EAB5416FF092D69078745 /* VektorVoidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F434CCD9E3081F2E2A40940 /* VektorVoidView.swift */; };
+		E440D31470BDC45E2BBC0D01 /* Presets in Resources */ = {isa = PBXBuildFile; fileRef = A527A9718878FB3E447E38CD /* Presets */; };
+		E702CE835F9B34AE4CF4CEA1 /* PitchEnvelopeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8293DABACFAC9F6AAF0B2E /* PitchEnvelopeView.swift */; };
+		E7F6F7DFFC7A113993840FB2 /* Wavetables in Resources */ = {isa = PBXBuildFile; fileRef = 46CE36D002D5E9029BDD82DC /* Wavetables */; };
+		E900D83990D2A0DA5F5F21B9 /* XfxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B530C7C50248C222A840C75B /* XfxView.swift */; };
+		EAB0D0C4F7076B356172E8A1 /* PresetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1786A3C06B7165038DDA9BBB /* PresetStore.swift */; };
+		F523C9DF1C1B1AB6362F3BF0 /* vv_engine.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 35FB6C5446E676728D13767B /* vv_engine.h */; };
+		F5466BFA7DB7ECCD203CC297 /* ModView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CCCA59332FA3C92400F3B9 /* ModView.swift */; };
+		FC109ABA054FEF754B95D7FA /* InstrumentLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77FE79A8CF723A3539E9990 /* InstrumentLoader.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1A9AAC533A64F311057BD817 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21B54354656F121D27F3BFBA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA3C5255C09BD5E80C9063C3;
+			remoteInfo = VVEngine;
+		};
+		DA97EC9AFDFCC4FA277A2725 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21B54354656F121D27F3BFBA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 997B67278861B555BC1A4819;
+			remoteInfo = VectaVortexAUv3;
+		};
+		F25F506321CBB3C06E3F928F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21B54354656F121D27F3BFBA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA3C5255C09BD5E80C9063C3;
+			remoteInfo = VVEngine;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		086DAE34D9A1D93F74F06943 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				F523C9DF1C1B1AB6362F3BF0 /* vv_engine.h in CopyFiles */,
+				59E2919A671AAEA3AD0E6C99 /* vv_viz.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		947316099227EE1A0D5FD996 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				515E99288F678FD73E770D55 /* VectaVortexAUv3.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		00C13A70F78BE82D028C1756 /* fx_basic.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fx_basic.hpp; sourceTree = "<group>"; };
+		023AB7E910E8595B16F96A6B /* colouring.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = colouring.hpp; sourceTree = "<group>"; };
+		03FBD03D7A4A8EA27626D289 /* LuaEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuaEditorView.swift; sourceTree = "<group>"; };
+		064A2E59E4ED3E775088BC7C /* voice_dsp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = voice_dsp.hpp; sourceTree = "<group>"; };
+		078BEFCC479CE3494A21AFE2 /* clips.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = clips.hpp; sourceTree = "<group>"; };
+		0A4BE2EFB0178A35718B4C61 /* vv_viz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vv_viz.h; sourceTree = "<group>"; };
+		0B135647A240789B679E1EE1 /* params_generated.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = params_generated.hpp; sourceTree = "<group>"; };
+		0B4066EDD7D1BACC99019D81 /* lx_engine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lx_engine.hpp; sourceTree = "<group>"; };
+		0E32BD714304ABDEAD11A82F /* echo.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = echo.hpp; sourceTree = "<group>"; };
+		10502920DFB9521CF749B4BE /* fx_spectral_granular.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fx_spectral_granular.hpp; sourceTree = "<group>"; };
+		11A81C7C40BC29873AB548A8 /* ir.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ir.hpp; sourceTree = "<group>"; };
+		13AFAAA29DB789E78C5F9D8D /* performance.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = performance.hpp; sourceTree = "<group>"; };
+		13D39733FF02EF57141C0DD0 /* VectaVortexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectaVortexApp.swift; sourceTree = "<group>"; };
+		1786A3C06B7165038DDA9BBB /* PresetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetStore.swift; sourceTree = "<group>"; };
+		17BAE60129BCE5BE8AC55865 /* WireOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireOverviewView.swift; sourceTree = "<group>"; };
+		1A56AF3FEC3D1AFAF1A1DBE9 /* procedural.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = procedural.hpp; sourceTree = "<group>"; };
+		1E4F5AE606AAC4D429914579 /* ProPlots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProPlots.swift; sourceTree = "<group>"; };
+		212739C9FD321FD8234E6CA8 /* interstellar.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = interstellar.hpp; sourceTree = "<group>"; };
+		25ABD685ED26524D9562FCB6 /* VectaVortex.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = VectaVortex.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		29CF83BB41C8A540DEE02FE2 /* model.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = model.hpp; sourceTree = "<group>"; };
+		2A8FB4023D249FF91F677775 /* CurveEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveEditorView.swift; sourceTree = "<group>"; };
+		2AEF087B32BC36AC982D0B04 /* sample_tools.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sample_tools.hpp; sourceTree = "<group>"; };
+		2C59199E7D61752D8B2B9F47 /* flute.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = flute.hpp; sourceTree = "<group>"; };
+		2DF07A702215C3DE1ECB7FDE /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
+		2E12E829E77286E84005A897 /* arp_harmony.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = arp_harmony.hpp; sourceTree = "<group>"; };
+		2F62072451D62B6797E8DF34 /* default_layers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = default_layers.hpp; sourceTree = "<group>"; };
+		30E0C39C4C8D930BFEE71474 /* granular_x.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = granular_x.hpp; sourceTree = "<group>"; };
+		33691B7670DA2DA8B12CDE48 /* state_migrate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = state_migrate.hpp; sourceTree = "<group>"; };
+		33E27BE5679E4F64705D2AF8 /* VectaAudioUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectaAudioUnit.swift; sourceTree = "<group>"; };
+		344B44F453D219F401FF0649 /* dx7_roms.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = dx7_roms.hpp; sourceTree = "<group>"; };
+		344CDAE774410DB89F59FEF1 /* VectaVortexAUv3.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = VectaVortexAUv3.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		34F619F985F362308592645C /* ClipLauncherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipLauncherView.swift; sourceTree = "<group>"; };
+		35FB6C5446E676728D13767B /* vv_engine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vv_engine.h; sourceTree = "<group>"; };
+		3650BB6594118C8C8C758C70 /* wt_tools.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wt_tools.hpp; sourceTree = "<group>"; };
+		3A8293DABACFAC9F6AAF0B2E /* PitchEnvelopeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchEnvelopeView.swift; sourceTree = "<group>"; };
+		3CB7C0592B2E1981B4DCD791 /* DialStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialStyles.swift; sourceTree = "<group>"; };
+		3CD4E4E927ACCA01E746089E /* lua_host.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lua_host.hpp; sourceTree = "<group>"; };
+		3EB18939E6FF1AA937507844 /* presetgen.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = presetgen.hpp; sourceTree = "<group>"; };
+		3F434CCD9E3081F2E2A40940 /* VektorVoidView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VektorVoidView.swift; sourceTree = "<group>"; };
+		40265102FFE88DD28A5A3561 /* fx_mbcomp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fx_mbcomp.hpp; sourceTree = "<group>"; };
+		44DB4466D2A6700E53641785 /* RollRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollRecorder.swift; sourceTree = "<group>"; };
+		4545546E540D5E7D6087A722 /* vv_viz.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = vv_viz.cpp; sourceTree = "<group>"; };
+		46CE36D002D5E9029BDD82DC /* Wavetables */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Wavetables; path = ../Assets/Wavetables; sourceTree = SOURCE_ROOT; };
+		480F09A00A3F32AB504D5700 /* power.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = power.hpp; sourceTree = "<group>"; };
+		48CCCA59332FA3C92400F3B9 /* ModView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModView.swift; sourceTree = "<group>"; };
+		49DDF7A9184D59525733FCE0 /* presetgen_recipes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = presetgen_recipes.hpp; sourceTree = "<group>"; };
+		4C1B0FBA6A8B576DE2744C5C /* Backgrounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Backgrounds; path = ../Assets/Backgrounds; sourceTree = SOURCE_ROOT; };
+		4CD815E090BC7DDAA677203B /* LuaVisualView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuaVisualView.swift; sourceTree = "<group>"; };
+		507031C84CC5D3DF2D56DB8A /* vektur_void.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = vektur_void.hpp; sourceTree = "<group>"; };
+		51A4F47B0D5B15BD35B4F596 /* lx_viz.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lx_viz.hpp; sourceTree = "<group>"; };
+		5220EC44D9BCD8CAFEE51047 /* MidiLearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidiLearnView.swift; sourceTree = "<group>"; };
+		53D867138BF5EB9D51964CF9 /* PluginRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginRootView.swift; sourceTree = "<group>"; };
+		5564366D9A6372F85DC01645 /* lx_lib.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lx_lib.hpp; sourceTree = "<group>"; };
+		563D3E7C7AC17745B9655CD8 /* c64_sid_player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = c64_sid_player.hpp; sourceTree = "<group>"; };
+		570BB4B30327E9F19E4D36C2 /* DawRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DawRecorderView.swift; sourceTree = "<group>"; };
+		573B2B4282E0069D8F4E7FF4 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Samples; path = ../Assets/Samples; sourceTree = SOURCE_ROOT; };
+		5838DCEC00AE975690CB11CD /* synth.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = synth.hpp; sourceTree = "<group>"; };
+		5C87DCD8E7850207323E89DB /* ArpAdvInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArpAdvInfo.swift; sourceTree = "<group>"; };
+		5DCEE1EEECE506BBD6704B00 /* engine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = engine.hpp; sourceTree = "<group>"; };
+		6037C3A8B92CF97F6C70BDAB /* SequencerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequencerView.swift; sourceTree = "<group>"; };
+		63B01A36548C3A7A79066E85 /* vocoder.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = vocoder.hpp; sourceTree = "<group>"; };
+		68C25343244BB881067F1750 /* VizGenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VizGenData.swift; sourceTree = "<group>"; };
+		6AFE74D8E1FB282DF4F1F126 /* compressor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = compressor.hpp; sourceTree = "<group>"; };
+		6B3BE3B34D1D47FCE77A452D /* synth_common.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = synth_common.hpp; sourceTree = "<group>"; };
+		6CDE680DA7EFF6080E4D96B5 /* IRReverbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRReverbView.swift; sourceTree = "<group>"; };
+		758423C172D374E755FE3F43 /* BatterySaving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatterySaving.swift; sourceTree = "<group>"; };
+		76C681B9611EBC44D698368C /* VizPasses.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = VizPasses.metal; sourceTree = "<group>"; };
+		7908BA65E1B295DAF9B554B2 /* arp_adv.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = arp_adv.hpp; sourceTree = "<group>"; };
+		79D010D89850722864A2B7ED /* NavIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavIcons.swift; sourceTree = "<group>"; };
+		7CD608B599074F962F06FAD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		81BFA82185FE9C82C49D0CBB /* VizMetalRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VizMetalRenderer.swift; sourceTree = "<group>"; };
+		81D6B1643AEC9A2610341545 /* ScopeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScopeView.swift; sourceTree = "<group>"; };
+		8270B66FB36823CEC240D4EF /* lx_vm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lx_vm.hpp; sourceTree = "<group>"; };
+		8AF15026430065C71CE7D69B /* SoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundView.swift; sourceTree = "<group>"; };
+		8E3873337B42FDE4F737AF06 /* libVVEngine.a */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = archive.ar; path = libVVEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FC879F6EAA8D3D6F0D04D48 /* LayerIdentity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerIdentity.swift; sourceTree = "<group>"; };
+		93F3A23C41CE8A1788189BE3 /* ParameterTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterTable.swift; sourceTree = "<group>"; };
+		96A427DA782A07AD960AE33D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		96DFA3B47D2FD693A2CA2608 /* lx_core.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lx_core.hpp; sourceTree = "<group>"; };
+		9B467CB807C4CD6F5E899042 /* chordmaker.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = chordmaker.hpp; sourceTree = "<group>"; };
+		9B48454838CD0328F640EB31 /* VizScenes.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = VizScenes.metal; sourceTree = "<group>"; };
+		9D06328A1D490D2EE02BF955 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		9EB8D8587087C37B13064299 /* lx_interp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lx_interp.hpp; sourceTree = "<group>"; };
+		A283BB238E78F89873452C82 /* synth_impl.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = synth_impl.hpp; sourceTree = "<group>"; };
+		A38108C41A8FC5599E997A3B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		A518040D5EABF6940EA83646 /* vv_engine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = vv_engine.cpp; sourceTree = "<group>"; };
+		A527A9718878FB3E447E38CD /* Presets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Presets; path = ../Assets/Presets; sourceTree = SOURCE_ROOT; };
+		A5EF8110DB70FFD8314F7C67 /* ZonesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZonesView.swift; sourceTree = "<group>"; };
+		A847BDC2A17EF998E35633A9 /* AuthoringTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthoringTools.swift; sourceTree = "<group>"; };
+		ACB3D2AB2F7B9ED9608019B6 /* sample_player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sample_player.hpp; sourceTree = "<group>"; };
+		ADA8D633913DC354287B8EA6 /* lua_factory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lua_factory.hpp; sourceTree = "<group>"; };
+		ADA99B8EE5CC03C2F0BC6BE3 /* assets.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = assets.hpp; sourceTree = "<group>"; };
+		B06ADFF80BF45771C40AA05F /* InterstellarPresets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstellarPresets.swift; sourceTree = "<group>"; };
+		B111B4332612B2F3F1542BF0 /* param.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = param.hpp; sourceTree = "<group>"; };
+		B1821CC54EDAB2B0CB5D06AE /* dsp_common.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = dsp_common.hpp; sourceTree = "<group>"; };
+		B290269BE99A8070CE5B9D98 /* PanelKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelKit.swift; sourceTree = "<group>"; };
+		B530C7C50248C222A840C75B /* XfxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XfxView.swift; sourceTree = "<group>"; };
+		B5607F33E0B504416DF30545 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B5AF38264AF50A6350260ACE /* FXRackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FXRackView.swift; sourceTree = "<group>"; };
+		B90CD2D04C56842A0A94C1C3 /* InterstellarUi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstellarUi.swift; sourceTree = "<group>"; };
+		B95C8AC5912FE54325216B7A /* DialFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialFace.swift; sourceTree = "<group>"; };
+		BC3887E569C0D09D10F6BAA5 /* presetgen_init.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = presetgen_init.hpp; sourceTree = "<group>"; };
+		BCC2CC9F632E0677C0D4AC2A /* full_engine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = full_engine.hpp; sourceTree = "<group>"; };
+		BF7DC02FE2F733C5DE08D037 /* VectaVortexExt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VectaVortexExt.entitlements; sourceTree = "<group>"; };
+		C0081A124117E96EF245A6A4 /* chord_analyzer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = chord_analyzer.hpp; sourceTree = "<group>"; };
+		C12E8A9B64BC5EB3DC47D02F /* master_out.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = master_out.hpp; sourceTree = "<group>"; };
+		C305D2034FA66D254CB978A0 /* ParameterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterModel.swift; sourceTree = "<group>"; };
+		C675BA5D83668595D5C29B0C /* builtin_samples.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = builtin_samples.json; sourceTree = "<group>"; };
+		C740F539EB2DBC1F5238FF1C /* AudioUnitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitViewController.swift; sourceTree = "<group>"; };
+		C86B836AB83C6BB54C4AF110 /* viz_host.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = viz_host.hpp; sourceTree = "<group>"; };
+		C8FEEC74C18DB099852B0E0A /* viz.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = viz.hpp; sourceTree = "<group>"; };
+		C9319893E73D8854E34F8D1B /* sid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sid.hpp; sourceTree = "<group>"; };
+		CB92282033FCAA1FFED3131E /* VizHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VizHost.swift; sourceTree = "<group>"; };
+		CB973284AD09446AEBD0CA8A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CCA92003E69899E466310C13 /* phaser_flanger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = phaser_flanger.hpp; sourceTree = "<group>"; };
+		CCD67D5E2BB0EF327A406D2A /* PresetBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetBrowserView.swift; sourceTree = "<group>"; };
+		CCD75B4E27035BE52D3BCCDE /* json.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
+		CEAEEFA0DE80117C907A5A46 /* modulation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = modulation.hpp; sourceTree = "<group>"; };
+		CED71646997B168D23CA3383 /* mod_defs.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mod_defs.hpp; sourceTree = "<group>"; };
+		CEFB20E88E8F8B11320D4F5E /* daw_recorder.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = daw_recorder.hpp; sourceTree = "<group>"; };
+		CF33A7554D6AFAB22438A99D /* MixerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerView.swift; sourceTree = "<group>"; };
+		D00497937B06B4599CA17148 /* rotary_amp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = rotary_amp.hpp; sourceTree = "<group>"; };
+		D0801D2CD7C81855A3CBF7D6 /* param_bridge.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = param_bridge.hpp; sourceTree = "<group>"; };
+		D09C1ABBFAB6CAFEC969AFBD /* Controls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controls.swift; sourceTree = "<group>"; };
+		D52ECC130F25BA7857B6F3B1 /* formant_tables.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = formant_tables.hpp; sourceTree = "<group>"; };
+		D5C3459D7260AE09CFFD3740 /* PlayFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayFooterView.swift; sourceTree = "<group>"; };
+		D5EF64B255CC1D478345632D /* WavetableDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavetableDisplayView.swift; sourceTree = "<group>"; };
+		D77FE79A8CF723A3539E9990 /* InstrumentLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstrumentLoader.swift; sourceTree = "<group>"; };
+		D8CA273001D29AC6E36EAA37 /* VectaVortex.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VectaVortex.entitlements; sourceTree = "<group>"; };
+		DB5AC3978001F3C7B2E5FB6F /* factory */ = {isa = PBXFileReference; lastKnownFileType = folder; name = factory; path = ../Core/viz/factory; sourceTree = SOURCE_ROOT; };
+		DB9438C234D126F9EDDCA77C /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		DBBCA276F25893E1CF30AEBA /* roll_rec.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = roll_rec.hpp; sourceTree = "<group>"; };
+		DEF25307888F00EEB9F0A598 /* SampleWaveformEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleWaveformEditor.swift; sourceTree = "<group>"; };
+		E2F0A6215910CCB2201751ED /* PresetLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetLibrary.swift; sourceTree = "<group>"; };
+		E54B160C833F7905A24EE507 /* fx_chain.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fx_chain.hpp; sourceTree = "<group>"; };
+		E77BDC3930D57C0BD7F8F6A3 /* hybrid_vocoder.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = hybrid_vocoder.hpp; sourceTree = "<group>"; };
+		EB4E47C1E650753C43E7FA4E /* default_preset.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = default_preset.json; sourceTree = "<group>"; };
+		F1F7D20837C37E141C89E337 /* MpcPadsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MpcPadsView.swift; sourceTree = "<group>"; };
+		F22A552F9121D108575D97BF /* adv_reverb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = adv_reverb.hpp; sourceTree = "<group>"; };
+		F435DBCEED117BE57302250F /* dx7_tables.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = dx7_tables.hpp; sourceTree = "<group>"; };
+		F534B8BE57820ECFD16B1584 /* legacy_reverb.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = legacy_reverb.hpp; sourceTree = "<group>"; };
+		F6C31523188619148DF99041 /* base64.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = base64.hpp; sourceTree = "<group>"; };
+		FE465157BB4120C6A920B38E /* Dx7Core.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Dx7Core.hpp; sourceTree = "<group>"; };
+		FE59BE553681225FB53D4E1B /* VectaVortex-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VectaVortex-Bridging-Header.h"; sourceTree = "<group>"; };
+		FEA129ADA7186DB2EBECD001 /* EQGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EQGraphView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8644B565A7D16C5890329754 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				916493FB116B2918C3D38179 /* libVVEngine.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8147A1204FC876BE7E848BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A266D7176EFDB07917AE167 /* libVVEngine.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		000CCFDA43F8E9AEA51E952B = {
+			isa = PBXGroup;
+			children = (
+				D69DEEFFA0286D714CBF43FD /* App */,
+				277DDFD65E7043136D9A63F4 /* Extension */,
+				2867C906DB2A076606B057FB /* Resources */,
+				72DFE5989AA8D61CDAECEFAB /* Shared */,
+				B091E080A7DFD1597FA2CFA4 /* VectaVortex */,
+				01EB21F10C3AF4D42699A281 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		01EB21F10C3AF4D42699A281 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8E3873337B42FDE4F737AF06 /* libVVEngine.a */,
+				25ABD685ED26524D9562FCB6 /* VectaVortex.app */,
+				344CDAE774410DB89F59FEF1 /* VectaVortexAUv3.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1B52272862398C28A57E5400 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				F7419CAC9A99C7713D3F6CEE /* include */,
+				514B722A6D6A96B8ABED6F9F /* viz */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		277DDFD65E7043136D9A63F4 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C740F539EB2DBC1F5238FF1C /* AudioUnitViewController.swift */,
+				96A427DA782A07AD960AE33D /* Info.plist */,
+				A38108C41A8FC5599E997A3B /* PrivacyInfo.xcprivacy */,
+				BF7DC02FE2F733C5DE08D037 /* VectaVortexExt.entitlements */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		2867C906DB2A076606B057FB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7CD608B599074F962F06FAD9 /* Assets.xcassets */,
+				9D06328A1D490D2EE02BF955 /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		43AD4AD38601D31C40A4E5D0 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				93F3A23C41CE8A1788189BE3 /* ParameterTable.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		514B722A6D6A96B8ABED6F9F /* viz */ = {
+			isa = PBXGroup;
+			children = (
+				DB5AC3978001F3C7B2E5FB6F /* factory */,
+			);
+			path = viz;
+			sourceTree = "<group>";
+		};
+		6EC1B3E37F1ABD48AF544E72 /* Viz */ = {
+			isa = PBXGroup;
+			children = (
+				4CD815E090BC7DDAA677203B /* LuaVisualView.swift */,
+				68C25343244BB881067F1750 /* VizGenData.swift */,
+				CB92282033FCAA1FFED3131E /* VizHost.swift */,
+				81BFA82185FE9C82C49D0CBB /* VizMetalRenderer.swift */,
+				76C681B9611EBC44D698368C /* VizPasses.metal */,
+				9B48454838CD0328F640EB31 /* VizScenes.metal */,
+			);
+			path = Viz;
+			sourceTree = "<group>";
+		};
+		72DFE5989AA8D61CDAECEFAB /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				2DF07A702215C3DE1ECB7FDE /* Appearance.swift */,
+				5C87DCD8E7850207323E89DB /* ArpAdvInfo.swift */,
+				A847BDC2A17EF998E35633A9 /* AuthoringTools.swift */,
+				758423C172D374E755FE3F43 /* BatterySaving.swift */,
+				34F619F985F362308592645C /* ClipLauncherView.swift */,
+				D09C1ABBFAB6CAFEC969AFBD /* Controls.swift */,
+				2A8FB4023D249FF91F677775 /* CurveEditorView.swift */,
+				570BB4B30327E9F19E4D36C2 /* DawRecorderView.swift */,
+				B95C8AC5912FE54325216B7A /* DialFace.swift */,
+				3CB7C0592B2E1981B4DCD791 /* DialStyles.swift */,
+				FEA129ADA7186DB2EBECD001 /* EQGraphView.swift */,
+				B5AF38264AF50A6350260ACE /* FXRackView.swift */,
+				D77FE79A8CF723A3539E9990 /* InstrumentLoader.swift */,
+				B06ADFF80BF45771C40AA05F /* InterstellarPresets.swift */,
+				B90CD2D04C56842A0A94C1C3 /* InterstellarUi.swift */,
+				6CDE680DA7EFF6080E4D96B5 /* IRReverbView.swift */,
+				8FC879F6EAA8D3D6F0D04D48 /* LayerIdentity.swift */,
+				03FBD03D7A4A8EA27626D289 /* LuaEditorView.swift */,
+				5220EC44D9BCD8CAFEE51047 /* MidiLearnView.swift */,
+				CF33A7554D6AFAB22438A99D /* MixerView.swift */,
+				48CCCA59332FA3C92400F3B9 /* ModView.swift */,
+				F1F7D20837C37E141C89E337 /* MpcPadsView.swift */,
+				79D010D89850722864A2B7ED /* NavIcons.swift */,
+				B290269BE99A8070CE5B9D98 /* PanelKit.swift */,
+				C305D2034FA66D254CB978A0 /* ParameterModel.swift */,
+				3A8293DABACFAC9F6AAF0B2E /* PitchEnvelopeView.swift */,
+				D5C3459D7260AE09CFFD3740 /* PlayFooterView.swift */,
+				53D867138BF5EB9D51964CF9 /* PluginRootView.swift */,
+				CCD67D5E2BB0EF327A406D2A /* PresetBrowserView.swift */,
+				E2F0A6215910CCB2201751ED /* PresetLibrary.swift */,
+				1786A3C06B7165038DDA9BBB /* PresetStore.swift */,
+				1E4F5AE606AAC4D429914579 /* ProPlots.swift */,
+				44DB4466D2A6700E53641785 /* RollRecorder.swift */,
+				DEF25307888F00EEB9F0A598 /* SampleWaveformEditor.swift */,
+				81D6B1643AEC9A2610341545 /* ScopeView.swift */,
+				6037C3A8B92CF97F6C70BDAB /* SequencerView.swift */,
+				CB973284AD09446AEBD0CA8A /* SettingsView.swift */,
+				8AF15026430065C71CE7D69B /* SoundView.swift */,
+				33E27BE5679E4F64705D2AF8 /* VectaAudioUnit.swift */,
+				FE59BE553681225FB53D4E1B /* VectaVortex-Bridging-Header.h */,
+				3F434CCD9E3081F2E2A40940 /* VektorVoidView.swift */,
+				D5EF64B255CC1D478345632D /* WavetableDisplayView.swift */,
+				17BAE60129BCE5BE8AC55865 /* WireOverviewView.swift */,
+				B530C7C50248C222A840C75B /* XfxView.swift */,
+				A5EF8110DB70FFD8314F7C67 /* ZonesView.swift */,
+				43AD4AD38601D31C40A4E5D0 /* Generated */,
+				6EC1B3E37F1ABD48AF544E72 /* Viz */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		857DD93D1FC68649A9A6FA02 /* Bridge */ = {
+			isa = PBXGroup;
+			children = (
+				A518040D5EABF6940EA83646 /* vv_engine.cpp */,
+				35FB6C5446E676728D13767B /* vv_engine.h */,
+				4545546E540D5E7D6087A722 /* vv_viz.cpp */,
+				0A4BE2EFB0178A35718B4C61 /* vv_viz.h */,
+			);
+			path = Bridge;
+			sourceTree = "<group>";
+		};
+		B091E080A7DFD1597FA2CFA4 /* VectaVortex */ = {
+			isa = PBXGroup;
+			children = (
+				DADF8B4AF0E4589F99F4ED26 /* Assets */,
+				857DD93D1FC68649A9A6FA02 /* Bridge */,
+				1B52272862398C28A57E5400 /* Core */,
+			);
+			name = VectaVortex;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		CDCA511F94974528834DC001 /* lx */ = {
+			isa = PBXGroup;
+			children = (
+				96DFA3B47D2FD693A2CA2608 /* lx_core.hpp */,
+				0B4066EDD7D1BACC99019D81 /* lx_engine.hpp */,
+				9EB8D8587087C37B13064299 /* lx_interp.hpp */,
+				5564366D9A6372F85DC01645 /* lx_lib.hpp */,
+				51A4F47B0D5B15BD35B4F596 /* lx_viz.hpp */,
+				8270B66FB36823CEC240D4EF /* lx_vm.hpp */,
+				C86B836AB83C6BB54C4AF110 /* viz_host.hpp */,
+			);
+			path = lx;
+			sourceTree = "<group>";
+		};
+		CEBD88024DBF7B49541C6ED7 /* vv */ = {
+			isa = PBXGroup;
+			children = (
+				F22A552F9121D108575D97BF /* adv_reverb.hpp */,
+				7908BA65E1B295DAF9B554B2 /* arp_adv.hpp */,
+				2E12E829E77286E84005A897 /* arp_harmony.hpp */,
+				ADA99B8EE5CC03C2F0BC6BE3 /* assets.hpp */,
+				F6C31523188619148DF99041 /* base64.hpp */,
+				563D3E7C7AC17745B9655CD8 /* c64_sid_player.hpp */,
+				C0081A124117E96EF245A6A4 /* chord_analyzer.hpp */,
+				9B467CB807C4CD6F5E899042 /* chordmaker.hpp */,
+				078BEFCC479CE3494A21AFE2 /* clips.hpp */,
+				023AB7E910E8595B16F96A6B /* colouring.hpp */,
+				6AFE74D8E1FB282DF4F1F126 /* compressor.hpp */,
+				CEFB20E88E8F8B11320D4F5E /* daw_recorder.hpp */,
+				2F62072451D62B6797E8DF34 /* default_layers.hpp */,
+				B1821CC54EDAB2B0CB5D06AE /* dsp_common.hpp */,
+				344B44F453D219F401FF0649 /* dx7_roms.hpp */,
+				F435DBCEED117BE57302250F /* dx7_tables.hpp */,
+				FE465157BB4120C6A920B38E /* Dx7Core.hpp */,
+				0E32BD714304ABDEAD11A82F /* echo.hpp */,
+				5DCEE1EEECE506BBD6704B00 /* engine.hpp */,
+				2C59199E7D61752D8B2B9F47 /* flute.hpp */,
+				D52ECC130F25BA7857B6F3B1 /* formant_tables.hpp */,
+				BCC2CC9F632E0677C0D4AC2A /* full_engine.hpp */,
+				00C13A70F78BE82D028C1756 /* fx_basic.hpp */,
+				E54B160C833F7905A24EE507 /* fx_chain.hpp */,
+				40265102FFE88DD28A5A3561 /* fx_mbcomp.hpp */,
+				10502920DFB9521CF749B4BE /* fx_spectral_granular.hpp */,
+				30E0C39C4C8D930BFEE71474 /* granular_x.hpp */,
+				E77BDC3930D57C0BD7F8F6A3 /* hybrid_vocoder.hpp */,
+				212739C9FD321FD8234E6CA8 /* interstellar.hpp */,
+				11A81C7C40BC29873AB548A8 /* ir.hpp */,
+				CCD75B4E27035BE52D3BCCDE /* json.hpp */,
+				F534B8BE57820ECFD16B1584 /* legacy_reverb.hpp */,
+				ADA8D633913DC354287B8EA6 /* lua_factory.hpp */,
+				3CD4E4E927ACCA01E746089E /* lua_host.hpp */,
+				C12E8A9B64BC5EB3DC47D02F /* master_out.hpp */,
+				CED71646997B168D23CA3383 /* mod_defs.hpp */,
+				29CF83BB41C8A540DEE02FE2 /* model.hpp */,
+				CEAEEFA0DE80117C907A5A46 /* modulation.hpp */,
+				D0801D2CD7C81855A3CBF7D6 /* param_bridge.hpp */,
+				B111B4332612B2F3F1542BF0 /* param.hpp */,
+				0B135647A240789B679E1EE1 /* params_generated.hpp */,
+				13AFAAA29DB789E78C5F9D8D /* performance.hpp */,
+				CCA92003E69899E466310C13 /* phaser_flanger.hpp */,
+				480F09A00A3F32AB504D5700 /* power.hpp */,
+				BC3887E569C0D09D10F6BAA5 /* presetgen_init.hpp */,
+				49DDF7A9184D59525733FCE0 /* presetgen_recipes.hpp */,
+				3EB18939E6FF1AA937507844 /* presetgen.hpp */,
+				1A56AF3FEC3D1AFAF1A1DBE9 /* procedural.hpp */,
+				DBBCA276F25893E1CF30AEBA /* roll_rec.hpp */,
+				D00497937B06B4599CA17148 /* rotary_amp.hpp */,
+				ACB3D2AB2F7B9ED9608019B6 /* sample_player.hpp */,
+				2AEF087B32BC36AC982D0B04 /* sample_tools.hpp */,
+				C9319893E73D8854E34F8D1B /* sid.hpp */,
+				33691B7670DA2DA8B12CDE48 /* state_migrate.hpp */,
+				6B3BE3B34D1D47FCE77A452D /* synth_common.hpp */,
+				A283BB238E78F89873452C82 /* synth_impl.hpp */,
+				5838DCEC00AE975690CB11CD /* synth.hpp */,
+				507031C84CC5D3DF2D56DB8A /* vektur_void.hpp */,
+				C8FEEC74C18DB099852B0E0A /* viz.hpp */,
+				63B01A36548C3A7A79066E85 /* vocoder.hpp */,
+				064A2E59E4ED3E775088BC7C /* voice_dsp.hpp */,
+				3650BB6594118C8C8C758C70 /* wt_tools.hpp */,
+				CDCA511F94974528834DC001 /* lx */,
+			);
+			path = vv;
+			sourceTree = "<group>";
+		};
+		D69DEEFFA0286D714CBF43FD /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B5607F33E0B504416DF30545 /* Info.plist */,
+				D8CA273001D29AC6E36EAA37 /* VectaVortex.entitlements */,
+				13D39733FF02EF57141C0DD0 /* VectaVortexApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		DADF8B4AF0E4589F99F4ED26 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				4C1B0FBA6A8B576DE2744C5C /* Backgrounds */,
+				C675BA5D83668595D5C29B0C /* builtin_samples.json */,
+				EB4E47C1E650753C43E7FA4E /* default_preset.json */,
+				DB9438C234D126F9EDDCA77C /* logo.png */,
+				A527A9718878FB3E447E38CD /* Presets */,
+				573B2B4282E0069D8F4E7FF4 /* Samples */,
+				46CE36D002D5E9029BDD82DC /* Wavetables */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		F7419CAC9A99C7713D3F6CEE /* include */ = {
+			isa = PBXGroup;
+			children = (
+				CEBD88024DBF7B49541C6ED7 /* vv */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3197B0F2E9720C7AB317AE10 /* VectaVortex */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3025DAE9F1722C3DE8D6C594 /* Build configuration list for PBXNativeTarget "VectaVortex" */;
+			buildPhases = (
+				65D3232DBB03651664FD02B6 /* Sources */,
+				D7CBB7A4F8CE484FF9D82BAD /* Resources */,
+				8644B565A7D16C5890329754 /* Frameworks */,
+				947316099227EE1A0D5FD996 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B99128658DEC288CA03955CE /* PBXTargetDependency */,
+				F619605844B8FAA2557CFD06 /* PBXTargetDependency */,
+			);
+			name = VectaVortex;
+			packageProductDependencies = (
+			);
+			productName = VectaVortex;
+			productReference = 25ABD685ED26524D9562FCB6 /* VectaVortex.app */;
+			productType = "com.apple.product-type.application";
+		};
+		997B67278861B555BC1A4819 /* VectaVortexAUv3 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A757F9516C4BEE5C719D0D8 /* Build configuration list for PBXNativeTarget "VectaVortexAUv3" */;
+			buildPhases = (
+				8F4DABC9934D3C420FAEBB89 /* Sources */,
+				DB394DD8D7CD2A37FD60413C /* Resources */,
+				E8147A1204FC876BE7E848BF /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4927C3E1CDE46D8CAF476C61 /* PBXTargetDependency */,
+			);
+			name = VectaVortexAUv3;
+			packageProductDependencies = (
+			);
+			productName = VectaVortexAUv3;
+			productReference = 344CDAE774410DB89F59FEF1 /* VectaVortexAUv3.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		CA3C5255C09BD5E80C9063C3 /* VVEngine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BB0BF6E0F89BE742A0ED266 /* Build configuration list for PBXNativeTarget "VVEngine" */;
+			buildPhases = (
+				086DAE34D9A1D93F74F06943 /* CopyFiles */,
+				9EE8331F5E2ED8AFD3281CFB /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VVEngine;
+			packageProductDependencies = (
+			);
+			productName = VVEngine;
+			productReference = 8E3873337B42FDE4F737AF06 /* libVVEngine.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		21B54354656F121D27F3BFBA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					3197B0F2E9720C7AB317AE10 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					997B67278861B555BC1A4819 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					CA3C5255C09BD5E80C9063C3 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = D0FCEF4D5D814127682E8ACB /* Build configuration list for PBXProject "VectaVortex" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 000CCFDA43F8E9AEA51E952B;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 01EB21F10C3AF4D42699A281 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CA3C5255C09BD5E80C9063C3 /* VVEngine */,
+				3197B0F2E9720C7AB317AE10 /* VectaVortex */,
+				997B67278861B555BC1A4819 /* VectaVortexAUv3 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D7CBB7A4F8CE484FF9D82BAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80497E071A583A5EC1BDF265 /* Assets.xcassets in Resources */,
+				4049949E24CC3DA9C942D324 /* Backgrounds in Resources */,
+				E440D31470BDC45E2BBC0D01 /* Presets in Resources */,
+				900FECEBBC997264B709F486 /* PrivacyInfo.xcprivacy in Resources */,
+				E15D786632ECCB7B47A386AA /* Samples in Resources */,
+				C888D25A053A060984B3F45D /* Wavetables in Resources */,
+				204DD5E98C39C977EB0821B1 /* builtin_samples.json in Resources */,
+				7FA52BF559672FB97E10B0C8 /* default_preset.json in Resources */,
+				4863D6F1A2DB43D22F21802D /* factory in Resources */,
+				CAF7A5FA29D19135319E51F8 /* logo.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB394DD8D7CD2A37FD60413C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D6CD9549C2068C248849823 /* Backgrounds in Resources */,
+				4FF54AB0127DCAB634C3C8CD /* Presets in Resources */,
+				1AAB318941F7FEA3FBC70FE0 /* PrivacyInfo.xcprivacy in Resources */,
+				63CF690466D8A46A855C25AC /* Samples in Resources */,
+				E7F6F7DFFC7A113993840FB2 /* Wavetables in Resources */,
+				C0E11D8044ED2F5EB3A80E85 /* builtin_samples.json in Resources */,
+				1AFA71D17FF3CF30D0E5E127 /* default_preset.json in Resources */,
+				4B6EB5AAC23E78CF2BCAF86F /* factory in Resources */,
+				C324A6815A361CDB3D3AA64F /* logo.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		65D3232DBB03651664FD02B6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47E6D3B7ABD432838250BC10 /* Appearance.swift in Sources */,
+				1DAA99A24D2677B87220CB0E /* ArpAdvInfo.swift in Sources */,
+				72BAE039BC8A114C1ECF24F1 /* AuthoringTools.swift in Sources */,
+				96D3018C1CD07782B0EE7721 /* BatterySaving.swift in Sources */,
+				39ACAC2F437B13C19575CEC6 /* ClipLauncherView.swift in Sources */,
+				8EC87F31C7B115F028911D87 /* Controls.swift in Sources */,
+				1AA2C1338B915DF6D7831FC5 /* CurveEditorView.swift in Sources */,
+				19D32844B78FFF014275B11B /* DawRecorderView.swift in Sources */,
+				008D080B2CCFA458977F47C0 /* DialFace.swift in Sources */,
+				CE6C120D6CBAF12F7C5B1D07 /* DialStyles.swift in Sources */,
+				547FBC275B8DDE69108941A7 /* EQGraphView.swift in Sources */,
+				266E52EC23BB4FBD42A46D9D /* FXRackView.swift in Sources */,
+				8750A7FC1CE4F11697C9B5B0 /* IRReverbView.swift in Sources */,
+				BDBC6F7A26FB89A8B311ADBD /* InstrumentLoader.swift in Sources */,
+				30349CAE62F1B54DBB9568CC /* InterstellarPresets.swift in Sources */,
+				A062E2B1DD5E78D8CEAC7BAD /* InterstellarUi.swift in Sources */,
+				B7962D3ADE7D3983EC201676 /* LayerIdentity.swift in Sources */,
+				0592B4E56FF2E672E200B7C1 /* LuaEditorView.swift in Sources */,
+				CD17B9A874DCC9647D9C6CD0 /* LuaVisualView.swift in Sources */,
+				3A2E4BABC077281F4F4131EA /* MidiLearnView.swift in Sources */,
+				CC1C83DE65E0EA738550E9DB /* MixerView.swift in Sources */,
+				F5466BFA7DB7ECCD203CC297 /* ModView.swift in Sources */,
+				20B8C5577C413077195A2120 /* MpcPadsView.swift in Sources */,
+				0E9B237E42FC38C590BD07A6 /* NavIcons.swift in Sources */,
+				0264D263E26CD6F12CF5AF9D /* PanelKit.swift in Sources */,
+				56588C032F69BD690C00C817 /* ParameterModel.swift in Sources */,
+				DB7749F5A5F4A47AB2C38929 /* ParameterTable.swift in Sources */,
+				155490E1620E96E82C4644C0 /* PitchEnvelopeView.swift in Sources */,
+				D5104C6D387A512FAA23D8B4 /* PlayFooterView.swift in Sources */,
+				92BC52C7ADEB00C394449119 /* PluginRootView.swift in Sources */,
+				725136A8D1E7BC715DC1BC79 /* PresetBrowserView.swift in Sources */,
+				C618153461065380713EFF22 /* PresetLibrary.swift in Sources */,
+				EAB0D0C4F7076B356172E8A1 /* PresetStore.swift in Sources */,
+				05F3A2D3C91777F512589F9B /* ProPlots.swift in Sources */,
+				8FBD668D7FA637CF412D897A /* RollRecorder.swift in Sources */,
+				B1391BF8A7DD13F082EAF630 /* SampleWaveformEditor.swift in Sources */,
+				2F234D43D8B55B219CD1AB9B /* ScopeView.swift in Sources */,
+				61AA3C86EC1DF662F227FA88 /* SequencerView.swift in Sources */,
+				C373BF12B1A54E717CA61073 /* SettingsView.swift in Sources */,
+				336EC9BF6D076DEDAEDD8963 /* SoundView.swift in Sources */,
+				643DB20667D79A535B0D3B50 /* VectaAudioUnit.swift in Sources */,
+				4B4BA429DBF4897CA80B747D /* VectaVortexApp.swift in Sources */,
+				E22EAB5416FF092D69078745 /* VektorVoidView.swift in Sources */,
+				1A357AC80587A975D4D7C229 /* VizGenData.swift in Sources */,
+				871F5B427BD27CC6CB20FFAA /* VizHost.swift in Sources */,
+				6C2F56499F81632E55A7BDE3 /* VizMetalRenderer.swift in Sources */,
+				E1EE78D0D6C8479D0BA7C7AD /* VizPasses.metal in Sources */,
+				E08742EA9F71748F657A1B69 /* VizScenes.metal in Sources */,
+				7B4F89A1CB135935A07ECAE9 /* WavetableDisplayView.swift in Sources */,
+				0917A17267B132E4935CD258 /* WireOverviewView.swift in Sources */,
+				E900D83990D2A0DA5F5F21B9 /* XfxView.swift in Sources */,
+				57638395C8F2B244469FE54F /* ZonesView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F4DABC9934D3C420FAEBB89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47579DB967CF723B7BEB13C0 /* Appearance.swift in Sources */,
+				A74E4046024C4C88F7A08F6C /* ArpAdvInfo.swift in Sources */,
+				D69867D722E36EC1F4940516 /* AudioUnitViewController.swift in Sources */,
+				0EDA43B5B21F30522284A3B5 /* AuthoringTools.swift in Sources */,
+				285DA28127085A31121D702E /* BatterySaving.swift in Sources */,
+				13DD5B0EF5DEE4890CCF9117 /* ClipLauncherView.swift in Sources */,
+				53B561CECBCBB5E9071F1D83 /* Controls.swift in Sources */,
+				3BE806A7F40B8FC9BD2AC99E /* CurveEditorView.swift in Sources */,
+				84B197BBDF670139589C4072 /* DawRecorderView.swift in Sources */,
+				3ADE3D0896E438B3F4CA53DD /* DialFace.swift in Sources */,
+				2029307D4ED088034A9A8F72 /* DialStyles.swift in Sources */,
+				E1F2D5732725410A18B933FD /* EQGraphView.swift in Sources */,
+				6AD0B3468F2E6C501B9135CB /* FXRackView.swift in Sources */,
+				501E9350505CE3B722A73112 /* IRReverbView.swift in Sources */,
+				FC109ABA054FEF754B95D7FA /* InstrumentLoader.swift in Sources */,
+				2F28CE97A543626C3B69DCF1 /* InterstellarPresets.swift in Sources */,
+				81C49C7008E3DC84CE6D0605 /* InterstellarUi.swift in Sources */,
+				2839EE43A861C61643AA744A /* LayerIdentity.swift in Sources */,
+				9533E450D913F35F9E8175A9 /* LuaEditorView.swift in Sources */,
+				C746BB27FB7DDE48CE1B531D /* LuaVisualView.swift in Sources */,
+				A729571B6D748107ADBAC4BF /* MidiLearnView.swift in Sources */,
+				0FB150A8785F9C0837F8CF66 /* MixerView.swift in Sources */,
+				AA341730870CC0C675DFBBA8 /* ModView.swift in Sources */,
+				5DDAE791359E7BABB16CD6F4 /* MpcPadsView.swift in Sources */,
+				4ED682DA63320E5D0DACBECE /* NavIcons.swift in Sources */,
+				7FE7B01A4FE110839667310F /* PanelKit.swift in Sources */,
+				4C948703A1291AC7907E0294 /* ParameterModel.swift in Sources */,
+				0EEBFF6D290B0A99C7D722D7 /* ParameterTable.swift in Sources */,
+				E702CE835F9B34AE4CF4CEA1 /* PitchEnvelopeView.swift in Sources */,
+				67E59B3CAF9C98D3940BC30E /* PlayFooterView.swift in Sources */,
+				9AEE39ED50CC49EEC5C45EE0 /* PluginRootView.swift in Sources */,
+				0ADD4DB6A4BF9BA76B0BCBD1 /* PresetBrowserView.swift in Sources */,
+				3AFBC4AF0A344A25BCBF4764 /* PresetLibrary.swift in Sources */,
+				C7704644FDD5EFDBD305866E /* PresetStore.swift in Sources */,
+				A1517731EC3767F2D5C00D17 /* ProPlots.swift in Sources */,
+				9B6E9EF7BEE9875636B92E3F /* RollRecorder.swift in Sources */,
+				1991AA3805E2563BD952A77F /* SampleWaveformEditor.swift in Sources */,
+				5FCFEBCDD20CA86EFC00C4D1 /* ScopeView.swift in Sources */,
+				2ADDA1AC57F98E8FDD42003C /* SequencerView.swift in Sources */,
+				5108F053AC3420C5867EF8D8 /* SettingsView.swift in Sources */,
+				5A242D02BD03A8697AFEC0D9 /* SoundView.swift in Sources */,
+				3EA22E6C963CF0944EE68D46 /* VectaAudioUnit.swift in Sources */,
+				D0AE505B323B9CB83AC1271E /* VektorVoidView.swift in Sources */,
+				99FFF991AB3BC7A170A85139 /* VizGenData.swift in Sources */,
+				C4626D9DBE86458E85557E10 /* VizHost.swift in Sources */,
+				13549B9F10856F3F8CFB9571 /* VizMetalRenderer.swift in Sources */,
+				B6DF7EE98D5B10BDA05B0A05 /* VizPasses.metal in Sources */,
+				4EE5F8025A6D58DA33E5A9F0 /* VizScenes.metal in Sources */,
+				CD150EC4D7F881033C2EA73E /* WavetableDisplayView.swift in Sources */,
+				73CF5918B230C95DBAC8D9C2 /* WireOverviewView.swift in Sources */,
+				60942E3958953F6B6275ED32 /* XfxView.swift in Sources */,
+				DFDFF6D729BF9E21BB553F57 /* ZonesView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9EE8331F5E2ED8AFD3281CFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55F16759D4B4C71C62A0BA4C /* vv_engine.cpp in Sources */,
+				043A348131A6D1A8139B7DF5 /* vv_viz.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4927C3E1CDE46D8CAF476C61 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA3C5255C09BD5E80C9063C3 /* VVEngine */;
+			targetProxy = 1A9AAC533A64F311057BD817 /* PBXContainerItemProxy */;
+		};
+		B99128658DEC288CA03955CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA3C5255C09BD5E80C9063C3 /* VVEngine */;
+			targetProxy = F25F506321CBB3C06E3F928F /* PBXContainerItemProxy */;
+		};
+		F619605844B8FAA2557CFD06 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 997B67278861B555BC1A4819 /* VectaVortexAUv3 */;
+			targetProxy = DA97EC9AFDFCC4FA277A2725 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0DF390AEEA0050C9B3303017 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3D603109D3FE8F416684ACD5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = Extension/VectaVortexExt.entitlements;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../Bridge",
+				);
+				INFOPLIST_FILE = Extension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-lc++",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreammusictemple.vectavortex.auv3;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Shared/VectaVortex-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		725070478B56D2269798ECF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_OPTIMIZATION_LEVEL = 3;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../Core/include",
+					"$(SRCROOT)/../Bridge",
+				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-ffp-contract=off",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreammusictemple.VVEngine;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		79D854107615C5D722880D0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = Extension/VectaVortexExt.entitlements;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../Bridge",
+				);
+				INFOPLIST_FILE = Extension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-lc++",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreammusictemple.vectavortex.auv3;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Shared/VectaVortex-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		87B3A14D456B5DE8EC4B07E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_OPTIMIZATION_LEVEL = 3;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../Core/include",
+					"$(SRCROOT)/../Bridge",
+				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-ffp-contract=off",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreammusictemple.VVEngine;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		98334BF66E04FAB9D48CBDB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B3C94D149B200C989D872FDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/VectaVortex.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../Bridge",
+				);
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-lc++",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreammusictemple.vectavortex;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Shared/VectaVortex-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D81BE326E6A6CE9CC1B668A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/VectaVortex.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../Bridge",
+				);
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-lc++",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreammusictemple.vectavortex;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Shared/VectaVortex-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3025DAE9F1722C3DE8D6C594 /* Build configuration list for PBXNativeTarget "VectaVortex" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D81BE326E6A6CE9CC1B668A0 /* Debug */,
+				B3C94D149B200C989D872FDD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4BB0BF6E0F89BE742A0ED266 /* Build configuration list for PBXNativeTarget "VVEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87B3A14D456B5DE8EC4B07E0 /* Debug */,
+				725070478B56D2269798ECF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		6A757F9516C4BEE5C719D0D8 /* Build configuration list for PBXNativeTarget "VectaVortexAUv3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D603109D3FE8F416684ACD5 /* Debug */,
+				79D854107615C5D722880D0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D0FCEF4D5D814127682E8ACB /* Build configuration list for PBXProject "VectaVortex" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				98334BF66E04FAB9D48CBDB0 /* Debug */,
+				0DF390AEEA0050C9B3303017 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 21B54354656F121D27F3BFBA /* Project object */;
+}
