@@ -12,6 +12,7 @@ struct PlayFooterView: View {
     private let counts = [2, 8, 16, 2, 3, 4]
     private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     @State private var showXfx = false
+    @State private var showMpc = false
     @State private var hostBpm: Double? = nil   // non-nil while the AUv3 host supplies tempo: BPM is then read-only
     private func xfxHoldOn() -> Bool { (s.xfx()?["hold"] as? Bool) ?? false }
     private func holdOn(_ k: Int) -> Bool { if k == 6 { return xfxHoldOn() }; return (0..<counts[k]).allSatisfy { s.double("layers.\(keys[k]).oscs.\($0).hold", 0) != 0 } }
@@ -26,7 +27,7 @@ struct PlayFooterView: View {
                 Text("HOST").font(.system(size: 8, design: .monospaced)).foregroundStyle(.secondary)
             } else {
                 TextField("BPM", value: Binding(get: { s.double("bpm", 120) }, set: { s.set("bpm", min(300, max(20, $0))) }), format: .number)
-                    .keyboardType(.decimalPad).multilineTextAlignment(.center).frame(width: 52).textFieldStyle(.roundedBorder)
+                    .keyboardType(.decimalPad).multilineTextAlignment(.center).font(.system(size: 11, design: .monospaced)).foregroundStyle(vvValueTeal).frame(width: 60, height: 22).background(RoundedRectangle(cornerRadius: 3).fill(Color(red: 10/255, green: 11/255, blue: 15/255))).overlay(RoundedRectangle(cornerRadius: 3).stroke(Color(red: 42/255, green: 47/255, blue: 61/255), lineWidth: 1))
             }
         }.fixedSize()
     }
@@ -46,7 +47,7 @@ struct PlayFooterView: View {
     private var osField: some View {
         HStack(spacing: 4) {
             Text("OS").foregroundStyle(.secondary)
-            Picker("OS", selection: s.binding("oversample", string: "normal")) { Text("Normal").tag("normal"); Text("X2").tag("2x"); Text("X4").tag("4x") }.pickerStyle(.menu)
+            let osb = s.binding("oversample", string: "normal"); WebMenu(text: osb.wrappedValue == "normal" ? "Normal" : osb.wrappedValue.uppercased()) { Button("Normal") { osb.wrappedValue = "normal" }; Button("X2") { osb.wrappedValue = "2x" }; Button("X4") { osb.wrappedValue = "4x" } }
         }.fixedSize()
     }
     var body: some View {
@@ -70,27 +71,29 @@ struct PlayFooterView: View {
                     viewLayerMenu   // ONE "VIEW LAYER" dropdown (web parity)
                     bpmField
                     osField
-                    Button("MPE") { mpe.toggle(); if let e = s.audioUnit.enginePointer { vv_engine_set_mpe(e, mpe ? 1 : 0) } }.tint(mpe ? vvCyan : nil)
-                    Button("GLOBAL SWING") { showSwing = true }.tint(s.bool("globalSwingOn", false) ? vvCyan : nil)
+                    Button("VIEW MPC PADS") { showMpc = true }.buttonStyle(WebButtonStyle(active: false))
+                    Button("MPE") { mpe.toggle(); if let e = s.audioUnit.enginePointer { vv_engine_set_mpe(e, mpe ? 1 : 0) } }.buttonStyle(WebButtonStyle(active: mpe))
+                    Button("GLOBAL SWING") { showSwing = true }.buttonStyle(WebButtonStyle(active: s.bool("globalSwingOn", false)))
                         .popover(isPresented: $showSwing) {
                             VStack(alignment: .leading, spacing: 8) {
                                 ToggleRow(s: s, label: "Swing on", path: "globalSwingOn")
                                 SliderRow(s: s, label: "Swing amount", path: "globalSwingAmount", range: 50...75, def: 50, fmt: "%.0f", unit: " %")
                             }.padding().frame(minWidth: 280)
                         }
-                    Menu("GENERATE") { ForEach(PresetStore.generatableCategories, id: \.self) { c in Button(c) { _ = s.generate(c) } } }
+                    Menu { ForEach(PresetStore.generatableCategories, id: \.self) { c in Button(c) { _ = s.generate(c) } } } label: { Text("GENERATE").webButtonLook() }
                     Toggle("CHORD", isOn: $chordOn).toggleStyle(WebSwitchStyle()).fixedSize().onChange(of: chordOn) { _ in chord = "—" }
                     Text(chord).font(.system(size: 13, weight: .bold, design: .monospaced)).foregroundStyle(vvCyan).frame(minWidth: 140, alignment: .leading)
                 }
             }
             // Round 12: RECORDER elements and PANIC! sit at the far right of this row, right of the CHORD pill and readout.
             DawRecorderBlock(s: s).fixedSize()
-            Button("PANIC!", role: .destructive, action: panic).font(.system(size: 10, design: .monospaced)).buttonStyle(.bordered).controlSize(.mini)
+            Button("PANIC!", role: .destructive, action: panic).buttonStyle(WebButtonStyle())
             }
         }
-        .font(.system(size: 10, design: .monospaced)).buttonStyle(.bordered).controlSize(.mini).padding(.horizontal, 8).padding(.vertical, 4)
+        .font(.system(size: 10, design: .monospaced)).buttonStyle(WebButtonStyle()).padding(.horizontal, 8).padding(.vertical, 4)
         .background(VVAppearance.panelOpacity < 1 ? AnyShapeStyle(Color.black.opacity(0.5 * VVAppearance.panelOpacity)) : AnyShapeStyle(.ultraThinMaterial))
         .sheet(isPresented: $showXfx) { XfxView(s: s) }
+        .sheet(isPresented: $showMpc) { MpcPadsView(s: s) }
         .onReceive(timer) { _ in
             hostBpm = s.audioUnit.hostTempo
             guard chordOn else { return }

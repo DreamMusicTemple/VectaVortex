@@ -520,10 +520,21 @@ struct KeyboardStrip: View {
 
 /// Web button: dark rectangle, thin grey border, monospaced uppercase label.
 struct WebButtonStyle: ButtonStyle {
+    var active = false
     func makeBody(configuration: Configuration) -> some View {
         configuration.label.font(.system(size: 11, design: .monospaced)).foregroundStyle(Color.white.opacity(0.9))
             .foregroundStyle(Color(red: 230/255, green: 237/255, blue: 243/255)).padding(.horizontal, 10).frame(height: 27)
             .background(RoundedRectangle(cornerRadius: 4).fill(Color(red: 27/255, green: 31/255, blue: 42/255).opacity(configuration.isPressed ? 0.6 : 1)))
+            .overlay(RoundedRectangle(cornerRadius: 4).stroke(active ? vvCyan : Color(red: 42/255, green: 47/255, blue: 61/255), lineWidth: 1))
+    }
+}
+
+
+extension View {
+    /// Web button look for non-Button labels (Menu labels).
+    func webButtonLook() -> some View {
+        self.font(.system(size: 11, design: .monospaced)).foregroundStyle(Color(red: 230/255, green: 237/255, blue: 243/255)).padding(.horizontal, 10).frame(height: 27)
+            .background(RoundedRectangle(cornerRadius: 4).fill(Color(red: 27/255, green: 31/255, blue: 42/255)))
             .overlay(RoundedRectangle(cornerRadius: 4).stroke(Color(red: 42/255, green: 47/255, blue: 61/255), lineWidth: 1))
     }
 }
