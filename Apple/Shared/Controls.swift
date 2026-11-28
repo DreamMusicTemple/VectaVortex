@@ -74,7 +74,7 @@ struct SliderRow: View {
 struct ToggleRow: View {
     @ObservedObject var s: PresetStore
     let label: String; let path: String; var def = false
-    var body: some View { Toggle(label, isOn: s.binding(path, bool: def)).font(.caption).toggleStyle(.switch).frame(width: 300) }
+    var body: some View { Toggle(label, isOn: s.binding(path, bool: def)).font(.caption).toggleStyle(.switch).frame(width: 250) }
 }
 
 struct PickerRow: View {

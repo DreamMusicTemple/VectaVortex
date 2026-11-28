@@ -22,7 +22,7 @@ struct SequencerView: View {
                         .onChange(of: layer) { _ in if keys[layer] == "XFX" { s.ensureXfxSeq() } }
                     PatternEditor(s: s, layerKey: keys[layer], layerIndex: layer)
                 }
-            }.navigationTitle("Sequencer")
+            }.navigationTitle("Sequencer").navigationBarTitleDisplayMode(.inline)
         }
     }
 }

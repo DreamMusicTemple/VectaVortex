@@ -29,7 +29,7 @@ struct SoundView: View {
                 }
                 .layerIdentity(s.viewLayer)
             }
-            .navigationTitle("Sound")
+            .navigationTitle("Sound").navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .primaryAction) { Button("XFX") { showXfx = true } } }   // web: XFX button beside the Samples mixer
             .sheet(isPresented: $showXfx) { XfxView(s: s) }
         }

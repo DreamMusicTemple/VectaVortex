@@ -75,7 +75,7 @@ struct FXRackView: View {
                     PickerRow(s: s, label: "Oversampling (saturation / wavefolder)", path: "oversample", options: ["normal", "2x", "4x"], def: "normal")
                 }
             }
-            .navigationTitle("FX rack")
+            .navigationTitle("FX rack").navigationBarTitleDisplayMode(.inline)
         }
     }
 

@@ -70,7 +70,7 @@ struct PresetBrowserView: View {
                 }
             }
             .searchable(text: $query)
-            .navigationTitle("Presets")
+            .navigationTitle("Presets").navigationBarTitleDisplayMode(.inline)
             .fileImporter(isPresented: $importing, allowedContentTypes: [.json]) { result in
                 guard case .success(let url) = result else { return }
                 let ok = url.startAccessingSecurityScopedResource(); defer { if ok { url.stopAccessingSecurityScopedResource() } }

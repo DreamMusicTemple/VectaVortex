@@ -81,7 +81,7 @@ struct SettingsView: View {
                     Button("EASTER EGG") { showVoid = true }.font(.system(size: 9, design: .monospaced)).foregroundStyle(.secondary).opacity(0.55)
                 }
             }
-            .navigationTitle("Settings")
+            .navigationTitle("Settings").navigationBarTitleDisplayMode(.inline)
             .onAppear(perform: apply)
             .onReceive(loudTimer) { _ in if let e = s.audioUnit.enginePointer { var o = [Double](repeating: 0, count: 6); vv_engine_get_loudness(e, &o); loud = o } }
             .fullScreenCover(isPresented: $showVoid) { VekturVoidView() }   // closing it releases the whole game; the next open is brand new
