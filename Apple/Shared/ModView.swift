@@ -28,12 +28,10 @@ let modDestGroups: [(String, [String])] = {
 
 struct ModView: View {
     @ObservedObject var s: PresetStore
-    @State private var page = 0
+    var page = 0   // chosen by the top icon nav (web: separate LFO / Matrix / Cross Mod / Vocoder / XY pages)
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                Picker("Page", selection: $page) { Text("LFO").tag(0); Text("Matrix").tag(1); Text("Cross-mod").tag(2); Text("Vocoder").tag(3); Text("XY").tag(4) }
-                    .pickerStyle(.segmented).padding([.horizontal, .top])
                 Form {
                     switch page {
                     case 0: LFOPage(s: s)

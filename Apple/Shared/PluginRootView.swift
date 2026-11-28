@@ -26,17 +26,23 @@ struct PluginRootView: View {
         Group {
             switch tab {
             case 1: SoundView(s: presets)
-            case 2: ModView(s: presets)
+            case 2: ModView(s: presets, page: 1)
+            case 9: ModView(s: presets, page: 4)
+            case 10: ModView(s: presets, page: 0)
+            case 11: ModView(s: presets, page: 2)
+            case 12: ModView(s: presets, page: 3)
+            case 13: SoundView(s: presets)
+            case 14: PlayView(store: store, presets: presets, showMod: { tab = 2 })
             case 4: FXRackView(s: presets)
             case 3: SequencerView(s: presets)
             case 8: MixerView(s: presets)
             case 5: PresetBrowserView(s: presets)
             case 6: SettingsView(s: presets)
-            case 7: ParameterBrowserView(store: store)
             default: PlayView(store: store, presets: presets, showMod: { tab = 2 })
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
-        if tab != 0 { KeyboardStrip(store: store) }   // web: the macro / keyboard strip stays on every screen
+        .onChange(of: tab) { t in if t == 13 { presets.viewLayer = 4 } }   // C64 / SID nav icon opens the SID layer
+        if tab != 0 && tab != 14 { KeyboardStrip(store: store) }   // web: the macro / keyboard strip stays on every screen
         PlayFooterView(s: presets, panic: { store.audioUnit.panic() })   // persistent footer, as in the web layout and the JUCE editor
         }
         .scrollContentBackground(.hidden)
@@ -452,9 +458,10 @@ struct PresetTreeMenu: View {
 /// The web app's top icon navigation: a row of rounded glass buttons, the active one outlined in the accent colour.
 struct TopNav: View {
     @Binding var tab: Int
-    private let items: [(NavIcon?, String, Int)] = [(.osc, "Sound", 1), (.matrix, "Mod", 2), (.fx, "FX", 4), (.seq, "Seq", 3), (nil, "Play", 0), (.mixer, "Mixer", 8), (.presets, "Presets", 5), (.settings, "Settings", 6), (nil, "Params", 7)]
+    /// The web nav, in web order: Oscillators, XY, Matrix, FX, Sequencer, LFO, Cross Mod, Vocoder, Scope, Mixer, C64/SID, Spectrogram, Presets, Settings.
+    private let items: [(NavIcon?, String, Int)] = [(.osc, "Oscillators", 1), (.xy, "XY Pads", 9), (.matrix, "Matrix", 2), (.fx, "FX", 4), (.seq, "Sequencer", 3), (.lfo, "LFO", 10), (.crossMod, "Cross Mod", 11), (.vocoder, "Vocoder", 12), (.scope, "Scope", 0), (.mixer, "Mixer", 8), (.c64, "C64 / SID", 13), (.spectrogram, "Spectrogram", 14), (.presets, "Presets", 5), (.settings, "Settings", 6)]
     var body: some View {
-        HStack(spacing: 6) {
+        HStack(spacing: 4) {
             ForEach(items, id: \.2) { it in
                 let on = tab == it.2
                 Button { tab = it.2 } label: {
