@@ -84,7 +84,7 @@ struct ValueBox: View {
     let text: String; var width: CGFloat = 70
     @Environment(\.layerAccent) private var layerAccent
     var body: some View {
-        Text(text).font(.system(size: 12, design: .monospaced)).foregroundStyle(layerAccent ?? vvValueTeal)   // web: value text takes the layer colour (amber on FM).lineLimit(1).minimumScaleFactor(0.7)
+        Text(text).font(.system(size: 12, design: .monospaced)).foregroundStyle(layerAccent ?? vvValueTeal).lineLimit(1).minimumScaleFactor(0.7)   // web: value text takes the layer colour (amber on FM)
             .frame(width: width).padding(.vertical, 3)
             .background(RoundedRectangle(cornerRadius: 3).fill(Color(red: 0.10, green: 0.14, blue: 0.18)).overlay(RoundedRectangle(cornerRadius: 3).stroke(Color.white.opacity(0.16), lineWidth: 1)))
     }
