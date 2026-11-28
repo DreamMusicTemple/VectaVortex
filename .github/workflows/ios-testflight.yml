@@ -75,6 +75,7 @@ jobs:
           if "BEGIN PRIVATE KEY" not in pem:
               pem = base64.b64decode(pem).decode()
           print("Using ASC2_* secrets:", os.environ.get("HAS_ASC2"), "| Key ID (not secret):", kid, "| P8 has BEGIN/END:", "BEGIN PRIVATE KEY" in pem and "END PRIVATE KEY" in pem, "| P8 lines:", len(pem.strip().splitlines()))
+          print("Key ID equals ST4KYU5J85:", kid == "ST4KYU5J85", "| Key ID equals 3NJN8V7UDQ (Vektur Drum):", kid == "3NJN8V7UDQ", "| Issuer equals expected:", iss.lower() == "56df11ce-03e3-4db6-8e1d-2ab6e4bf9c34")
           print("Key ID length:", len(kid), "(Apple Key IDs are 10 characters)")
           print("Issuer ID looks like a UUID:", bool(re.fullmatch(r"[0-9a-fA-F-]{36}", iss)))
           tok = jwt.encode({"iss": iss, "iat": int(time.time()), "exp": int(time.time()) + 600, "aud": "appstoreconnect-v1"}, pem, algorithm="ES256", headers={"kid": kid, "typ": "JWT"})
