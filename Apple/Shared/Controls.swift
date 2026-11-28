@@ -35,9 +35,9 @@ struct SliderRow: View {
     @State private var clipRecorded = false
     var body: some View {
         VStack(spacing: 4) {
-            HStack(spacing: 3) { Text(label).font(.system(size: 11)).lineLimit(2).multilineTextAlignment(.center).minimumScaleFactor(0.8); if hasRoute { Circle().fill(vvCyan).frame(width: 6, height: 6) } }.frame(height: 28, alignment: .bottom)
-            VVDialFace(norm: norm.wrappedValue, modNorm: nil, light: vvCyan, size: 52, active: startNorm != nil, steps: 0)
-                .frame(width: 52, height: 52)
+            HStack(spacing: 3) { Text(label).font(.system(size: 10.5, design: .monospaced)).foregroundStyle(Color.white.opacity(0.62)).lineLimit(2).multilineTextAlignment(.center).minimumScaleFactor(0.8); if hasRoute { Circle().fill(vvCyan).frame(width: 6, height: 6) } }.frame(height: 28, alignment: .bottom)
+            VVDialFace(norm: norm.wrappedValue, modNorm: nil, light: vvCyan, size: 60, active: startNorm != nil, steps: 0)
+                .frame(width: 60, height: 60)
                 .contentShape(Circle())
                 .gesture(DragGesture(minimumDistance: 2).onChanged { g in
                     if startNorm == nil { startNorm = norm.wrappedValue; startValue = s.double(path, def); dragT = norm.wrappedValue; lastTy = g.translation.height; lastTx = g.translation.width }
@@ -56,9 +56,9 @@ struct SliderRow: View {
                 .accessibilityLabel(label)
                 .accessibilityValue(String(format: fmt, s.double(path, def)) + unit)
                 .accessibilityAdjustableAction { dir in norm.wrappedValue += dir == .increment ? 0.05 : -0.05 }
-            Text(String(format: fmt, s.double(path, def)) + unit).font(.system(size: 11, design: .monospaced)).lineLimit(1).minimumScaleFactor(0.7).foregroundStyle(.white).frame(width: 74).padding(.vertical, 2).background(RoundedRectangle(cornerRadius: 3).fill(Color(red: 0.12, green: 0.15, blue: 0.19)).overlay(RoundedRectangle(cornerRadius: 3).stroke(Color.white.opacity(0.14), lineWidth: 1)))
+            ValueBox(text: String(format: fmt, s.double(path, def)) + unit, width: 76)
         }
-        .frame(width: 86)
+        .frame(width: 94)
         .contentShape(Rectangle())
         .contextMenu {   // iOS shows this on a long press
             if let d = modDest {
