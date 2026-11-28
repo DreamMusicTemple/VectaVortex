@@ -486,6 +486,7 @@ struct KeyboardStrip: View {
     @ObservedObject var presets: PresetStore
     @State private var showBend = false
     @State private var showZones = false
+    @State private var showXfx = false
     @State private var macros: [Double] = [0, 0, 0, 0]
     @State private var modWheel: Double = 0
     @State private var bend: Double = 0
