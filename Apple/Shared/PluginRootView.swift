@@ -36,6 +36,7 @@ struct PluginRootView: View {
             default: PlayView(store: store, presets: presets, showMod: { tab = 2 })
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
+        if tab != 0 { KeyboardStrip(store: store) }   // web: the macro / keyboard strip stays on every screen
         PlayFooterView(s: presets, panic: { store.audioUnit.panic() })   // persistent footer, as in the web layout and the JUCE editor
         }
         .scrollContentBackground(.hidden)
@@ -476,5 +477,40 @@ struct TopNav: View {
                 }.buttonStyle(.plain).accessibilityLabel(it.1)
             }
         }.padding(.horizontal, 8).padding(.vertical, 4)
+    }
+}
+
+
+/// Persistent macro + keyboard strip (web: MACRO 1-4, MASTER VOLUME / TONE, pitch and mod wheels, keyboard) shown under every screen except Play.
+struct KeyboardStrip: View {
+    @ObservedObject var store: ParameterStore
+    @State private var macros: [Double] = [0, 0, 0, 0]
+    @State private var modWheel: Double = 0
+    @State private var bend: Double = 0
+    @AppStorage("vv.kb.hidden") private var hidden = false
+    var body: some View {
+        VStack(spacing: 4) {
+            HStack(spacing: 10) {
+                ForEach(0..<4, id: \.self) { i in
+                    VStack(spacing: 0) {
+                        Text("MACRO \(i + 1)").font(.system(size: 9, design: .monospaced)).foregroundStyle(.secondary)
+                        Slider(value: Binding(get: { macros[i] }, set: { macros[i] = $0; store.audioUnit.setMacro(i, Float($0)) }), in: 0...1)
+                    }
+                }
+                if let m = store.model("master_volume") { VStack(spacing: 0) { Text("MASTER VOLUME").font(.system(size: 9, design: .monospaced)).foregroundStyle(.secondary); Slider(value: Binding(get: { Double(m.value) }, set: { m.set(Float($0)) }), in: Double(m.spec.minValue)...Double(m.spec.maxValue)) } }
+                if let m = store.model("master_tone") { VStack(spacing: 0) { Text("MASTER TONE").font(.system(size: 9, design: .monospaced)).foregroundStyle(.secondary); Slider(value: Binding(get: { Double(m.value) }, set: { m.set(Float($0)) }), in: Double(m.spec.minValue)...Double(m.spec.maxValue)) } }
+                Button(hidden ? "SHOW KEYBOARD" : "HIDE KEYBOARD") { hidden.toggle() }.font(.system(size: 10, design: .monospaced)).buttonStyle(.bordered).controlSize(.mini)
+            }
+            if !hidden {
+                HStack(spacing: 8) {
+                    VerticalSlider(value: Binding(get: { bend }, set: { bend = $0; store.audioUnit.setPitchBend(Float($0)) }), range: -1...1, springBack: true).frame(width: 30, height: 96)
+                    VerticalSlider(value: Binding(get: { modWheel }, set: { modWheel = $0; store.audioUnit.setModWheel(Float($0)) }), range: 0...1, springBack: false).frame(width: 30, height: 96)
+                    KeyboardView(audioUnit: store.audioUnit).frame(height: 96)
+                }
+            }
+        }
+        .padding(.horizontal, 10).padding(.vertical, 6)
+        .background(Color.black.opacity(0.55))
+        .overlay(alignment: .top) { Rectangle().fill(vvCyan.opacity(0.4)).frame(height: 1) }
     }
 }
