@@ -9,7 +9,7 @@ struct SoundView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                LayerTabBar(selection: Binding(get: { s.viewLayer }, set: { s.viewLayer = $0 })).padding([.horizontal, .top])
+                HStack(spacing: 6) { LayerTabBar(selection: Binding(get: { s.viewLayer }, set: { s.viewLayer = $0 })); Button("XFX") { showXfx = true }.buttonStyle(LayerButtonStyle(layer: 6, active: false)) }.padding([.horizontal, .top])   // web: XFX pill after the layer tabs
                 Rectangle().fill(LayerID.color(s.viewLayer).opacity(0.6)).frame(height: 2).padding(.horizontal).padding(.top, 4)
                 Form {
                     switch layer {
@@ -29,8 +29,7 @@ struct SoundView: View {
                 }
                 .layerIdentity(s.viewLayer)
             }
-            .navigationTitle("Sound").navigationBarTitleDisplayMode(.inline)
-            .toolbar { ToolbarItem(placement: .primaryAction) { Button("XFX") { showXfx = true } } }   // web: XFX button beside the Samples mixer
+            .navigationTitle("Sound").navigationBarTitleDisplayMode(.inline).toolbar(.hidden, for: .navigationBar)
             .sheet(isPresented: $showXfx) { XfxView(s: s) }
         }
     }

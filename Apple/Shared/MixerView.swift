@@ -32,7 +32,7 @@ struct MixerView: View {
             }.padding(8)
         }
         .onReceive(timer) { _ in tick += 1; if tick % max(1, BatterySaving.shared.uiDivider) == 0 { for i in 0..<24 { levels[i] = s.mixerLevel(i) } } }
-        .navigationTitle("Mixer").navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Mixer").navigationBarTitleDisplayMode(.inline).toolbar(.hidden, for: .navigationBar)
     }
 
     struct Strip: View {

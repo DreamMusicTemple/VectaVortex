@@ -43,7 +43,7 @@ struct ModView: View {
                     default: XYPadsPage(s: s)
                     }
                 }
-            }.navigationTitle("Modulation").navigationBarTitleDisplayMode(.inline)
+            }.navigationTitle("Modulation").navigationBarTitleDisplayMode(.inline).toolbar(.hidden, for: .navigationBar)
         }
     }
 }
