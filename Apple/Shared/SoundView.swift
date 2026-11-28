@@ -73,6 +73,7 @@ struct WavetableEditor: View {
             SliderRow(s: s, label: "Ring LPG cutoff (Hz)", path: "layers.WT.ringMod.lpgCutoff", range: 200...8000, def: 4000)
             SliderRow(s: s, label: "Ring LPG keytrack", path: "layers.WT.ringMod.lpgKeytrack", range: 0...1, def: 0.5)
         }
+        AdaptiveColumns {
         ForEach(0..<2, id: \.self) { i in
             let p = "layers.WT.oscs.\(i)"
             Section("Oscillator \(i + 1)") {
@@ -107,6 +108,8 @@ struct WavetableEditor: View {
                 PitchEnvEditor(s: s, prefix: p, title: "Pitch envelope (OSC\(i + 1))")
                 FilterEditor(s: s, title: "Oscillator filter", prefix: p + ".filter", envPrefix: p + ".filterEnv")
             }
+            .frame(maxWidth: .infinity, alignment: .top)
+        }
         }
     }
 }

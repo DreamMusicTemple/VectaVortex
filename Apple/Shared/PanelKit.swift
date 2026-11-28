@@ -120,3 +120,16 @@ struct MacroTiles: View {
         }
     }
 }
+
+
+/// Web two-column pages (OSC1 | OSC2 …): side by side when the page is wide enough, stacked otherwise.
+struct AdaptiveColumns<Content: View>: View {
+    @ViewBuilder var content: Content
+    @State private var width: CGFloat = 0
+    var body: some View {
+        Group {
+            if width >= 900 { HStack(alignment: .top, spacing: 12) { content } } else { VStack(alignment: .leading, spacing: 12) { content } }
+        }
+        .background(GeometryReader { g in Color.clear.onAppear { width = g.size.width }.onChange(of: g.size.width) { width = $0 } })
+    }
+}
