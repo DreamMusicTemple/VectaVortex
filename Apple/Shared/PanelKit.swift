@@ -83,7 +83,7 @@ struct NormDial: View {
     @State private var startNorm: Double?; @State private var lastTy: CGFloat = 0
     var body: some View {
         VStack(spacing: 3) {
-            Text(title).font(.system(size: 10, design: .monospaced)).foregroundStyle(Color.white.opacity(0.62)).lineLimit(1).minimumScaleFactor(0.7)
+            Text(title).font(.system(size: 10, design: .monospaced)).foregroundStyle(Color.white.opacity(0.62)).lineLimit(2).multilineTextAlignment(.center).minimumScaleFactor(0.8).frame(height: 26, alignment: .bottom)
             VVDialFace(norm: norm, modNorm: nil, light: vvCyan, size: size, active: startNorm != nil, steps: 0).frame(width: size, height: size).contentShape(Circle())
                 .gesture(DragGesture(minimumDistance: 1).onChanged { g in
                     if startNorm == nil { startNorm = norm; lastTy = g.translation.height }
