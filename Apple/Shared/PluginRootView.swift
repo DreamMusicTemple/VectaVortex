@@ -110,6 +110,7 @@ struct PlayView: View {
     @State private var showBendTargets = false
     @State private var showMpc = false
     @State private var showZones = false
+    @State private var showXfx = false
     @State private var macros: [Double] = [0, 0, 0, 0]
     @State private var modWheel: Double = 0
     @State private var bend: Double = 0
@@ -493,7 +494,8 @@ struct KeyboardStrip: View {
         VStack(spacing: 4) {
             HStack(spacing: 8) {
                 MacroTiles(store: store, size: 38)
-                Spacer(minLength: 4)
+                SampleFocusBar(s: presets).frame(maxWidth: .infinity)
+                XfxModeButton { showXfx = true }
             }
             HStack(spacing: 8) {   // web row: ARP · ZONES · scale · lock · root · octaves · PLAY · HIDE KEYBOARD · OCT
                 Text("ARP").font(.system(size: 11, weight: .semibold, design: .monospaced)).foregroundStyle(vvCyan)
@@ -511,6 +513,7 @@ struct KeyboardStrip: View {
         }
         .sheet(isPresented: $showBend) { BendTargetsSheet(s: presets) }
         .sheet(isPresented: $showZones) { ZonesView(s: presets) }
+        .sheet(isPresented: $showXfx) { XfxView(s: presets) }
         .padding(.horizontal, 10).padding(.vertical, 6)
         .background(Color.black.opacity(0.55))
         .overlay(alignment: .top) { Rectangle().fill(vvCyan.opacity(0.4)).frame(height: 1) }

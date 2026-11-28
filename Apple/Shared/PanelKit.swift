@@ -5,28 +5,29 @@ import SwiftUI
 /// Wrapping layout: fixed-size children (dials, toggles, menus) flow left to right; flexible children (graphs, editors, lists) take a full row.
 struct FlowLayout: Layout {
     var spacing: CGFloat = 8
+    /// Web .row: items pack from the far left, each one right beside the previous, wrapping to the next row when full.
+    /// Dials (narrow items) are packed first inside each run between full-width items, so dials always sit adjacent
+    /// to each other; toggles / menus / steppers follow after them.
     private func rows(_ subviews: Subviews, _ width: CGFloat) -> (frames: [CGRect], height: CGFloat) {
-        var frames: [CGRect] = [], x: CGFloat = 0, y: CGFloat = 0, rowH: CGFloat = 0
+        var frames = [CGRect](repeating: .zero, count: subviews.count)
+        var sizes: [CGSize] = [], full: [Bool] = []
         for v in subviews {
             let probe = v.sizeThatFits(ProposedViewSize(width: .infinity, height: nil))
-            let full = !probe.width.isFinite || probe.width > width * 0.9
-            let size = full ? v.sizeThatFits(ProposedViewSize(width: width, height: nil)) : probe
-            if full || (x > 0 && x + size.width > width + 0.5) { x = 0; y += rowH + (rowH > 0 ? spacing : 0); rowH = 0 }
-            let w = full ? width : size.width
-            frames.append(CGRect(x: x, y: y, width: w, height: size.height))
-            x += w + spacing; rowH = max(rowH, size.height)
-            if full { x = 0; y += rowH + spacing; rowH = 0 }
+            let f = !probe.width.isFinite || probe.width > width * 0.9
+            full.append(f); sizes.append(f ? v.sizeThatFits(ProposedViewSize(width: width, height: nil)) : probe)
         }
-        // web .row > .field { flex: 1 1 0 }: the items of a (non-full) row share the row width equally
-        var i = 0
-        while i < frames.count {
-            var j = i; while j + 1 < frames.count && abs(frames[j + 1].minY - frames[i].minY) < 0.5 { j += 1 }
-            let n = j - i + 1, last = frames[j].maxX
-            if n > 1 || frames[i].width < width * 0.9 {
-                let extra = max(0, width - last) / CGFloat(n)
-                for k in i...j { frames[k].origin.x += extra * CGFloat(k - i); frames[k].size.width += extra }
-            }
-            i = j + 1
+        var order: [Int] = [], run: [Int] = []
+        func flush() { order += run.filter { sizes[$0].width <= 110 } + run.filter { sizes[$0].width > 110 }; run = [] }
+        for i in subviews.indices { if full[i] { flush(); order.append(i) } else { run.append(i) } }
+        flush()
+        var x: CGFloat = 0, y: CGFloat = 0, rowH: CGFloat = 0
+        for i in order {
+            let size = sizes[i]
+            if full[i] || (x > 0 && x + size.width > width + 0.5) { if rowH > 0 { y += rowH + spacing }; x = 0; rowH = 0 }
+            let w = full[i] ? width : size.width
+            frames[i] = CGRect(x: x, y: y, width: w, height: size.height)
+            x += w + spacing; rowH = max(rowH, size.height)
+            if full[i] { y += rowH + spacing; x = 0; rowH = 0 }
         }
         return (frames, y + rowH)
     }
@@ -67,7 +68,7 @@ struct Section<Content: View>: View {
                 Text(title.uppercased()).font(.system(size: 11, weight: .semibold, design: .monospaced)).foregroundStyle(Color.white.opacity(0.85)).lineLimit(1)
                 Spacer()
             }.padding(.bottom, 6) }
-            FlowLayout(spacing: 6) { content }
+            FlowLayout(spacing: 4) { content }
         }
         .padding(.horizontal, 8).padding(.vertical, 7)
         .background(RoundedRectangle(cornerRadius: 5).fill(Color(red: 18/255, green: 20/255, blue: 27/255).opacity(0.94)))
@@ -178,5 +179,51 @@ struct WebMenu<Content: View>: View {
             .background(RoundedRectangle(cornerRadius: 6).fill(Color(red: 10/255, green: 11/255, blue: 15/255)))
             .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color(red: 42/255, green: 47/255, blue: 61/255), lineWidth: 1))
         }
+    }
+}
+
+
+/// Web 16-sample focus fader: a thin track with a cyan thumb, numbers 1-16 under it, and the SAMPLES label that switches the focus on / off.
+struct SampleFocusBar: View {
+    @ObservedObject var s: PresetStore
+    @State private var pos: Double = 0
+    @State private var on = false
+    private func push(_ name: String, _ v: Double) { if let e = s.audioUnit.enginePointer { vv_engine_set_global(e, name, v) } }
+    var body: some View {
+        VStack(spacing: 2) {
+            GeometryReader { g in
+                let w = g.size.width, tw: CGFloat = 10
+                ZStack(alignment: .leading) {
+                    RoundedRectangle(cornerRadius: 2).fill(Color(red: 22/255, green: 26/255, blue: 34/255)).frame(height: 10)
+                    RoundedRectangle(cornerRadius: 2).fill(vvCyan.opacity(on ? 1 : 0.55)).frame(width: tw, height: 30).offset(x: CGFloat(pos / 15) * (w - tw))
+                }
+                .frame(height: g.size.height).contentShape(Rectangle())
+                .gesture(DragGesture(minimumDistance: 0).onChanged { d in
+                    pos = min(max(Double((d.location.x - tw / 2) / max(w - tw, 1)) * 15, 0), 15)
+                    UserDefaults.standard.set(pos, forKey: "vv.global.sampleMix"); push("sampleMix", pos)
+                })
+            }.frame(height: 30)
+            HStack(spacing: 0) { ForEach(1...16, id: \.self) { Text("\($0)").font(.system(size: 9, design: .monospaced)).foregroundStyle(Color.white.opacity(0.62)).frame(maxWidth: .infinity) } }
+            Button("SAMPLES") { on.toggle(); UserDefaults.standard.set(on, forKey: "vv.global.sampleMixOn"); push("sampleMixOn", on ? 1 : 0) }
+                .buttonStyle(WebButtonStyle(active: on)).font(.system(size: 10, design: .monospaced))
+        }
+        .padding(.horizontal, 8).padding(.vertical, 6)
+        .background(RoundedRectangle(cornerRadius: 6).fill(Color.black.opacity(0.35)).overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white.opacity(0.12), lineWidth: 1)))
+        .onAppear {
+            pos = UserDefaults.standard.object(forKey: "vv.global.sampleMix") as? Double ?? 0
+            on = UserDefaults.standard.bool(forKey: "vv.global.sampleMixOn")
+        }
+    }
+}
+
+/// XFX MODE image button (web: the green XFX MODE tile beside the sample fader) - opens the XFX Mode editor.
+struct XfxModeButton: View {
+    let action: () -> Void
+    var body: some View {
+        Button(action: action) {
+            Image("XfxMode").resizable().scaledToFit().padding(6).frame(width: 96, height: 64)
+                .background(RoundedRectangle(cornerRadius: 6).fill(Color.black.opacity(0.35)))
+                .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white.opacity(0.18), lineWidth: 1))
+        }.buttonStyle(.plain).accessibilityLabel("XFX MODE")
     }
 }

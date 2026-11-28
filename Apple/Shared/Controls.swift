@@ -56,9 +56,9 @@ struct SliderRow: View {
                 .accessibilityLabel(label)
                 .accessibilityValue(String(format: fmt, s.double(path, def)) + unit)
                 .accessibilityAdjustableAction { dir in norm.wrappedValue += dir == .increment ? 0.05 : -0.05 }
-            ValueBox(text: String(format: fmt, s.double(path, def)) + unit, width: 76)
+            ValueBox(text: String(format: fmt, s.double(path, def)) + unit, width: 70)
         }
-        .frame(width: 94)
+        .frame(width: 86)
         .contentShape(Rectangle())
         .contextMenu {   // iOS shows this on a long press
             if let d = modDest {
