@@ -42,7 +42,7 @@ struct PluginRootView: View {
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
         .onChange(of: tab) { t in if t == 13 { presets.viewLayer = 4 } }   // C64 / SID nav icon opens the SID layer
-        if tab != 0 && tab != 14 { KeyboardStrip(store: store) }   // web: the macro / keyboard strip stays on every screen
+        if tab != 0 && tab != 14 { KeyboardStrip(store: store, presets: presets) }   // web: the macro / keyboard strip stays on every screen
         PlayFooterView(s: presets, panic: { store.audioUnit.panic() })   // persistent footer, as in the web layout and the JUCE editor
         }
         .scrollContentBackground(.hidden)
@@ -387,7 +387,7 @@ struct KeyboardOptions: View {
                 Button("OCT ▲") { low = min(84, low + 12) }
                 Button("OCT ▼") { low = max(24, low - 12) }
                 Button("INVERT KEYS") { invert.toggle() }.tint(invert ? vvCyan : nil)
-            }.font(.caption).buttonStyle(.bordered).controlSize(.small)
+            }.buttonStyle(WebButtonStyle())
         }
         }
     }
@@ -482,6 +482,9 @@ struct TopNav: View {
 /// Persistent macro + keyboard strip (web: MACRO 1-4, MASTER VOLUME / TONE, pitch and mod wheels, keyboard) shown under every screen except Play.
 struct KeyboardStrip: View {
     @ObservedObject var store: ParameterStore
+    @ObservedObject var presets: PresetStore
+    @State private var showBend = false
+    @State private var showZones = false
     @State private var macros: [Double] = [0, 0, 0, 0]
     @State private var modWheel: Double = 0
     @State private var bend: Double = 0
@@ -491,16 +494,23 @@ struct KeyboardStrip: View {
             HStack(spacing: 8) {
                 MacroTiles(store: store, size: 38)
                 Spacer(minLength: 4)
-                Button(hidden ? "SHOW KEYBOARD" : "HIDE KEYBOARD") { hidden.toggle() }.buttonStyle(WebButtonStyle())
+            }
+            HStack(spacing: 8) {   // web row: ARP · ZONES · scale · lock · root · octaves · PLAY · HIDE KEYBOARD · OCT
+                Text("ARP").font(.system(size: 11, weight: .semibold, design: .monospaced)).foregroundStyle(vvCyan)
+                Toggle("On", isOn: presets.binding("arp.on", bool: false)).font(.system(size: 11, design: .monospaced)).toggleStyle(.switch).fixedSize().scaleEffect(0.8)
+                Button("ZONES ▸") { showZones = true }.buttonStyle(WebButtonStyle())
+                KeyboardOptions(s: presets, panic: { store.audioUnit.panic() })
             }
             if !hidden {
                 HStack(spacing: 8) {
-                    VerticalSlider(value: Binding(get: { bend }, set: { bend = $0; store.audioUnit.setPitchBend(Float($0)) }), range: -1...1, springBack: true).frame(width: 30, height: 96)
+                    VStack(spacing: 2) { Button("TARGETS") { showBend = true }.buttonStyle(WebButtonStyle()).font(.system(size: 9)); VerticalSlider(value: Binding(get: { bend }, set: { bend = $0; store.audioUnit.setPitchBend(Float($0)) }), range: -1...1, springBack: true).frame(width: 30, height: 72) }
                     VerticalSlider(value: Binding(get: { modWheel }, set: { modWheel = $0; store.audioUnit.setModWheel(Float($0)) }), range: 0...1, springBack: false).frame(width: 30, height: 96)
                     KeyboardView(audioUnit: store.audioUnit).frame(height: 96)
                 }
             }
         }
+        .sheet(isPresented: $showBend) { BendTargetsSheet(s: presets) }
+        .sheet(isPresented: $showZones) { ZonesView(s: presets) }
         .padding(.horizontal, 10).padding(.vertical, 6)
         .background(Color.black.opacity(0.55))
         .overlay(alignment: .top) { Rectangle().fill(vvCyan.opacity(0.4)).frame(height: 1) }
