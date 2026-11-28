@@ -17,6 +17,17 @@ struct FlowLayout: Layout {
             x += w + spacing; rowH = max(rowH, size.height)
             if full { x = 0; y += rowH + spacing; rowH = 0 }
         }
+        // web .row > .field { flex: 1 1 0 }: the items of a (non-full) row share the row width equally
+        var i = 0
+        while i < frames.count {
+            var j = i; while j + 1 < frames.count && abs(frames[j + 1].minY - frames[i].minY) < 0.5 { j += 1 }
+            let n = j - i + 1, last = frames[j].maxX
+            if n > 1 || frames[i].width < width * 0.9 {
+                let extra = max(0, width - last) / CGFloat(n)
+                for k in i...j { frames[k].origin.x += extra * CGFloat(k - i); frames[k].size.width += extra }
+            }
+            i = j + 1
+        }
         return (frames, y + rowH)
     }
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
@@ -36,7 +47,7 @@ struct FlowLayout: Layout {
 struct Form<Content: View>: View {
     @ViewBuilder var content: Content
     var body: some View {
-        ScrollView { LazyVStack(alignment: .leading, spacing: 12) { content }.padding(.horizontal, 10).padding(.vertical, 8) }
+        ScrollView { LazyVStack(alignment: .leading, spacing: 6) { content }.padding(.horizontal, 10).padding(.vertical, 8) }
             .scrollDismissesKeyboard(.interactively)
     }
 }
@@ -55,12 +66,12 @@ struct Section<Content: View>: View {
                 HStack(spacing: 2) { Rectangle().fill(accent).frame(width: 3, height: 12); Rectangle().fill(accent.opacity(0.5)).frame(width: 3, height: 12) }
                 Text(title.uppercased()).font(.system(size: 11, weight: .semibold, design: .monospaced)).foregroundStyle(Color.white.opacity(0.85)).lineLimit(1)
                 Spacer()
-            }.padding(.horizontal, 12).padding(.vertical, 7)
-            Rectangle().fill(accent.opacity(0.35)).frame(height: 1) }
-            FlowLayout(spacing: 10) { content }.padding(12)
+            }.padding(.bottom, 6) }
+            FlowLayout(spacing: 6) { content }
         }
-        .background(RoundedRectangle(cornerRadius: 6).fill(Color(red: 18/255, green: 20/255, blue: 27/255).opacity(0.94)))
-        .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color(red: 74/255, green: 212/255, blue: 217/255).opacity(0.28), lineWidth: 1))
+        .padding(.horizontal, 8).padding(.vertical, 7)
+        .background(RoundedRectangle(cornerRadius: 5).fill(Color(red: 18/255, green: 20/255, blue: 27/255).opacity(0.94)))
+        .overlay(RoundedRectangle(cornerRadius: 5).stroke(accent.opacity(0.28), lineWidth: 1))
     }
 }
 
