@@ -379,7 +379,7 @@ struct KeyboardOptions: View {
             HStack(spacing: 8) {
                 Picker("Scale", selection: $scaleIdx) { ForEach(0..<kbScales.count, id: \.self) { Text(kbScales[$0].label).tag($0) } }.pickerStyle(.menu)
                 Picker("Root", selection: $root) { ForEach(0..<12, id: \.self) { Text(names[$0]).tag($0) } }.pickerStyle(.menu)
-                Toggle("Scale lock", isOn: $lock).toggleStyle(.switch).fixedSize()
+                Toggle("Scale lock", isOn: $lock).toggleStyle(WebSwitchStyle()).fixedSize()
                 Picker("Octaves", selection: $octaves) { ForEach(1...3, id: \.self) { Text("\($0) oct").tag($0) } }.pickerStyle(.menu)
                 // Round 9 (web parity): PLAY, HIDE KEYBOARD and OCT ▲ / ▼ sit immediately right of the Octaves menu
                 Button(s.transportRunning ? "STOP" : "PLAY") { s.setTransport(!s.transportRunning) }.tint(Color(red: 0.18, green: 0.66, blue: 0.33))
@@ -497,7 +497,7 @@ struct KeyboardStrip: View {
             }
             HStack(spacing: 8) {   // web row: ARP · ZONES · scale · lock · root · octaves · PLAY · HIDE KEYBOARD · OCT
                 Text("ARP").font(.system(size: 11, weight: .semibold, design: .monospaced)).foregroundStyle(vvCyan)
-                Toggle("On", isOn: presets.binding("arp.on", bool: false)).font(.system(size: 11, design: .monospaced)).toggleStyle(.switch).fixedSize().scaleEffect(0.8)
+                Toggle("On", isOn: presets.binding("arp.on", bool: false)).font(.system(size: 11, design: .monospaced)).toggleStyle(WebSwitchStyle()).fixedSize().scaleEffect(0.8)
                 Button("ZONES ▸") { showZones = true }.buttonStyle(WebButtonStyle())
                 KeyboardOptions(s: presets, panic: { store.audioUnit.panic() })
             }
@@ -522,8 +522,8 @@ struct KeyboardStrip: View {
 struct WebButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label.font(.system(size: 11, design: .monospaced)).foregroundStyle(Color.white.opacity(0.9))
-            .padding(.horizontal, 12).padding(.vertical, 8)
-            .background(RoundedRectangle(cornerRadius: 4).fill(Color(red: 0.09, green: 0.12, blue: 0.16).opacity(configuration.isPressed ? 0.6 : 1)))
-            .overlay(RoundedRectangle(cornerRadius: 4).stroke(Color.white.opacity(0.18), lineWidth: 1))
+            .foregroundStyle(Color(red: 230/255, green: 237/255, blue: 243/255)).padding(.horizontal, 10).frame(height: 27)
+            .background(RoundedRectangle(cornerRadius: 4).fill(Color(red: 27/255, green: 31/255, blue: 42/255).opacity(configuration.isPressed ? 0.6 : 1)))
+            .overlay(RoundedRectangle(cornerRadius: 4).stroke(Color(red: 42/255, green: 47/255, blue: 61/255), lineWidth: 1))
     }
 }

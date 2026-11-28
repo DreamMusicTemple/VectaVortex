@@ -59,8 +59,8 @@ struct Section<Content: View>: View {
             Rectangle().fill(accent.opacity(0.35)).frame(height: 1) }
             FlowLayout(spacing: 10) { content }.padding(12)
         }
-        .background(RoundedRectangle(cornerRadius: 10).fill(Color(red: 0.05, green: 0.07, blue: 0.09).opacity(0.78)))
-        .overlay(RoundedRectangle(cornerRadius: 10).stroke(accent.opacity(0.30), lineWidth: 1))
+        .background(RoundedRectangle(cornerRadius: 6).fill(Color(red: 18/255, green: 20/255, blue: 27/255).opacity(0.94)))
+        .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color(red: 74/255, green: 212/255, blue: 217/255).opacity(0.28), lineWidth: 1))
     }
 }
 
@@ -131,5 +131,41 @@ struct AdaptiveColumns<Content: View>: View {
             if width >= 900 { HStack(alignment: .top, spacing: 12) { content } } else { VStack(alignment: .leading, spacing: 12) { content } }
         }
         .background(GeometryReader { g in Color.clear.onAppear { width = g.size.width }.onChange(of: g.size.width) { width = $0 } })
+    }
+}
+
+
+/// Web switch: 32 x 18 pill, 1 px grey border, dark teal fill when on, grey knob (measured from the web CSS).
+struct WebSwitchStyle: ToggleStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        HStack(spacing: 8) {
+            configuration.label
+            Spacer(minLength: 0)
+            ZStack(alignment: configuration.isOn ? .trailing : .leading) {
+                Capsule().fill(configuration.isOn ? Color(red: 18/255, green: 116/255, blue: 123/255) : Color(red: 43/255, green: 46/255, blue: 53/255))
+                Capsule().stroke(Color(red: 122/255, green: 122/255, blue: 122/255), lineWidth: 1)
+                Circle().fill(Color(white: 0.88)).frame(width: 12, height: 12).padding(.horizontal, 3)
+            }
+            .frame(width: 32, height: 18)
+            .onTapGesture { configuration.isOn.toggle() }
+            .animation(.easeOut(duration: 0.12), value: configuration.isOn)
+        }
+    }
+}
+
+/// Web select: 20 pt high, 9-10 pt monospaced cyan text on #0A0B0F with a #2A2F3D border and 6 pt radius.
+struct WebMenu<Content: View>: View {
+    let text: String
+    @ViewBuilder var content: Content
+    var body: some View {
+        Menu { content } label: {
+            HStack(spacing: 4) {
+                Text(text).font(.system(size: 10.5, design: .monospaced)).foregroundStyle(Color(red: 38/255, green: 217/255, blue: 230/255)).lineLimit(1)
+                Image(systemName: "chevron.down").font(.system(size: 8, weight: .semibold)).foregroundStyle(Color.white.opacity(0.7))
+            }
+            .padding(.horizontal, 8).frame(height: 22)
+            .background(RoundedRectangle(cornerRadius: 6).fill(Color(red: 10/255, green: 11/255, blue: 15/255)))
+            .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color(red: 42/255, green: 47/255, blue: 61/255), lineWidth: 1))
+        }
     }
 }

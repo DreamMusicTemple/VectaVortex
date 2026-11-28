@@ -74,7 +74,7 @@ struct SliderRow: View {
 struct ToggleRow: View {
     @ObservedObject var s: PresetStore
     let label: String; let path: String; var def = false
-    var body: some View { Toggle(label, isOn: s.binding(path, bool: def)).font(.caption).toggleStyle(.switch).frame(width: 250) }
+    var body: some View { Toggle(label, isOn: s.binding(path, bool: def)).font(.system(size: 10.5, design: .monospaced)).foregroundStyle(Color.white.opacity(0.62)).toggleStyle(WebSwitchStyle()).frame(width: 220) }
 }
 
 struct PickerRow: View {
@@ -82,12 +82,13 @@ struct PickerRow: View {
     let label: String; let path: String; let options: [String]; var def: String? = nil
     var labels: [String: String] = [:]   // optional display names for option values (custom wavetables use "custom:<id>" values)
     var body: some View {
-        HStack {
-            Text(label).font(.caption)
-            Spacer()
-            Picker(label, selection: s.binding(path, string: def ?? options.first ?? "")) {
-                ForEach(options, id: \.self) { Text(labels[$0] ?? $0).tag($0) }
-            }.pickerStyle(.menu).labelsHidden()
+        HStack(spacing: 8) {
+            Text(label).font(.system(size: 10.5, design: .monospaced)).foregroundStyle(Color.white.opacity(0.62)).lineLimit(2)
+            Spacer(minLength: 0)
+            let cur = s.binding(path, string: def ?? options.first ?? "")
+            WebMenu(text: labels[cur.wrappedValue] ?? cur.wrappedValue) {
+                ForEach(options, id: \.self) { o in Button(labels[o] ?? o) { cur.wrappedValue = o } }
+            }
         }.frame(width: 300)
     }
 }

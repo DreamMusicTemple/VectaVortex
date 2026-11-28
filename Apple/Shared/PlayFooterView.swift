@@ -79,7 +79,7 @@ struct PlayFooterView: View {
                             }.padding().frame(minWidth: 280)
                         }
                     Menu("GENERATE") { ForEach(PresetStore.generatableCategories, id: \.self) { c in Button(c) { _ = s.generate(c) } } }
-                    Toggle("CHORD", isOn: $chordOn).toggleStyle(.switch).fixedSize().onChange(of: chordOn) { _ in chord = "—" }
+                    Toggle("CHORD", isOn: $chordOn).toggleStyle(WebSwitchStyle()).fixedSize().onChange(of: chordOn) { _ in chord = "—" }
                     Text(chord).font(.system(size: 13, weight: .bold, design: .monospaced)).foregroundStyle(vvCyan).frame(minWidth: 140, alignment: .leading)
                 }
             }
