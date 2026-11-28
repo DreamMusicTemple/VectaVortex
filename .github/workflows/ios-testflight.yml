@@ -47,9 +47,9 @@ jobs:
 
       - name: Check secrets are present (names only, values never printed)
         env:
-          K: ${{ secrets.ASC_KEY_ID || secrets.APP_STORE_CONNECT_KEY_ID }}
-          I: ${{ secrets.ASC_ISSUER_ID || secrets.APP_STORE_CONNECT_ISSUER_ID }}
-          P: ${{ secrets.ASC_KEY_P8 || secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
+          K: ${{ secrets.ASC2_KEY_ID || secrets.ASC_KEY_ID || secrets.APP_STORE_CONNECT_KEY_ID }}
+          I: ${{ secrets.ASC2_ISSUER_ID || secrets.ASC_ISSUER_ID || secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          P: ${{ secrets.ASC2_KEY_P8 || secrets.ASC_KEY_P8 || secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
         run: |
           bad=0
           [ -n "$K" ] || { echo "::error::ASC_KEY_ID / APP_STORE_CONNECT_KEY_ID is missing or empty"; bad=1; }
@@ -59,9 +59,9 @@ jobs:
 
       - name: Test the API key against Apple (prints HTTP status and Apple's error title only)
         env:
-          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID || secrets.APP_STORE_CONNECT_KEY_ID }}
-          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID || secrets.APP_STORE_CONNECT_ISSUER_ID }}
-          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 || secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
+          ASC_KEY_ID: ${{ secrets.ASC2_KEY_ID || secrets.ASC_KEY_ID || secrets.APP_STORE_CONNECT_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC2_ISSUER_ID || secrets.ASC_ISSUER_ID || secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC2_KEY_P8 || secrets.ASC_KEY_P8 || secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
         run: |
           set -euo pipefail
           umask 077
@@ -93,9 +93,9 @@ jobs:
 
       - name: Archive, sign and upload to TestFlight
         env:
-          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID || secrets.APP_STORE_CONNECT_KEY_ID }}
-          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID || secrets.APP_STORE_CONNECT_ISSUER_ID }}
-          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 || secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
+          ASC_KEY_ID: ${{ secrets.ASC2_KEY_ID || secrets.ASC_KEY_ID || secrets.APP_STORE_CONNECT_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC2_ISSUER_ID || secrets.ASC_ISSUER_ID || secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC2_KEY_P8 || secrets.ASC_KEY_P8 || secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
         run: |
           set -euo pipefail
           umask 077
