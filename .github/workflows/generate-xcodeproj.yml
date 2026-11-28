@@ -1,0 +1,21 @@
+name: Generate Xcode project (for Xcode Cloud)
+# Commits Apple/VectaVortex.xcodeproj so Apple's Xcode Cloud can open the project. No secrets are used.
+on:
+  push:
+    branches: [recovery/reconstruct-directory-structure]
+    paths: [.github/xcodeproj-trigger.txt]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  gen:
+    runs-on: xcode-27
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: recovery/reconstruct-directory-structure }
+      - run: brew install xcodegen && cd Apple && xcodegen generate
+      - name: Commit the generated project
+        run: |
+          git config user.name "ci"; git config user.email "ci@users.noreply.github.com"
+          git add -f Apple/VectaVortex.xcodeproj
+          git diff --cached --quiet && echo "no change" || { git commit -q -m "Generated Xcode project for Xcode Cloud"; git push origin HEAD:recovery/reconstruct-directory-structure; }
